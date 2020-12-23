@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QKeyEvent>
 #include <QGraphicsScene>
+#include "bullet.h"
 
 class Character:public QObject, public QGraphicsPixmapItem
 {

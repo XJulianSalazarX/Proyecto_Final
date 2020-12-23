@@ -19,4 +19,9 @@ void Character::keyPressEvent(QKeyEvent *event)
     else if(event->key() == Qt::Key_D and x()+100<1090){
         setPos(x()+5,y());
     }
+    if(event->key() == Qt::Key_Space){
+        Bullet *bullet = new Bullet();
+        bullet->setPos(x()+50,y());
+        scene()->addItem(bullet);
+    }
 }
