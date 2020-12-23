@@ -2,8 +2,9 @@
 #define CHARACTER_H
 
 #include <QObject>
+#include <QGraphicsPixmapItem>
 
-class Character:public QObject
+class Character:public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:

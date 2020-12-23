@@ -18,6 +18,11 @@ Widget::Widget(QWidget *parent)
     ui->graphicsView->setSceneRect(0,0,width(),height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    //jugador
+    player = new Character();
+    scene->addItem(player);
+    player->setPos(width()/2-50,height()-200);
 }
 
 Widget::~Widget()

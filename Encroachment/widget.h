@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QGraphicsScene>
+#include "character.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -19,5 +20,6 @@ public:
 private:
     Ui::Widget *ui;
     QGraphicsScene *scene;
+    Character *player;
 };
 #endif // WIDGET_H
