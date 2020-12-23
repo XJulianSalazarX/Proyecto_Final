@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QKeyEvent>
+#include <QGraphicsScene>
 
 class Character:public QObject, public QGraphicsPixmapItem
 {

@@ -4,5 +4,6 @@
         <file>images/Mesa_de_trabajo_1.jpg</file>
         <file>images/carrito_bueno.png</file>
         <file>images/carrito_malo.png</file>
+        <file>images/bala.png</file>
     </qresource>
 </RCC>
