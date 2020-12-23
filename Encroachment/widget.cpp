@@ -6,6 +6,18 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    //escena
+    this->setFixedSize(1280,740);
+    this->setMinimumSize(width(),height());
+    this->setMaximumSize(width(),height());
+    scene = new QGraphicsScene();
+    scene->setBackgroundBrush(QPixmap(":/images/Mesa_de_trabajo_1.jpg"));
+    ui->graphicsView->setScene(scene);
+    ui->graphicsView->setFixedSize(width(),height()-20);
+    ui->graphicsView->setSceneRect(0,0,width(),height()-20);
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 Widget::~Widget()

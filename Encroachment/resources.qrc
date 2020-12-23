@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/mesa de trabajo.jpg</file>
+        <file>images/Mesa_de_trabajo_1.jpg</file>
+    </qresource>
+</RCC>

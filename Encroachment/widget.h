@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QGraphicsScene>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -17,5 +18,6 @@ public:
 
 private:
     Ui::Widget *ui;
+    QGraphicsScene *scene;
 };
 #endif // WIDGET_H
