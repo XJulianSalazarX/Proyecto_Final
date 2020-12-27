@@ -19,11 +19,13 @@ SOURCES += \
     bullet.cpp \
     character.cpp \
     main.cpp \
+    obstacle.cpp \
     widget.cpp
 
 HEADERS += \
     bullet.h \
     character.h \
+    obstacle.h \
     widget.h
 
 FORMS += \

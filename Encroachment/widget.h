@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include "character.h"
+#include "obstacle.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -16,10 +17,14 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+public slots:
+    void respawn();
 
 private:
     Ui::Widget *ui;
     QGraphicsScene *scene;
     Character *player;
+    obstacle *muro;
+
 };
 #endif // WIDGET_H

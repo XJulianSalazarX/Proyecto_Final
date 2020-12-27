@@ -24,9 +24,21 @@ Widget::Widget(QWidget *parent)
     scene->addItem(player);
     player->setPos(width()/2-50,height()-200);
 
+    //obstaculos
+
+    QTimer *timer=new QTimer();
+    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(respawn()));
+    timer->start(3000);
+
     //Poner focus sobre el item (reciba la tacla que se presione por teclado)
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
+}
+
+void Widget::respawn()
+{
+    muro = new obstacle();
+    scene->addItem(muro);
 }
 
 Widget::~Widget()
