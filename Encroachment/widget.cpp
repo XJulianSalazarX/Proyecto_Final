@@ -27,10 +27,21 @@ Widget::Widget(QWidget *parent)
     //Poner focus sobre el item (reciba la tacla que se presione por teclado)
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
+
+    //generar enemigos
+    T_enemies = new QTimer();
+    connect(T_enemies,SIGNAL(timeout()),this,SLOT(Enemies()));
+    T_enemies->start(5000);
 }
 
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::Enemies()
+{
+    Enemy *enemy = new Enemy();
+    scene->addItem(enemy);
 }
 

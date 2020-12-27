@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include "character.h"
+#include "enemy.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -16,10 +17,14 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+    QTimer *T_enemies;
 
 private:
     Ui::Widget *ui;
     QGraphicsScene *scene;
     Character *player;
+
+public slots:
+    void Enemies();
 };
 #endif // WIDGET_H

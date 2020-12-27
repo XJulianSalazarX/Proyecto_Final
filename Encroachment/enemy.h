@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
+#include <QGraphicsScene>
 
 
 class Enemy: public QObject, public QGraphicsPixmapItem
