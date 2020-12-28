@@ -31,7 +31,7 @@ Widget::Widget(QWidget *parent)
     //generar enemigos
     T_enemies = new QTimer();
     connect(T_enemies,SIGNAL(timeout()),this,SLOT(Enemies()));
-    T_enemies->start(5000);
+    T_enemies->start(3000);
 }
 
 Widget::~Widget()

@@ -1,5 +1,6 @@
 #include "bullet.h"
 #include <QDebug>
+//#include "enemy.h"
 
 Bullet::Bullet()
 {
@@ -23,6 +24,5 @@ void Bullet::move()
     if(pos().y() < 0){
         scene()->removeItem(this);
         delete this;
-        qDebug() << "Bala eliminada";
     }
 }

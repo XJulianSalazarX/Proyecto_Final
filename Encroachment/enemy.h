@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include <QGraphicsScene>
+#include "bullet.h"
 
 
 class Enemy: public QObject, public QGraphicsPixmapItem

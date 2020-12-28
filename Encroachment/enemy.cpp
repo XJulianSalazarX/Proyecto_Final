@@ -20,6 +20,17 @@ Enemy::~Enemy()
 
 void Enemy::Move()
 {
+    QList<QGraphicsItem *> collisions = collidingItems();
+    for(QGraphicsItem *i : collisions){
+        if(i->collidesWithItem(this)){
+            scene()->removeItem(i);
+            scene()->removeItem(this);
+            delete i;
+            delete this;
+            return;
+        }
+    }
+
     setPos(x(),y()+10);
 
     if(pos().y() > 720){
@@ -27,4 +38,5 @@ void Enemy::Move()
         delete this;
         qDebug() << "Enemigo eliminado";
     }
+
 }
