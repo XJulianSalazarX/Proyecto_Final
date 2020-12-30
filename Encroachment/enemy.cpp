@@ -1,5 +1,6 @@
 #include "enemy.h"
 #include <QDebug>
+#include <QMetaType>
 
 Enemy::Enemy()
 {
@@ -23,11 +24,13 @@ void Enemy::Move()
     QList<QGraphicsItem *> collisions = collidingItems();
     for(QGraphicsItem *i : collisions){
         if(i->collidesWithItem(this)){
-            scene()->removeItem(i);
-            scene()->removeItem(this);
-            delete i;
-            delete this;
-            return;
+            if(typeid(*(i))==typeid (Bullet)){
+                scene()->removeItem(i);
+                scene()->removeItem(this);
+                delete i;
+                delete this;
+                return;
+            }
         }
     }
 
