@@ -24,7 +24,10 @@ private:
     Ui::Widget *ui;
     QGraphicsScene *scene;
     Character *player;
-    obstacle *muro;
+    obstacle *valla;
+    obstacle *charco;
+    obstacle *viento;
+    obstacle *chatarra;
 
 };
 #endif // WIDGET_H

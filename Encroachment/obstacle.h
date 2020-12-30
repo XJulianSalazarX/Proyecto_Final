@@ -13,9 +13,17 @@ class obstacle: public QObject, public QGraphicsPixmapItem
 public:
     obstacle();
     ~obstacle();
+    void start( int );
+    int type_obs;
+
+private:
+
+    int getType_obs() const;
+    void setType_obs(int value);
 
 public slots:
     void move();
+
 
 private:
     QTimer *timer;
