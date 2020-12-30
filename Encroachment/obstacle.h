@@ -13,13 +13,14 @@ class obstacle: public QObject, public QGraphicsPixmapItem
 public:
     obstacle();
     ~obstacle();
-    void start( int );
-    int type_obs;
+    void start(  );
 
-private:
 
     int getType_obs() const;
     void setType_obs(int value);
+
+private:
+    int type_obs;
 
 public slots:
     void move();

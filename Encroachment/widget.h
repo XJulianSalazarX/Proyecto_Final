@@ -24,10 +24,7 @@ private:
     Ui::Widget *ui;
     QGraphicsScene *scene;
     Character *player;
-    obstacle *valla;
-    obstacle *charco;
-    obstacle *viento;
-    obstacle *chatarra;
+    obstacle *obs;
 
 };
 #endif // WIDGET_H

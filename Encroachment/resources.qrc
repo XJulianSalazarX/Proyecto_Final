@@ -5,5 +5,8 @@
         <file>images/carrito_bueno.png</file>
         <file>images/carrito_malo.png</file>
         <file>images/valla.jpg</file>
+        <file>images/viento.jpg</file>
+        <file>images/chatarra.png</file>
+        <file>images/charco.jpg</file>
     </qresource>
 </RCC>

@@ -27,7 +27,6 @@ Widget::Widget(QWidget *parent)
 
     //obstaculos
 
-    int a= // type_obs de la clase obstaculo
 
     QTimer *timer=new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(respawn()));
@@ -41,24 +40,8 @@ Widget::Widget(QWidget *parent)
 void Widget::respawn()
 {
 
-
-    if (a==1) {
-        valla = new obstacle();
-        scene->addItem(valla);
-    }
-    else if (a==2) {
-        charco = new obstacle();
-        scene->addItem(valla);
-    }
-    else if (a==3) {
-        viento = new obstacle();
-        scene->addItem(valla);
-    }
-    else{
-        chatarra = new obstacle();
-        scene->addItem(valla);
-    }
-
+        obs = new obstacle();
+        scene->addItem(obs);
 
 }
 
