@@ -1,5 +1,6 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include <QImage>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -12,10 +13,13 @@ Widget::Widget(QWidget *parent)
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
     scene = new QGraphicsScene();
-    scene->setBackgroundBrush(QPixmap(":/images/Mesa_de_trabajo_1.jpg"));
+    //scene->setBackgroundBrush(QPixmap(QImage(":/images/Mesa_de_trabajo_1.jpg")));
+    scene->setBackgroundBrush(QBrush(QImage(":/images/level.png")));
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->setFixedSize(width(),height()-20);
-    ui->graphicsView->setSceneRect(0,0,width(),height()-20);
+//    ui->graphicsView->setFixedSize(width(),height()-20);
+//    ui->graphicsView->setSceneRect(0,0,width(),height()-20);
+    ui->graphicsView->setFixedSize(width()*2,height()-20);
+    ui->graphicsView->setSceneRect(0,0,width()*2,height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -27,10 +31,32 @@ Widget::Widget(QWidget *parent)
     //Poner focus sobre el item (reciba la tacla que se presione por teclado)
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
+
+    //generar enemigos
+    t_enemies = new QTimer();
+    connect(t_enemies,SIGNAL(timeout()),this,SLOT(Enemies()));
+    t_enemies->start(3000);
+
+    //generar obstaculos
+    t_obstacles = new QTimer();
+    connect(t_obstacles,SIGNAL(timeout()),this,SLOT(respawn()));
+    t_obstacles->start(5000);
 }
 
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::Enemies()
+{
+    enemy = new Enemy();
+    scene->addItem(enemy);
+}
+
+void Widget::respawn()
+{
+    obs = new Obstacle();
+    scene->addItem(obs);
 }
 
