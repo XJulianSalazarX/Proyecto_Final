@@ -20,12 +20,14 @@ SOURCES += \
     character.cpp \
     enemy.cpp \
     main.cpp \
+    obstacle.cpp \
     widget.cpp
 
 HEADERS += \
     bullet.h \
     character.h \
     enemy.h \
+    obstacle.h \
     widget.h
 
 FORMS += \
