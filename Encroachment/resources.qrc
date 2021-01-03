@@ -6,5 +6,9 @@
         <file>images/carrito_malo.png</file>
         <file>images/bala.png</file>
         <file>images/level.png</file>
+        <file>images/chatarra.png</file>
+        <file>images/charco.jpg</file>
+        <file>images/valla.jpg</file>
+        <file>images/viento.jpg</file>
     </qresource>
 </RCC>
