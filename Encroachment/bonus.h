@@ -1,26 +1,23 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef BONUS_H
+#define BONUS_H
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include <QGraphicsScene>
-#include "bullet.h"
 
-
-class Enemy: public QObject, public QGraphicsPixmapItem
+class Bonus: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Enemy();
-    ~Enemy();
+    Bonus();
+    ~Bonus();
 
-protected:
+private:
     QTimer *timer;
 
 public slots:
     void Move();
-
 };
 
-#endif // ENEMY_H
+#endif // BONUS_H

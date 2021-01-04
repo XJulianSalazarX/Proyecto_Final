@@ -29,6 +29,9 @@ public:
      * @param event Recibe la tecla ingresada por teclado
      */
     void keyPressEvent(QKeyEvent *event);
+
+private:
+    double health;
 };
 
 #endif // CHARACTER_H

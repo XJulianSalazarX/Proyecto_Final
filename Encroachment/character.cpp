@@ -3,6 +3,8 @@
 Character::Character()
 {
     setPixmap(QPixmap(":/images/carrito_bueno.png"));
+
+    health = 100;
 }
 
 void Character::keyPressEvent(QKeyEvent *event)

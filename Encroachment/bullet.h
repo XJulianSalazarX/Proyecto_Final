@@ -34,8 +34,9 @@ public slots:
      */
     void move();
 
-private:
+protected:
     QTimer *timer;
+    double damage;
 };
 
 #endif // BULLET_H
