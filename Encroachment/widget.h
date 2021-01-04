@@ -6,6 +6,7 @@
 #include "character.h"
 #include "enemy.h"
 #include "obstacle.h"
+#include "bonus.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -20,6 +21,7 @@ public:
     ~Widget();
     QTimer *t_enemies;
     QTimer *t_obstacles;
+    QTimer *t_bonus;
 
 private:
     Ui::Widget *ui;
@@ -27,9 +29,11 @@ private:
     Character *player;
     Enemy *enemy;
     Obstacle *obs;
+    Bonus *bonus;
 
 public slots:
     void Enemies();
     void respawn();
+    void CreateBonus();
 };
 #endif // WIDGET_H

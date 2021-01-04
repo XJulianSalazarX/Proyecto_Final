@@ -41,6 +41,11 @@ Widget::Widget(QWidget *parent)
     t_obstacles = new QTimer();
     connect(t_obstacles,SIGNAL(timeout()),this,SLOT(respawn()));
     t_obstacles->start(5000);
+
+    //generar bonus
+    t_bonus = new QTimer();
+    connect(t_bonus,SIGNAL(timeout()),this,SLOT(CreateBonus()));
+    t_bonus->start(10000);
 }
 
 Widget::~Widget()
@@ -58,5 +63,11 @@ void Widget::respawn()
 {
     obs = new Obstacle();
     scene->addItem(obs);
+}
+
+void Widget::CreateBonus()
+{
+    bonus = new Bonus();
+    scene->addItem(bonus);
 }
 

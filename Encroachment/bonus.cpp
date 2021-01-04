@@ -9,7 +9,7 @@ Bonus::Bonus()
     setPos(random,-200);
 
     timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(move()));
+    connect(timer,SIGNAL(timeout()),this,SLOT(Move()));
     timer->start(50);
 }
 

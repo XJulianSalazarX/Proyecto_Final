@@ -36,6 +36,7 @@ public slots:
 
 private:
     QTimer *timer;
+    double damage;
 };
 
 #endif // BULLET_H
