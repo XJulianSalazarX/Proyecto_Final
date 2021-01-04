@@ -35,6 +35,7 @@ Widget::Widget(QWidget *parent)
     //generar enemigos
     t_enemies = new QTimer();
     connect(t_enemies,SIGNAL(timeout()),this,SLOT(Enemies()));
+    connect(t_enemies,SIGNAL(timeout()),this,SLOT(Enemies2()));
     t_enemies->start(3000);
 
     //generar obstaculos
@@ -69,5 +70,11 @@ void Widget::CreateBonus()
 {
     bonus = new Bonus();
     scene->addItem(bonus);
+}
+
+void Widget::Enemies2()
+{
+    enemy2 = new EnemyShoots();
+    scene->addItem(enemy2);
 }
 

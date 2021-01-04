@@ -20,6 +20,8 @@ SOURCES += \
     bullet.cpp \
     character.cpp \
     enemy.cpp \
+    enemybullet.cpp \
+    enemyshoots.cpp \
     main.cpp \
     obstacle.cpp \
     widget.cpp
@@ -29,6 +31,8 @@ HEADERS += \
     bullet.h \
     character.h \
     enemy.h \
+    enemybullet.h \
+    enemyshoots.h \
     obstacle.h \
     widget.h
 

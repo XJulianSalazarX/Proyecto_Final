@@ -15,7 +15,7 @@ public:
     Enemy();
     ~Enemy();
 
-private:
+protected:
     QTimer *timer;
 
 public slots:

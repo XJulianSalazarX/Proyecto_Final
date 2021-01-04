@@ -23,6 +23,7 @@ void Bullet::move()
     //eliminar la bala
     if(pos().y() < 0){
         scene()->removeItem(this);
+        qDebug() << "Bala eliminada";
         delete this;
     }
 }
