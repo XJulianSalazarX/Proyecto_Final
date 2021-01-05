@@ -23,6 +23,7 @@ SOURCES += \
     enemybullet.cpp \
     enemyshoots.cpp \
     main.cpp \
+    menu.cpp \
     obstacle.cpp \
     widget.cpp
 
@@ -33,10 +34,12 @@ HEADERS += \
     enemy.h \
     enemybullet.h \
     enemyshoots.h \
+    menu.h \
     obstacle.h \
     widget.h
 
 FORMS += \
+    menu.ui \
     widget.ui
 
 # Default rules for deployment.
