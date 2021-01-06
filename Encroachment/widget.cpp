@@ -1,12 +1,18 @@
 #include "widget.h"
+#include "login.h"
 #include "ui_widget.h"
 #include <QImage>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
+
+
+
+
 {
     ui->setupUi(this);
+
 
     //escena
     this->setFixedSize(1280,740);

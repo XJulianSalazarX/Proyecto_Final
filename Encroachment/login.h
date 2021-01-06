@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QString>
-
+#include <QMessageBox>
 
 
 namespace Ui {
@@ -22,7 +22,13 @@ public:
     void Invisible_login();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_singIn_clicked();
+
+    void on_singUp_clicked();
+
+    void on_back_clicked();
+
+    void on_next_clicked();
 
 private:
     Ui::login *ui;
