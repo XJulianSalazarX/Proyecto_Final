@@ -13,7 +13,7 @@ Widget::Widget(QWidget *parent)
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
     scene = new QGraphicsScene();
-    //scene->setBackgroundBrush(QPixmap(QImage(":/images/Mesa_de_trabajo_1.jpg")));
+
     scene->setBackgroundBrush(QBrush(QImage(":/images/level.png")));
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setFixedSize(width(),height()-20);

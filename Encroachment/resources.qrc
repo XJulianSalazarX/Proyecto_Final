@@ -10,5 +10,15 @@
         <file>images/charco.jpg</file>
         <file>images/valla.jpg</file>
         <file>images/viento.jpg</file>
+        <file>images/how to play.png</file>
+        <file>images/play.png</file>
+        <file>images/profile.png</file>
+        <file>images/setting.png</file>
+        <file>images/top.png</file>
+        <file>images/space.png</file>
+        <file>images/level1.png</file>
+        <file>images/level2.png</file>
+        <file>images/level3.png</file>
+        <file>images/back.png</file>
     </qresource>
 </RCC>
