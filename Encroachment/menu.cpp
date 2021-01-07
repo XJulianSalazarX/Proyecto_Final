@@ -1,5 +1,6 @@
 #include "menu.h"
 #include "ui_menu.h"
+#include <QDebug>
 
 Menu::Menu(QWidget *parent) :
     QWidget(parent),
@@ -16,11 +17,10 @@ Menu::Menu(QWidget *parent) :
     ui->graphicsView->setSceneRect(0,0,width(),height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/space.png").scaled(1280,720)));
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->splitter->setVisible(false);
     ui->back->setVisible(false);
     ui->levels->setVisible(false);
-    ui->characters->setVisible(false);
     ui->play_2->setVisible(false);
 }
 
@@ -51,7 +51,6 @@ void Menu::on_play_clicked()
 {
     ui->back->setVisible(true);
     ui->levels->setVisible(true);
-    ui->characters->setVisible(true);
     ui->play_2->setVisible(true);
     Invisible();
 }
@@ -74,8 +73,51 @@ void Menu::on_back_clicked()
 {
     ui->splitter->setVisible(false);
     ui->levels->setVisible(false);
-    ui->characters->setVisible(false);
     ui->play_2->setVisible(false);
     ui->back->setVisible(false);
     Visible();
+    level = 0;
+}
+void Menu::on_level1_clicked()
+{
+    level = 1;
+}
+
+void Menu::on_level2_clicked()
+{
+    level = 2;
+}
+
+void Menu::on_level3_clicked()
+{
+    level = 3;
+}
+
+void Menu::on_play_2_clicked()
+{
+    switch (level) {
+    case 1:{
+       qDebug() << "Nivel 1";
+    }
+        break;
+    case 2:{
+        qDebug() << "Nivel 2";
+    }
+        break;
+    case 3:{
+        qDebug() << "Nivel 3";
+    }
+        break;
+    default:{
+        QMessageBox::critical(this,"Error","Seleccione un nivel primero.");
+                return;
+    }
+
+    }
+}
+
+void Menu::on_logOut_clicked()
+{
+    close();
+    show();
 }

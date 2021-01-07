@@ -20,5 +20,6 @@
         <file>images/level2.png</file>
         <file>images/level3.png</file>
         <file>images/back.png</file>
+        <file>images/fondo.jpg</file>
     </qresource>
 </RCC>
