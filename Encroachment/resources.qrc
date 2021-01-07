@@ -10,5 +10,6 @@
         <file>images/charco.jpg</file>
         <file>images/valla.jpg</file>
         <file>images/viento.jpg</file>
+        <file>data/users.dat</file>
     </qresource>
 </RCC>
