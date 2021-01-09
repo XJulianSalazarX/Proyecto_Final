@@ -10,28 +10,39 @@
 #define CHARACTER_H
 
 #include <QObject>
-#include <QGraphicsPixmapItem>
+#include <QGraphicsItem>
+#include <QPixmap>
+#include <QPainter>
+//#include <QGraphicsPixmapItem>
 #include <QKeyEvent>
 #include <QGraphicsScene>
 #include "bullet.h"
 
-class Character:public QObject, public QGraphicsPixmapItem
+class Character:public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
     /**
      * @brief Constructor de la clase Character
      */
-    Character();
+    Character(QObject *parent = nullptr);
     /**
      * @brief keyPressEvent Mover la clase Character o instanciar la clase Bullet
      * dependiendo de la tecla ingresada
      * @param event Recibe la tecla ingresada por teclado
      */
     void keyPressEvent(QKeyEvent *event);
+    QRectF boundingRect() const;
+    void paint(QPainter *painter,const QStyleOptionGraphicsItem *option,QWidget *widget);
 
 private:
     double health;
+    double w,h,col;
+    QPixmap *pixmap;
+    QTimer *timer;
+
+public slots:
+    void actualize();
 };
 
 #endif // CHARACTER_H

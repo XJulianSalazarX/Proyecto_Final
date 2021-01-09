@@ -119,5 +119,4 @@ void Menu::on_play_2_clicked()
 void Menu::on_logOut_clicked()
 {
     close();
-    show();
 }
