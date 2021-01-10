@@ -1,5 +1,6 @@
 #include "level1.h"
 #include "ui_level1.h"
+#include <QDebug>
 
 Level1::Level1(QWidget *parent) :
     QWidget(parent),
@@ -31,10 +32,16 @@ Level1::Level1(QWidget *parent) :
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
+    //generar enemigos
     timerE = new QTimer();
     connect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies()));
+    connect(timerE,SIGNAL(timeout()),this,SLOT(makeObstacles()));
     timerE->start(3000);
 
+    //generar obstaculos
+    timerO = new QTimer();
+    connect(timerO,SIGNAL(timeout()),this,SLOT(makeObstacles()));
+    timerE->start(5000);
 }
 
 Level1::~Level1()
@@ -56,4 +63,11 @@ void Level1::makeEnemies()
 {
     enemy = new Enemy();
     scene->addItem(enemy);
+}
+
+void Level1::makeObstacles()
+{
+    qDebug() << "generar obstaculo";
+    obs = new Obstacle();
+    scene->addItem(obs);
 }

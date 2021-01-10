@@ -20,7 +20,7 @@ Character::Character(QObject *parent):QObject(parent)
 
     timerM = new QTimer();
     connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
-    timerM->start(15);
+    timerM->start(18);
 }
 
 void Character::keyPressEvent(QKeyEvent *event)
@@ -47,7 +47,7 @@ void Character::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 {
     option = nullptr;
     widget = nullptr;
-    painter->drawPixmap(-w/2,-w/2,*pixmap,col,0,w,h);
+    painter->drawPixmap(-w/2,-h/2,*pixmap,col,0,w,h);
 }
 
 void Character::actualize()

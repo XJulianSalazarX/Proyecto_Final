@@ -1,12 +1,15 @@
 #include "obstacle.h"
 #include <QDebug>
+#include "menu.h"
+
+extern Menu *menu;
 
 Obstacle::Obstacle()
 {
 
 
     int obs_random= 140 + rand() % (1000- 140);
-    setPos(obs_random,0);
+    setPos(obs_random,menu->level1->playerPos()-720);
 
      type_obs=1+rand()%4;
      setType_obs(type_obs);
@@ -25,11 +28,11 @@ Obstacle::~Obstacle()
 
 void Obstacle::start()
 {
-    //type_obs 1=valla/madera   2=charco    3=viento    4=chatarra
-        if (type_obs==1) setPixmap(QPixmap(":/images/valla.jpg").scaled(100,40));
-        else if(type_obs==2)setPixmap(QPixmap(":/images/charco.jpg").scaled(100,40));
-        else if (type_obs==3)setPixmap(QPixmap(":/images/viento.jpg").scaled(100,40));
-        else setPixmap(QPixmap(":/images/chatarra.png").scaled(100,40));
+    //type_obs 1=tronco   2=charco    3=viento    4=piedra
+        if (type_obs==1) setPixmap(QPixmap(":/images/trunk.png").scaled(150,150));
+        else if(type_obs==2)setPixmap(QPixmap(":/images/charco.png").scaled(140,140));
+        else if (type_obs==3)setPixmap(QPixmap(":/images/brisa.png"));
+        else setPixmap(QPixmap(":/images/piedra.png"));
 
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
@@ -49,10 +52,8 @@ void Obstacle::setType_obs(int value)
 
 void Obstacle::move()
 {
-    //mover el obstaculo hacia abajo
-    setPos(x(),y()+10);
     //eliminar  el obstaculo
-    if(pos().y() > 740){
+    if(pos().y() > menu->level1->playerPos()+100){
         scene()->removeItem(this);
         delete this;
         qDebug() << "obstaculo eliminado";

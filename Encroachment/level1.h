@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include "character.h"
 #include "enemy.h"
+#include "obstacle.h"
 
 namespace Ui {
 class Level1;
@@ -26,11 +27,14 @@ private:
     QGraphicsScene *scene;
     Character *player;
     Enemy *enemy;
+    Obstacle *obs;
 
     QTimer *timerE;
+    QTimer *timerO;
 
 public slots:
     void makeEnemies();
+    void makeObstacles();
 };
 
 #endif // LEVEL1_H

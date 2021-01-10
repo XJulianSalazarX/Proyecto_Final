@@ -1,21 +1,13 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/mesa de trabajo.jpg</file>
-        <file>images/Mesa_de_trabajo_1.jpg</file>
         <file>images/carrito_bueno.png</file>
         <file>images/carrito_malo.png</file>
         <file>images/bala.png</file>
-        <file>images/level.png</file>
-        <file>images/chatarra.png</file>
-        <file>images/charco.jpg</file>
-        <file>images/valla.jpg</file>
-        <file>images/viento.jpg</file>
         <file>images/how to play.png</file>
         <file>images/play.png</file>
         <file>images/profile.png</file>
         <file>images/setting.png</file>
         <file>images/top.png</file>
-        <file>images/space.png</file>
         <file>images/level1.png</file>
         <file>images/level2.png</file>
         <file>images/level3.png</file>
@@ -25,5 +17,11 @@
         <file>images/level1.1.jpg</file>
         <file>images/level2.1.jpg</file>
         <file>images/level3.1.jpg</file>
+        <file>images/enemy.png</file>
+        <file>images/spider.png</file>
+        <file>images/brisa.png</file>
+        <file>images/piedra.png</file>
+        <file>images/charco.png</file>
+        <file>images/trunk.png</file>
     </qresource>
 </RCC>
