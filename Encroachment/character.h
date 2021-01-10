@@ -40,9 +40,11 @@ private:
     double w,h,col;
     QPixmap *pixmap;
     QTimer *timer;
+    QTimer *timerM;
 
 public slots:
     void actualize();
+    void Move();
 };
 
 #endif // CHARACTER_H

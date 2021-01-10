@@ -1,13 +1,15 @@
 #include "enemy.h"
 #include <QDebug>
-#include <QMetaType>
+#include "menu.h"
+
+extern Menu *menu;
 
 Enemy::Enemy()
 {
-    setPixmap(QPixmap(":/images/carrito_malo.png"));
+    setPixmap(QPixmap(":/images/carrito_malo.png").scaled(50,100));
 
     int random = 190 +rand() % (800-190);
-    setPos(random,-200);
+    setPos(random,menu->level1->playerPos()-720);
 
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(Move()));
@@ -36,7 +38,7 @@ void Enemy::Move()
 
     setPos(x(),y()+10);
 
-    if(pos().y() > 720){
+    if(pos().y() > menu->level1->playerPos()+100){
         scene()->removeItem(this);
         delete this;
         qDebug() << "Enemigo eliminado";

@@ -22,5 +22,8 @@
         <file>images/back.png</file>
         <file>images/fondo.jpg</file>
         <file>images/character 1.2.png</file>
+        <file>images/level1.1.jpg</file>
+        <file>images/level2.1.jpg</file>
+        <file>images/level3.1.jpg</file>
     </qresource>
 </RCC>

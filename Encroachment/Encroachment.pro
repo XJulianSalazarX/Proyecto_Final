@@ -22,6 +22,7 @@ SOURCES += \
     enemy.cpp \
     enemybullet.cpp \
     enemyshoots.cpp \
+    level1.cpp \
     main.cpp \
     menu.cpp \
     obstacle.cpp \
@@ -34,11 +35,13 @@ HEADERS += \
     enemy.h \
     enemybullet.h \
     enemyshoots.h \
+    level1.h \
     menu.h \
     obstacle.h \
     widget.h
 
 FORMS += \
+    level1.ui \
     menu.ui \
     widget.ui
 

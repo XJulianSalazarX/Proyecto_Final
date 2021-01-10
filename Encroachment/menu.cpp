@@ -97,7 +97,10 @@ void Menu::on_play_2_clicked()
 {
     switch (level) {
     case 1:{
+       close();
        qDebug() << "Nivel 1";
+       level1 = new Level1();
+       level1->show();
     }
         break;
     case 2:{
@@ -112,11 +115,15 @@ void Menu::on_play_2_clicked()
         QMessageBox::critical(this,"Error","Seleccione un nivel primero.");
                 return;
     }
-
     }
 }
 
 void Menu::on_logOut_clicked()
 {
     close();
+}
+
+short Menu::getLevel() const
+{
+    return level;
 }

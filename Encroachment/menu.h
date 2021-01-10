@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QMessageBox>
+#include "level1.h"
 
 namespace Ui {
 class Menu;
@@ -18,6 +19,10 @@ public:
     ~Menu();
     void Visible();
     void Invisible();
+
+    short getLevel() const;
+
+    Level1 *level1;
 
 private slots:
     void on_play_clicked();
@@ -42,6 +47,7 @@ private:
     Ui::Menu *ui;
     QGraphicsScene *scene;
     short level;
+//    Level1 *level1;
 
 };
 
