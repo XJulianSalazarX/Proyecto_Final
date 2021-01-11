@@ -29,7 +29,7 @@ Obstacle::~Obstacle()
 void Obstacle::start()
 {
     //type_obs 1=tronco   2=charco    3=viento    4=piedra
-        if (type_obs==1) setPixmap(QPixmap(":/images/trunk.png").scaled(150,150));
+        if (type_obs==1) setPixmap(QPixmap(":/images/trunk.png").scaled(130,130));
         else if(type_obs==2)setPixmap(QPixmap(":/images/charco.png").scaled(140,140));
         else if (type_obs==3)setPixmap(QPixmap(":/images/brisa.png"));
         else setPixmap(QPixmap(":/images/piedra.png"));
@@ -52,6 +52,15 @@ void Obstacle::setType_obs(int value)
 
 void Obstacle::move()
 {
+    QList<QGraphicsItem *> collisions = collidingItems();
+    for(QGraphicsItem *i : collisions){
+        if(i->collidesWithItem(this) and (type_obs == 1 or type_obs == 4)){
+            if(typeid(*(i))==typeid (Bullet)){
+                scene()->removeItem(i);
+                delete i;
+            }
+        }
+    }
     //eliminar  el obstaculo
     if(pos().y() > menu->level1->playerPos()+100){
         scene()->removeItem(this);

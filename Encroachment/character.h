@@ -36,7 +36,7 @@ public:
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option,QWidget *widget);
 
 private:
-    double health;
+    double health, speed;
     double w,h,col;
     QPixmap *pixmap;
     QTimer *timer;

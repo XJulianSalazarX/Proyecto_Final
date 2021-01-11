@@ -15,6 +15,8 @@ Character::Character(QObject *parent):QObject(parent)
 
     health = 10;
 
+    speed = 5;
+
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
     //timer->start(1000);
@@ -34,10 +36,10 @@ Character::Character(QObject *parent):QObject(parent)
 void Character::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_A and x()>220){
-        setPos(x()-15,y());
+        setPos(x()-speed*2,y());
     }
     else if(event->key() == Qt::Key_D and x()+30<1090){
-        setPos(x()+15,y());
+        setPos(x()+speed*2,y());
     }
 }
 
@@ -121,10 +123,8 @@ void Character::Move()
                     health -= 1;
                 }
                 else if(menu->level1->getObstacle() == 2 or menu->level1->getObstacle() == 3){
-                    timerM->start(100);
-                    this->focusItem();
-                    timerMove->start(100);
-
+                    speed = 2.5;
+                    timerMove->start(50);
                 }
                 if(health <= 0){
                     scene()->removeItem(this);
@@ -132,12 +132,16 @@ void Character::Move()
                     return;
                 }
             }
+            else if(typeid (*(i)) == typeid (Bonus)){
+                scene()->removeItem(i);
+                delete i;
+            }
         }
     }
 
     //qDebug() << health;
 
-    setPos(x(),y()-5);
+    setPos(x(),y()-speed);
     if(menu->getLevel() == 1)
         menu->level1->FocusPlayer();
 }
@@ -151,5 +155,6 @@ void Character::Shoot()
 
 void Character::Slow()
 {
-    timerM->start(20);
+    speed = 5;
+    timerMove->stop();
 }
