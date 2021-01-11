@@ -8,7 +8,7 @@ class EnemyShoots: public Enemy
 {
     Q_OBJECT
 public:
-    EnemyShoots();
+    EnemyShoots(int posx);
     ~EnemyShoots();
 
 private:

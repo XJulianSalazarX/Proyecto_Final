@@ -54,25 +54,25 @@ Widget::~Widget()
 
 void Widget::Enemies()
 {
-    enemy = new Enemy();
-    scene->addItem(enemy);
+//    enemy = new Enemy();
+//    scene->addItem(enemy);
 }
 
 void Widget::respawn()
 {
-    obs = new Obstacle();
-    scene->addItem(obs);
+//    obs = new Obstacle();
+//    scene->addItem(obs);
 }
 
 void Widget::CreateBonus()
 {
-    bonus = new Bonus();
-    scene->addItem(bonus);
+//    bonus = new Bonus();
+//    scene->addItem(bonus);
 }
 
 void Widget::Enemies2()
 {
-    enemy2 = new EnemyShoots();
-    scene->addItem(enemy2);
+//    enemy2 = new EnemyShoots();
+//    scene->addItem(enemy2);
 }
 

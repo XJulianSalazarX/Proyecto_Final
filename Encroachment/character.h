@@ -35,6 +35,8 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option,QWidget *widget);
 
+    double getHealth() const;
+
 private:
     double health, speed;
     double w,h,col;

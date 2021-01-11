@@ -12,23 +12,19 @@ class Obstacle: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Obstacle();
+    Obstacle(int posx);
     ~Obstacle();
     void start();
 
 
     int getType_obs() const;
-    void setType_obs(int value);
 
-private:
+protected:
     int type_obs;
+    QTimer *timer;
 
 public slots:
     void move();
-
-
-private:
-    QTimer *timer;
 };
 
 #endif // OBS_H

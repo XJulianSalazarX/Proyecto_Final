@@ -8,6 +8,8 @@ Level1::Level1(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    posx = 0;
+
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
 
@@ -27,6 +29,8 @@ Level1::Level1(QWidget *parent) :
     scene->addItem(player);
     player->setPos(630,21500);
     ui->graphicsView->centerOn(player->x(),player->y());
+    ui->progressBar->setRange(0,10);
+    playerHealth();
 
     //Poner focus sobre el item (reciba la tacla que se presione por teclado)
     player->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -44,6 +48,10 @@ Level1::Level1(QWidget *parent) :
     //generar tanques enemigos
     timerE2 = new QTimer();
     connect(timerE2,SIGNAL(timeout()),this,SLOT(makeEnemies2()));
+
+    //generar obstaculos 2
+    timerO2 = new QTimer();
+    connect(timerO2,SIGNAL(timeout()),this,SLOT(makeObstacles2()));
 
     //generar bonus
     timerB = new QTimer();
@@ -71,9 +79,20 @@ int Level1::getObstacle()
     return obs->getType_obs();
 }
 
+void Level1::playerHealth()
+{
+    ui->progressBar->setValue(player->getHealth());
+}
+
 void Level1::makeEnemies()
 {
-    enemy = new Enemy();
+    int random;
+    do{
+        random = 190 +rand() % (800-190);
+    }while(abs(posx-random) < 100);
+    posx = random;
+
+    enemy = new Enemy(posx);
     scene->addItem(enemy);
     timerE->stop();
     timerO->start(2000);
@@ -81,8 +100,13 @@ void Level1::makeEnemies()
 
 void Level1::makeObstacles()
 {
-    qDebug() << "generar obstaculo";
-    obs = new Obstacle();
+    int random;
+    do{
+        random = 190 +rand() % (800-190);
+    }while(abs(posx-random) < 100);
+    posx = random;
+
+    obs = new Obstacle(posx);
     scene->addItem(obs);
     timerO->stop();
     timerE2->start(2000);
@@ -90,9 +114,29 @@ void Level1::makeObstacles()
 
 void Level1::makeEnemies2()
 {
-    enemy2 = new EnemyShoots();
+    int random;
+    do{
+        random = 190 +rand() % (800-190);
+    }while(abs(posx-random) < 100);
+    posx = random;
+
+    enemy2 = new EnemyShoots(posx);
     scene->addItem(enemy2);
     timerE2->stop();
+    timerO2->start(2000);
+}
+
+void Level1::makeObstacles2()
+{
+    int random;
+    do{
+        random = 190 +rand() % (800-190);
+    }while(abs(posx-random) < 100);
+    posx = random;
+
+    obs2 = new Obstacle2(posx);
+    scene->addItem(obs2);
+    timerO2->stop();
     timerE->start(2000);
 }
 

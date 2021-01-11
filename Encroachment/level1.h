@@ -4,10 +4,10 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include "character.h"
-#include "enemy.h"
-#include "obstacle.h"
+#include "obstacle2.h"
 #include "enemyshoots.h"
 #include "bonus.h"
+#include <math.h>
 
 namespace Ui {
 class Level1;
@@ -24,25 +24,31 @@ public:
     void FocusPlayer();
     double playerPos();
     int getObstacle();
-    Obstacle *obs;
+    void playerHealth();
 
 private:
     Ui::Level1 *ui;
     QGraphicsScene *scene;
     Character *player;
     Enemy *enemy;
+    Obstacle *obs;
     EnemyShoots *enemy2;
+    Obstacle2 *obs2;
     Bonus *bonus;
 
     QTimer *timerE;
     QTimer *timerO;
     QTimer *timerE2;
+    QTimer *timerO2;
     QTimer *timerB;
+
+    int posx;
 
 public slots:
     void makeEnemies();
     void makeObstacles();
     void makeEnemies2();
+    void makeObstacles2();
     void makeBonus();
 };
 

@@ -14,7 +14,6 @@ Character::Character(QObject *parent):QObject(parent)
     h = 140;
 
     health = 10;
-
     speed = 5;
 
     timer = new QTimer();
@@ -55,6 +54,11 @@ void Character::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     painter->drawPixmap(-w/2,-h/2,*pixmap,col,0,w,h);
 }
 
+double Character::getHealth() const
+{
+    return health;
+}
+
 void Character::actualize()
 {
     col += 60;
@@ -66,22 +70,6 @@ void Character::actualize()
 
 void Character::Move()
 {
-//    if(this->collidesWithItem(menu->level1->obs)){
-//        if(menu->level1->obs->getType_obs() == 1 or menu->level1->obs->getType_obs() == 4){
-//            scene()->removeItem(menu->level1->obs);
-//            delete menu->level1->obs;
-//            health -= 1;
-//        }
-//        else if(menu->level1->obs->getType_obs() == 2 or menu->level1->obs->getType_obs() == 3){
-//            timerM->start(500);
-//        }
-//        if(health <= 0){
-//            scene()->removeItem(this);
-//            delete this;
-//            return;
-//        }
-//    }
-
     QList<QGraphicsItem *> collisions = collidingItems();
     for(QGraphicsItem *i : collisions){
         if(i->collidesWithItem(this)){
@@ -95,6 +83,7 @@ void Character::Move()
                     return;
                 }
             }
+
             else if(typeid (*(i)) == typeid (EnemyBullet)){
                 scene()->removeItem(i);
                 delete i;
@@ -105,33 +94,37 @@ void Character::Move()
                     return;
                 }
             }
+
             else if(typeid (*(i)) == typeid (EnemyShoots)){
                 scene()->removeItem(i);
                 delete i;
-                health -= 5;
+                health -= 3;
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
                     return;
                 }
             }
+
             else if(typeid (*(i)) == typeid (Obstacle)){
                 qDebug() << menu->level1->getObstacle();
-                if(menu->level1->getObstacle() == 1 or menu->level1->getObstacle() == 4){
-                    scene()->removeItem(i);
-                    delete i;
-                    health -= 1;
-                }
-                else if(menu->level1->getObstacle() == 2 or menu->level1->getObstacle() == 3){
-                    speed = 2.5;
-                    timerMove->start(50);
-                }
+                scene()->removeItem(i);
+                delete i;
+                health -= 1;
+
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
                     return;
                 }
             }
+
+            else if(typeid (*(i)) == typeid (Obstacle2)){
+                speed = 2;
+                timerMove->start(30);
+                timerS->stop();
+            }
+
             else if(typeid (*(i)) == typeid (Bonus)){
                 scene()->removeItem(i);
                 delete i;
@@ -139,7 +132,7 @@ void Character::Move()
         }
     }
 
-    //qDebug() << health;
+    menu->level1->playerHealth();
 
     setPos(x(),y()-speed);
     if(menu->getLevel() == 1)
@@ -157,4 +150,5 @@ void Character::Slow()
 {
     speed = 5;
     timerMove->stop();
+    timerS->start(500);
 }

@@ -1,7 +1,7 @@
 #include "enemyshoots.h"
 #include <QDebug>
 
-EnemyShoots::EnemyShoots()
+EnemyShoots::EnemyShoots(int posx): Enemy(posx)
 {
     pixmap->load(":/images/tank1.png");
     //pixmap = new QPixmap(":/images/tank1.png");

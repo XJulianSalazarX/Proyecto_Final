@@ -14,7 +14,7 @@ class Enemy: public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
-    Enemy(QObject *parent = nullptr);
+    Enemy(int posx,QObject *parent = nullptr);
     ~Enemy();
 
     QRectF boundingRect() const;

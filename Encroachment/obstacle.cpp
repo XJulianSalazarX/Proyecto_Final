@@ -4,18 +4,21 @@
 
 extern Menu *menu;
 
-Obstacle::Obstacle()
+Obstacle::Obstacle(int posx)
 {
 
 
-    int obs_random= 140 + rand() % (1000- 140);
-    setPos(obs_random,menu->level1->playerPos()-1000);
+//    int obs_random= 140 + rand() % (1000- 140);
+//    setPos(obs_random,menu->level1->playerPos()-1000);
+    setPos(posx,menu->level1->playerPos()-1000);
 
-     type_obs=1+rand()%4;
-     setType_obs(type_obs);
-
+     type_obs=1+rand()%2;
 
     start();
+
+    timer = new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(move()));
+    timer->start(50);
 
 }
 
@@ -28,15 +31,8 @@ Obstacle::~Obstacle()
 
 void Obstacle::start()
 {
-    //type_obs 1=tronco   2=charco    3=viento    4=piedra
         if (type_obs==1) setPixmap(QPixmap(":/images/trunk.png").scaled(130,130));
-        else if(type_obs==2)setPixmap(QPixmap(":/images/charco.png").scaled(140,140));
-        else if (type_obs==3)setPixmap(QPixmap(":/images/brisa.png"));
         else setPixmap(QPixmap(":/images/piedra.png"));
-
-    timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(50);
 }
 
 int Obstacle::getType_obs() const
@@ -44,17 +40,11 @@ int Obstacle::getType_obs() const
     return type_obs;
 }
 
-void Obstacle::setType_obs(int value)
-{
-    type_obs = value;
-}
-
-
 void Obstacle::move()
 {
     QList<QGraphicsItem *> collisions = collidingItems();
     for(QGraphicsItem *i : collisions){
-        if(i->collidesWithItem(this) and (type_obs == 1 or type_obs == 4)){
+        if(i->collidesWithItem(this)){
             if(typeid(*(i))==typeid (Bullet)){
                 scene()->removeItem(i);
                 delete i;
