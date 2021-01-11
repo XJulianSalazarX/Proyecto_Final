@@ -12,12 +12,15 @@ public:
     ~EnemyShoots();
 
 private:
-    QTimer *t_shot;
+    QTimer *timerS;
     EnemyBullet *bullet;
+    QTimer *timerD;
 
 
 public slots:
     void Shot();
+    void actualize();
+    void Dead();
 };
 
 #endif // ENEMYSHOOTS_H

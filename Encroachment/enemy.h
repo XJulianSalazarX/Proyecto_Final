@@ -25,6 +25,7 @@ protected:
     QPixmap *pixmap;
     QTimer *timer;
     QTimer *timerM;
+    double health;
 
 public slots:
     void actualize();

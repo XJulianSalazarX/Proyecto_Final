@@ -6,6 +6,8 @@
 #include "character.h"
 #include "enemy.h"
 #include "obstacle.h"
+#include "enemyshoots.h"
+#include "bonus.h"
 
 namespace Ui {
 class Level1;
@@ -21,20 +23,27 @@ public:
 
     void FocusPlayer();
     double playerPos();
+    int getObstacle();
+    Obstacle *obs;
 
 private:
     Ui::Level1 *ui;
     QGraphicsScene *scene;
     Character *player;
     Enemy *enemy;
-    Obstacle *obs;
+    EnemyShoots *enemy2;
+    Bonus *bonus;
 
     QTimer *timerE;
     QTimer *timerO;
+    QTimer *timerE2;
+    QTimer *timerB;
 
 public slots:
     void makeEnemies();
     void makeObstacles();
+    void makeEnemies2();
+    void makeBonus();
 };
 
 #endif // LEVEL1_H

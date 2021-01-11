@@ -14,15 +14,17 @@ Enemy::Enemy(QObject *parent):QObject(parent)
     h = 43;
 
     int random = 190 +rand() % (800-190);
-    setPos(random,menu->level1->playerPos()-720);
+    setPos(random,menu->level1->playerPos()-1000);
 
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
-    timer->start(20);
+    timer->start(100);
 
     timerM = new QTimer();
     connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
     timerM->start(50);
+
+    health = 1;
 }
 
 Enemy::~Enemy()
@@ -59,10 +61,13 @@ void Enemy::Move()
         if(i->collidesWithItem(this)){
             if(typeid(*(i))==typeid (Bullet)){
                 scene()->removeItem(i);
-                scene()->removeItem(this);
                 delete i;
-                delete this;
-                return;
+                health --;
+                if(health == 0){
+                    scene()->removeItem(this);
+                    delete this;
+                    return;
+                }
             }
         }
     }

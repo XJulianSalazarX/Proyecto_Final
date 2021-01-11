@@ -41,10 +41,14 @@ private:
     QPixmap *pixmap;
     QTimer *timer;
     QTimer *timerM;
+    QTimer *timerS;
+    QTimer *timerMove;
 
 public slots:
     void actualize();
     void Move();
+    void Shoot();
+    void Slow();
 };
 
 #endif // CHARACTER_H

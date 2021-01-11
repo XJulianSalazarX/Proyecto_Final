@@ -23,5 +23,9 @@
         <file>images/piedra.png</file>
         <file>images/charco.png</file>
         <file>images/trunk.png</file>
+        <file>images/tank1.png</file>
+        <file>images/tank2.png</file>
+        <file>images/box.png</file>
+        <file>images/bullet.png</file>
     </qresource>
 </RCC>

@@ -6,11 +6,11 @@ extern Menu *menu;
 
 Bullet::Bullet()
 {
-    setPixmap(QPixmap(":/images/bala.png").scaled(5,15));
+    setPixmap(QPixmap(":/images/bullet.png").scaled(10,20));
 
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(10);
+    timer->start(15);
 }
 
 Bullet::~Bullet()
