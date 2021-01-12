@@ -18,14 +18,14 @@
 #include <QGraphicsScene>
 #include "bullet.h"
 
-class Character:public QObject, public QGraphicsItem
+class Character: public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
     /**
      * @brief Constructor de la clase Character
      */
-    Character(bool boss= false,QObject *parent = nullptr);
+    Character(bool boss = false,QObject *parent = nullptr);
     /**
      * @brief keyPressEvent Mover la clase Character o instanciar la clase Bullet
      * dependiendo de la tecla ingresada

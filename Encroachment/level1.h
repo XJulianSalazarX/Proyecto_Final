@@ -8,6 +8,7 @@
 #include "enemyshoots.h"
 #include "bonus.h"
 #include <math.h>
+#include "boss.h"
 
 namespace Ui {
 class Level1;
@@ -36,6 +37,7 @@ private:
     EnemyShoots *enemy2;
     Obstacle2 *obs2;
     Bonus *bonus;
+    Boss *boss;
 
     QTimer *timerE;
     QTimer *timerO;

@@ -105,6 +105,9 @@ void Level1::Final()
     //Poner focus sobre el item (reciba la tacla que se presione por teclado)
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
+
+    boss = new Boss();
+    scene->addItem(boss);
 }
 
 void Level1::makeEnemies()

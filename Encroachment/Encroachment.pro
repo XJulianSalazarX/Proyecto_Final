@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     bonus.cpp \
+    boss.cpp \
     bullet.cpp \
     character.cpp \
     enemy.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
 
 HEADERS += \
     bonus.h \
+    boss.h \
     bullet.h \
     character.h \
     enemy.h \
