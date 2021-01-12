@@ -25,6 +25,7 @@ public:
     double playerPos();
     int getObstacle();
     void playerHealth();
+    void Final();
 
 private:
     Ui::Level1 *ui;

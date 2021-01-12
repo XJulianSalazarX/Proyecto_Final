@@ -44,8 +44,27 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="value">
     <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="lcdNumber">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-color: rgb(255, 0, 0);
+border-top-color: rgb(255, 0, 0);
+gridline-color: rgb(255, 0, 0);
+selection-background-color: rgb(255, 0, 0);</string>
    </property>
   </widget>
  </widget>

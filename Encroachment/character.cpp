@@ -4,9 +4,28 @@
 
 extern Menu *menu;
 
-Character::Character(QObject *parent):QObject(parent)
+Character::Character(bool boss,QObject *parent):QObject(parent)
 {
-    //setPixmap(QPixmap(":/images/carrito_bueno.png"));
+    if(boss == true){
+        pixmap = new QPixmap(":/images/character 1.png");
+
+        col = 0;
+        w = 142.75;
+        h = 67;
+
+        health = 10;
+        speed = 5;
+
+        timer = new QTimer();
+        connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
+        timer->start(1000);
+
+        timerS = new QTimer();
+        connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
+        timerS->start(500);
+    }
+
+    else{
     pixmap = new QPixmap(":/images/character 1.2.png");
 
     col=0;
@@ -16,8 +35,8 @@ Character::Character(QObject *parent):QObject(parent)
     health = 10;
     speed = 5;
 
-    timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
+//    timer = new QTimer();
+//    connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
     //timer->start(1000);
 
     timerM = new QTimer();
@@ -30,6 +49,7 @@ Character::Character(QObject *parent):QObject(parent)
 
     timerMove = new QTimer();
     connect(timerMove,SIGNAL(timeout()),this,SLOT(Slow()));
+    }
 }
 
 void Character::keyPressEvent(QKeyEvent *event)
@@ -61,8 +81,8 @@ double Character::getHealth() const
 
 void Character::actualize()
 {
-    col += 60;
-    if(col >= 140){
+    col += w;
+    if(col >= 571){
         col = 0;
     }
     this->update(-w/2,-h/2,w,h);
@@ -70,6 +90,7 @@ void Character::actualize()
 
 void Character::Move()
 {
+    //colisiones
     QList<QGraphicsItem *> collisions = collidingItems();
     for(QGraphicsItem *i : collisions){
         if(i->collidesWithItem(this)){
@@ -131,12 +152,18 @@ void Character::Move()
             }
         }
     }
-
+    //actualizar vida
     menu->level1->playerHealth();
 
+    //mover el auto
     setPos(x(),y()-speed);
-    if(menu->getLevel() == 1)
+    if(menu->getLevel() == 1){
         menu->level1->FocusPlayer();
+        menu->level1->playerHealth();
+        if(y() < 0){
+            menu->level1->Final();
+        }
+    }
 }
 
 void Character::Shoot()

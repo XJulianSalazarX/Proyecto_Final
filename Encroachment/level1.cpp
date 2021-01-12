@@ -27,7 +27,8 @@ Level1::Level1(QWidget *parent) :
     //player
     player = new Character();
     scene->addItem(player);
-    player->setPos(630,21500);
+    //player->setPos(630,21500);
+    player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
     ui->progressBar->setRange(0,10);
     playerHealth();
@@ -82,6 +83,28 @@ int Level1::getObstacle()
 void Level1::playerHealth()
 {
     ui->progressBar->setValue(player->getHealth());
+}
+
+void Level1::Final()
+{
+    timerB->stop();
+    timerE->stop();
+    timerO->stop();
+    timerE2->stop();
+    timerO2->stop();
+
+    scene->clear();
+
+    scene->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
+    ui->graphicsView->setSceneRect(0,0,width(),720);
+
+    player = new Character(true);
+    scene->addItem(player);
+    player->setPos(630,650);
+
+    //Poner focus sobre el item (reciba la tacla que se presione por teclado)
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    player->setFocus();
 }
 
 void Level1::makeEnemies()

@@ -25,7 +25,7 @@ public:
     /**
      * @brief Constructor de la clase Character
      */
-    Character(QObject *parent = nullptr);
+    Character(bool boss= false,QObject *parent = nullptr);
     /**
      * @brief keyPressEvent Mover la clase Character o instanciar la clase Bullet
      * dependiendo de la tecla ingresada

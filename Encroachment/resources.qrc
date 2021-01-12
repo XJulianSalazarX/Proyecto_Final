@@ -8,9 +8,6 @@
         <file>images/profile.png</file>
         <file>images/setting.png</file>
         <file>images/top.png</file>
-        <file>images/level1.png</file>
-        <file>images/level2.png</file>
-        <file>images/level3.png</file>
         <file>images/back.png</file>
         <file>images/fondo.jpg</file>
         <file>images/character 1.2.png</file>
@@ -27,5 +24,9 @@
         <file>images/tank2.png</file>
         <file>images/box.png</file>
         <file>images/bullet.png</file>
+        <file>images/level 1.2.jpg</file>
+        <file>images/level 2.2.jpg</file>
+        <file>images/level 3.2.jpg</file>
+        <file>images/character 1.png</file>
     </qresource>
 </RCC>
