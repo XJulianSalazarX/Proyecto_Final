@@ -4,7 +4,13 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QString>
+//#include <QChar>
+#include <QFile>
+#include <QDebug>
+#include <fstream>
 #include <QMessageBox>
+
+using namespace std;
 
 
 namespace Ui {
@@ -19,7 +25,20 @@ public:
     explicit login(QWidget *parent = nullptr);
     ~login();
 
-    void Invisible_login();
+    string LeerArchivo();
+    void SaveArchivo(string );
+
+    string Str_to_Binary(string );
+    string Binary_to_Str(string );
+
+    string decod(string );
+    string Cod(string );
+    string cambiar_decof(string );
+    string Cambiar_pos(string );
+
+    int existUser(QString);
+    bool CheckPassword(QString,QString);
+    void adduser(QString, QString);
 
 private slots:
     void on_singIn_clicked();

@@ -19,7 +19,6 @@ SOURCES += \
     bonus.cpp \
     bullet.cpp \
     character.cpp \
-    date.cpp \
     enemy.cpp \
     enemybullet.cpp \
     enemyshoots.cpp \
@@ -32,7 +31,6 @@ HEADERS += \
     bonus.h \
     bullet.h \
     character.h \
-    date.h \
     enemy.h \
     enemybullet.h \
     enemyshoots.h \
