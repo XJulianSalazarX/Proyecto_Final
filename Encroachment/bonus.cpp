@@ -45,6 +45,16 @@ void Bonus::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->drawPixmap(-w/2,-h/2,*pixmap,col,0,w,h);
 }
 
+void Bonus::stopMove()
+{
+    timerM->stop();
+}
+
+void Bonus::continueMove()
+{
+    timerM->start();
+}
+
 void Bonus::actualize()
 {
     col += 84;

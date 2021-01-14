@@ -83,6 +83,16 @@ double Character::getHealth() const
     return health;
 }
 
+void Character::stopMove()
+{
+    timerM->stop();
+}
+
+void Character::continueMove()
+{
+    timerM->start();
+}
+
 void Character::actualize()
 {
     col += w;
@@ -105,6 +115,7 @@ void Character::Move()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
+                    menu->level1->returnMenu();
                     return;
                 }
             }
@@ -116,6 +127,7 @@ void Character::Move()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
+                     menu->level1->returnMenu();
                     return;
                 }
             }
@@ -127,6 +139,7 @@ void Character::Move()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
+                     menu->level1->returnMenu();
                     return;
                 }
             }
@@ -140,6 +153,7 @@ void Character::Move()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
+                     menu->level1->returnMenu();
                     return;
                 }
             }
@@ -199,6 +213,7 @@ void Character::End()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
+                    menu->level1->returnMenu();
                     return;
                 }
             }

@@ -37,6 +37,9 @@ public:
 
     double getHealth() const;
 
+    void stopMove();
+    void continueMove();
+
 private:
     double health, speed;
     double w,h,col;

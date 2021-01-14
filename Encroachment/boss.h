@@ -19,6 +19,9 @@ public:
 
     int getHealth() const;
 
+    void stopMove();
+    void continueMove();
+
 private:
     double w,h,col;
     QPixmap *pixmap;

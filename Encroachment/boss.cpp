@@ -51,6 +51,16 @@ int Boss::getHealth() const
     return health;
 }
 
+void Boss::stopMove()
+{
+    timerM->stop();
+}
+
+void Boss::continueMove()
+{
+    timerM->start();
+}
+
 void Boss::actualize()
 {
     col += w;

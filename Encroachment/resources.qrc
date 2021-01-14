@@ -28,5 +28,12 @@
         <file>images/level 2.2.jpg</file>
         <file>images/level 3.2.jpg</file>
         <file>images/character 1.png</file>
+        <file>images/delete profile.png</file>
+        <file>images/delete progress.png</file>
+        <file>images/log out.png</file>
+        <file>images/stop.png</file>
+        <file>images/retry.png</file>
+        <file>images/home.png</file>
+        <file>images/continue.png</file>
     </qresource>
 </RCC>

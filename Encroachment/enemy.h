@@ -20,6 +20,8 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option,QWidget *widget);
 
+    void stopMove();
+    void continueMove();
 protected:
     double w,h,col;
     QPixmap *pixmap;

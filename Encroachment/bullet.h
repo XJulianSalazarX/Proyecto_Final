@@ -26,6 +26,9 @@ public:
       */
     ~Bullet();
 
+    void stopMove();
+    void continueMove();
+
 public slots:
     /**
      * @brief move Mover la clase Bullet 5 pixeles hacia arriba

@@ -29,6 +29,7 @@ public:
     void Final();
     void BossHealth();
     double getPlayerHealth();
+    void returnMenu();
 
 private:
     Ui::Level1 *ui;
@@ -55,6 +56,11 @@ public slots:
     void makeEnemies2();
     void makeObstacles2();
     void makeBonus();
+private slots:
+    void on_stop_clicked();
+    void on_cont_clicked();
+    void on_retry_clicked();
+    void on_home_clicked();
 };
 
 #endif // LEVEL1_H

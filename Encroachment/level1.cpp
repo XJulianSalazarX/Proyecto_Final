@@ -1,6 +1,9 @@
 #include "level1.h"
 #include "ui_level1.h"
+#include "menu.h"
 #include <QDebug>
+
+extern Menu *menu;
 
 Level1::Level1(QWidget *parent) :
     QWidget(parent),
@@ -9,6 +12,10 @@ Level1::Level1(QWidget *parent) :
     ui->setupUi(this);
 
     posx = 0;
+
+    ui->cont->setVisible(false);
+    ui->retry->setVisible(false);
+    ui->home->setVisible(false);
 
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
@@ -126,6 +133,26 @@ double Level1::getPlayerHealth()
     return ui->progressBar->value();
 }
 
+void Level1::returnMenu()
+{
+    timerB->stop();
+    timerE->stop();
+    timerO->stop();
+    timerE2->stop();
+    timerO2->stop();
+
+    scene->clear();
+
+    scene->setBackgroundBrush(QPixmap(":/images/fondo.jpg").scaled(1280,720));
+    ui->graphicsView->setSceneRect(0,0,width(),720);
+
+    ui->retry->setVisible(true);
+    ui->home->setVisible(true);
+
+    //close();
+    //menu->show();
+}
+
 void Level1::makeEnemies()
 {
     int random;
@@ -186,4 +213,57 @@ void Level1::makeBonus()
 {
     bonus = new Bonus();
     scene->addItem(bonus);
+}
+
+void Level1::on_stop_clicked()
+{
+    timerB->stop();
+//    timerE->stop();
+//    timerO->stop();
+//    timerE2->stop();
+//    timerO2->stop();
+
+    if(timerE->isActive()) timerE->stop();
+    if(timerO->isActive()) timerO->stop();
+    if(timerE2->isActive()) timerE2->stop();
+    if(timerO2->isActive()) timerO2->stop();
+
+    player->stopMove();
+//    enemy->stopMove();
+//    enemy2->stopMove();
+//    obs->stopMove();
+//    obs2->stopMove();
+//    bonus->stopMove();
+
+    ui->cont->setVisible(true);
+    ui->retry->setVisible(true);
+    ui->home->setVisible(true);
+}
+
+void Level1::on_cont_clicked()
+{
+    timerB->start();
+    timerE->start();
+
+    player->continueMove();
+
+    ui->cont->setVisible(false);
+    ui->retry->setVisible(false);
+    ui->home->setVisible(false);
+}
+
+void Level1::on_retry_clicked()
+{
+    scene->clear();
+
+    close();
+    menu->show();
+}
+
+void Level1::on_home_clicked()
+{
+    scene->clear();
+
+    close();
+    menu->show();
 }
