@@ -17,16 +17,21 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option,QWidget *widget);
 
+    int getHealth() const;
+
 private:
     double w,h,col;
     QPixmap *pixmap;
     QTimer *timer;
     QTimer *timerM;
-    int speed;
+    QTimer *timerS;
+    int speed, health;
+    EnemyBullet *bullet;
 
 public slots:
     void actualize();
     void Move();
+    void Shoot();
 };
 
 #endif // BOSS_H

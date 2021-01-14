@@ -45,12 +45,14 @@ private:
     QTimer *timerM;
     QTimer *timerS;
     QTimer *timerMove;
+    QTimer *timerBoss;
 
 public slots:
     void actualize();
     void Move();
     void Shoot();
     void Slow();
+    void End();
 };
 
 #endif // CHARACTER_H

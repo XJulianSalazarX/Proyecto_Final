@@ -18,7 +18,7 @@ private:
 
 
 public slots:
-    void Shot();
+    void Shoot();
     void actualize();
     void Dead();
 };

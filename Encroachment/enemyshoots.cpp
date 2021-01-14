@@ -20,7 +20,7 @@ EnemyShoots::EnemyShoots(int posx): Enemy(posx)
     timer->start(500);
 
     timerS = new QTimer();
-    connect(timerS,SIGNAL(timeout()),this,SLOT(Shot()));
+    connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
     timerS->start(2000);
 
     timerM->start(750);
@@ -35,12 +35,12 @@ EnemyShoots::~EnemyShoots()
     delete pixmap;
 }
 
-void EnemyShoots::Shot()
+void EnemyShoots::Shoot()
 {
     if(y()>=100){
-    bullet = new EnemyBullet();
-    bullet->setPos(x(),y()+50);
-    scene()->addItem(bullet);
+        bullet = new EnemyBullet();
+        bullet->setPos(x(),y()+50);
+        scene()->addItem(bullet);
     }
 
 }

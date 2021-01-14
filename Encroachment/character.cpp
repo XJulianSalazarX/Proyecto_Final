@@ -13,16 +13,20 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         w = 142.75;
         h = 67;
 
-        health = 10;
+        health = menu->level1->getPlayerHealth();
         speed = 5;
 
         timer = new QTimer();
         connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
-        timer->start(1000);
+        timer->start(100);
 
         timerS = new QTimer();
         connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
         timerS->start(500);
+
+        timerBoss = new QTimer();
+        connect(timerBoss,SIGNAL(timeout()),this,SLOT(End()));
+        timerBoss->start(20);
     }
 
     else{
@@ -108,7 +112,7 @@ void Character::Move()
             else if(typeid (*(i)) == typeid (EnemyBullet)){
                 scene()->removeItem(i);
                 delete i;
-                health -= 2;
+                health --;
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
@@ -131,7 +135,7 @@ void Character::Move()
                 qDebug() << menu->level1->getObstacle();
                 scene()->removeItem(i);
                 delete i;
-                health -= 1;
+                health -= 2;
 
                 if(health <= 0){
                     scene()->removeItem(this);
@@ -149,6 +153,7 @@ void Character::Move()
             else if(typeid (*(i)) == typeid (Bonus)){
                 scene()->removeItem(i);
                 delete i;
+                health += 2;
             }
         }
     }
@@ -178,4 +183,25 @@ void Character::Slow()
     speed = 5;
     timerMove->stop();
     timerS->start(500);
+}
+
+void Character::End()
+{
+    //colisiones
+    QList<QGraphicsItem *> collisions = collidingItems();
+    for(QGraphicsItem *i : collisions){
+        if(i->collidesWithItem(this)){
+            if(typeid(*(i)) == typeid (EnemyBullet)){
+                scene()->removeItem(i);
+                delete i;
+                health --;
+                menu->level1->playerHealth();
+                if(health <= 0){
+                    scene()->removeItem(this);
+                    delete this;
+                    return;
+                }
+            }
+        }
+    }
 }
