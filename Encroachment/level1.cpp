@@ -255,15 +255,19 @@ void Level1::on_cont_clicked()
 void Level1::on_retry_clicked()
 {
     scene->clear();
-
     close();
     menu->show();
+    delete this;
+    return;
 }
 
 void Level1::on_home_clicked()
 {
     scene->clear();
-
     close();
     menu->show();
+    menu->on_back_clicked();
+
+    delete this;
+    return;
 }
