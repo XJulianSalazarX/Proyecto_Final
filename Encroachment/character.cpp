@@ -108,6 +108,7 @@ void Character::Move()
     QList<QGraphicsItem *> collisions = collidingItems();
     for(QGraphicsItem *i : collisions){
         if(i->collidesWithItem(this)){
+
             if(typeid(*(i)) == typeid (Enemy)){
                 scene()->removeItem(i);
                 delete i;
@@ -136,6 +137,7 @@ void Character::Move()
                 scene()->removeItem(i);
                 delete i;
                 health -= 3;
+
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
@@ -169,8 +171,10 @@ void Character::Move()
                 delete i;
                 health += 2;
             }
+
             else if(typeid (*(i)) == typeid (Power)){
                 health --;
+                qDebug() << "Pega el coder";
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
