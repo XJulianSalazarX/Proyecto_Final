@@ -35,5 +35,6 @@
         <file>images/retry.png</file>
         <file>images/home.png</file>
         <file>images/continue.png</file>
+        <file>images/metal.png</file>
     </qresource>
 </RCC>

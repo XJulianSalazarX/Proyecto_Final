@@ -2,7 +2,7 @@
 
 Power::Power()
 {
-    setPixmap(QPixmap(":/imagenes/fire.png"));
+    setPixmap(QPixmap(":/images/metal.png"));
     radio = 200;
     x = 640;
     y = 400;
@@ -13,7 +13,7 @@ Power::Power()
     setPos(posx,posy);
 
     timerCircular = new QTimer();
-    connect(timerCircular,SIGNAL(timeout()),this,SLOT(Move()));
+    connect(timerCircular,SIGNAL(timeout()),this,SLOT(Circular()));
     timerCircular->start(17);
 }
 

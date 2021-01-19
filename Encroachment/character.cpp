@@ -169,6 +169,15 @@ void Character::Move()
                 delete i;
                 health += 2;
             }
+            else if(typeid (*(i)) == typeid (Power)){
+                health --;
+                if(health <= 0){
+                    scene()->removeItem(this);
+                    delete this;
+                     menu->level1->returnMenu();
+                    return;
+                }
+            }
         }
     }
     //actualizar vida
