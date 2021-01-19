@@ -14,7 +14,7 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         h = 67;
 
         health = menu->level1->getPlayerHealth();
-        speed = 5;
+        speed = 10;
 
         timer = new QTimer();
         connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
@@ -30,39 +30,39 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
     }
 
     else{
-    pixmap = new QPixmap(":/images/character 1.2.png");
+        pixmap = new QPixmap(":/images/character 1.2.png");
 
-    col=0;
-    w = 55;
-    h = 140;
+        col=0;
+        w = 55;
+        h = 140;
 
-    health = 10;
-    speed = 5;
+        health = 10;
+        speed = 7.5;
 
-//    timer = new QTimer();
-//    connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
-    //timer->start(1000);
+        //    timer = new QTimer();
+        //    connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
+        //timer->start(1000);
 
-    timerM = new QTimer();
-    connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
-    timerM->start(20);
+        timerM = new QTimer();
+        connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
+        timerM->start(20);
 
-    timerS = new QTimer();
-    connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
-    timerS->start(500);
+        timerS = new QTimer();
+        connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
+        timerS->start(500);
 
-    timerMove = new QTimer();
-    connect(timerMove,SIGNAL(timeout()),this,SLOT(Slow()));
+        timerMove = new QTimer();
+        connect(timerMove,SIGNAL(timeout()),this,SLOT(Slow()));
     }
 }
 
 void Character::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_A and x()>220){
-        setPos(x()-speed*2,y());
+        setPos(x()-speed,y());
     }
     else if(event->key() == Qt::Key_D and x()+30<1090){
-        setPos(x()+speed*2,y());
+        setPos(x()+speed,y());
     }
 }
 
@@ -194,7 +194,7 @@ void Character::Shoot()
 
 void Character::Slow()
 {
-    speed = 5;
+    speed = 7.5;
     timerMove->stop();
     timerS->start(500);
 }

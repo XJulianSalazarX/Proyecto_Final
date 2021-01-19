@@ -28,6 +28,7 @@ SOURCES += \
     menu.cpp \
     obstacle.cpp \
     obstacle2.cpp \
+    power.cpp \
     widget.cpp
 
 HEADERS += \
@@ -42,6 +43,7 @@ HEADERS += \
     menu.h \
     obstacle.h \
     obstacle2.h \
+    power.h \
     widget.h
 
 FORMS += \
