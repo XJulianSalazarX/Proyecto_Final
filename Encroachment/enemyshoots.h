@@ -8,16 +8,19 @@ class EnemyShoots: public Enemy
 {
     Q_OBJECT
 public:
-    EnemyShoots();
+    EnemyShoots(int posx);
     ~EnemyShoots();
 
 private:
-    QTimer *t_shot;
+    QTimer *timerS;
     EnemyBullet *bullet;
+    QTimer *timerD;
 
 
 public slots:
-    void Shot();
+    void Shoot();
+    void actualize();
+    void Dead();
 };
 
 #endif // ENEMYSHOOTS_H

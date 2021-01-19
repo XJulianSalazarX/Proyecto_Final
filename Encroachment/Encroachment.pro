@@ -17,26 +17,38 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     bonus.cpp \
+    boss.cpp \
     bullet.cpp \
     character.cpp \
     enemy.cpp \
     enemybullet.cpp \
     enemyshoots.cpp \
+    level1.cpp \
     main.cpp \
+    menu.cpp \
     obstacle.cpp \
+    obstacle2.cpp \
+    power.cpp \
     widget.cpp
 
 HEADERS += \
     bonus.h \
+    boss.h \
     bullet.h \
     character.h \
     enemy.h \
     enemybullet.h \
     enemyshoots.h \
+    level1.h \
+    menu.h \
     obstacle.h \
+    obstacle2.h \
+    power.h \
     widget.h
 
 FORMS += \
+    level1.ui \
+    menu.ui \
     widget.ui
 
 # Default rules for deployment.
@@ -46,3 +58,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES +=

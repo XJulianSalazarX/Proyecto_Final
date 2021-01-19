@@ -1,23 +1,23 @@
-#ifndef BONUS_H
-#define BONUS_H
+#ifndef BOSS_H
+#define BOSS_H
 
 #include <QObject>
-//#include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
 #include <QPixmap>
 #include <QPainter>
-#include <QTimer>
-#include <QGraphicsScene>
+#include "enemybullet.h"
 
-class Bonus: public QObject, public QGraphicsItem
+class Boss: public QObject, public QGraphicsItem
 {
     Q_OBJECT
 public:
-    Bonus(QObject *parent = nullptr);
-    ~Bonus();
+    Boss(QObject *parent = nullptr);
+    ~Boss();
 
     QRectF boundingRect() const;
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option,QWidget *widget);
+
+    int getHealth() const;
 
     void stopMove();
     void continueMove();
@@ -27,10 +27,14 @@ private:
     QPixmap *pixmap;
     QTimer *timer;
     QTimer *timerM;
+    QTimer *timerS;
+    int speed, health;
+    EnemyBullet *bullet;
 
 public slots:
-    void Move();
     void actualize();
+    void Move();
+    void Shoot();
 };
 
-#endif // BONUS_H
+#endif // BOSS_H

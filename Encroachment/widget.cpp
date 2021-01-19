@@ -13,13 +13,11 @@ Widget::Widget(QWidget *parent)
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
     scene = new QGraphicsScene();
-    //scene->setBackgroundBrush(QPixmap(QImage(":/images/Mesa_de_trabajo_1.jpg")));
+
     scene->setBackgroundBrush(QBrush(QImage(":/images/level.png")));
     ui->graphicsView->setScene(scene);
-//    ui->graphicsView->setFixedSize(width(),height()-20);
-//    ui->graphicsView->setSceneRect(0,0,width(),height()-20);
-    ui->graphicsView->setFixedSize(width()*2,height()-20);
-    ui->graphicsView->setSceneRect(0,0,width()*2,height()-20);
+    ui->graphicsView->setFixedSize(width(),height()-20);
+    ui->graphicsView->setSceneRect(0,0,width(),height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -56,25 +54,25 @@ Widget::~Widget()
 
 void Widget::Enemies()
 {
-    enemy = new Enemy();
-    scene->addItem(enemy);
+//    enemy = new Enemy();
+//    scene->addItem(enemy);
 }
 
 void Widget::respawn()
 {
-    obs = new Obstacle();
-    scene->addItem(obs);
+//    obs = new Obstacle();
+//    scene->addItem(obs);
 }
 
 void Widget::CreateBonus()
 {
-    bonus = new Bonus();
-    scene->addItem(bonus);
+//    bonus = new Bonus();
+//    scene->addItem(bonus);
 }
 
 void Widget::Enemies2()
 {
-    enemy2 = new EnemyShoots();
-    scene->addItem(enemy2);
+//    enemy2 = new EnemyShoots();
+//    scene->addItem(enemy2);
 }
 
