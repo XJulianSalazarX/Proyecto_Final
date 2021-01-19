@@ -31,8 +31,6 @@ private slots:
 
     void on_settings_clicked();
 
-    void on_back_clicked();
-
     void on_level1_clicked();
 
     void on_level2_clicked();
@@ -42,6 +40,9 @@ private slots:
     void on_play_2_clicked();
 
     void on_logOut_clicked();
+
+public slots:
+    void on_back_clicked();
 
 private:
     Ui::Menu *ui;

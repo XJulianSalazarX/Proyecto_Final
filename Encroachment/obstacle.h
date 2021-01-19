@@ -19,6 +19,9 @@ public:
 
     int getType_obs() const;
 
+    void stopMove();
+    void continueMove();
+
 protected:
     int type_obs;
     QTimer *timer;

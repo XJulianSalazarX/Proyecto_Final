@@ -45,6 +45,16 @@ void Enemy::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
     painter->drawPixmap(-w/2,-h/2,*pixmap,col,0,w,h);
 }
 
+void Enemy::stopMove()
+{
+    timerM->stop();
+}
+
+void Enemy::continueMove()
+{
+    timerM->start();
+}
+
 void Enemy::actualize()
 {
     col += 62.2;

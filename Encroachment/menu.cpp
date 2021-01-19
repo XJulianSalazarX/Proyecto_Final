@@ -8,6 +8,8 @@ Menu::Menu(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->splitter->setGeometry(482,150,316,420);
+
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
     scene = new QGraphicsScene();

@@ -13,52 +13,56 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         w = 142.75;
         h = 67;
 
-        health = 10;
-        speed = 5;
+        health = menu->level1->getPlayerHealth();
+        speed = 10;
 
         timer = new QTimer();
         connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
-        timer->start(1000);
+        timer->start(100);
 
         timerS = new QTimer();
         connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
         timerS->start(500);
+
+        timerBoss = new QTimer();
+        connect(timerBoss,SIGNAL(timeout()),this,SLOT(End()));
+        timerBoss->start(20);
     }
 
     else{
-    pixmap = new QPixmap(":/images/character 1.2.png");
+        pixmap = new QPixmap(":/images/character 1.2.png");
 
-    col=0;
-    w = 55;
-    h = 140;
+        col=0;
+        w = 55;
+        h = 140;
 
-    health = 10;
-    speed = 5;
+        health = 10;
+        speed = 7.5;
 
-//    timer = new QTimer();
-//    connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
-    //timer->start(1000);
+        //    timer = new QTimer();
+        //    connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
+        //timer->start(1000);
 
-    timerM = new QTimer();
-    connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
-    timerM->start(20);
+        timerM = new QTimer();
+        connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
+        timerM->start(20);
 
-    timerS = new QTimer();
-    connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
-    timerS->start(500);
+        timerS = new QTimer();
+        connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
+        timerS->start(500);
 
-    timerMove = new QTimer();
-    connect(timerMove,SIGNAL(timeout()),this,SLOT(Slow()));
+        timerMove = new QTimer();
+        connect(timerMove,SIGNAL(timeout()),this,SLOT(Slow()));
     }
 }
 
 void Character::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_A and x()>220){
-        setPos(x()-speed*2,y());
+        setPos(x()-speed,y());
     }
     else if(event->key() == Qt::Key_D and x()+30<1090){
-        setPos(x()+speed*2,y());
+        setPos(x()+speed,y());
     }
 }
 
@@ -79,6 +83,16 @@ double Character::getHealth() const
     return health;
 }
 
+void Character::stopMove()
+{
+    timerM->stop();
+}
+
+void Character::continueMove()
+{
+    timerM->start();
+}
+
 void Character::actualize()
 {
     col += w;
@@ -94,6 +108,7 @@ void Character::Move()
     QList<QGraphicsItem *> collisions = collidingItems();
     for(QGraphicsItem *i : collisions){
         if(i->collidesWithItem(this)){
+
             if(typeid(*(i)) == typeid (Enemy)){
                 scene()->removeItem(i);
                 delete i;
@@ -101,6 +116,7 @@ void Character::Move()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
+                    menu->level1->returnMenu();
                     return;
                 }
             }
@@ -108,10 +124,11 @@ void Character::Move()
             else if(typeid (*(i)) == typeid (EnemyBullet)){
                 scene()->removeItem(i);
                 delete i;
-                health -= 2;
+                health --;
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
+                     menu->level1->returnMenu();
                     return;
                 }
             }
@@ -120,9 +137,11 @@ void Character::Move()
                 scene()->removeItem(i);
                 delete i;
                 health -= 3;
+
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
+                     menu->level1->returnMenu();
                     return;
                 }
             }
@@ -131,11 +150,12 @@ void Character::Move()
                 qDebug() << menu->level1->getObstacle();
                 scene()->removeItem(i);
                 delete i;
-                health -= 1;
+                health -= 2;
 
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
+                     menu->level1->returnMenu();
                     return;
                 }
             }
@@ -149,6 +169,18 @@ void Character::Move()
             else if(typeid (*(i)) == typeid (Bonus)){
                 scene()->removeItem(i);
                 delete i;
+                health += 2;
+            }
+
+            else if(typeid (*(i)) == typeid (Power)){
+                health --;
+                qDebug() << "Pega el coder";
+                if(health <= 0){
+                    scene()->removeItem(this);
+                    delete this;
+                     menu->level1->returnMenu();
+                    return;
+                }
             }
         }
     }
@@ -175,7 +207,29 @@ void Character::Shoot()
 
 void Character::Slow()
 {
-    speed = 5;
+    speed = 7.5;
     timerMove->stop();
     timerS->start(500);
+}
+
+void Character::End()
+{
+    //colisiones
+    QList<QGraphicsItem *> collisions = collidingItems();
+    for(QGraphicsItem *i : collisions){
+        if(i->collidesWithItem(this)){
+            if(typeid(*(i)) == typeid (EnemyBullet)){
+                scene()->removeItem(i);
+                delete i;
+                health --;
+                menu->level1->playerHealth();
+                if(health <= 0){
+                    scene()->removeItem(this);
+                    delete this;
+                    menu->level1->returnMenu();
+                    return;
+                }
+            }
+        }
+    }
 }

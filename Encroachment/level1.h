@@ -7,7 +7,8 @@
 #include "obstacle2.h"
 #include "enemyshoots.h"
 #include "bonus.h"
-#include <math.h>
+#include "boss.h"
+#include "power.h"
 
 namespace Ui {
 class Level1;
@@ -26,6 +27,9 @@ public:
     int getObstacle();
     void playerHealth();
     void Final();
+    void BossHealth();
+    double getPlayerHealth();
+    void returnMenu();
 
 private:
     Ui::Level1 *ui;
@@ -36,6 +40,8 @@ private:
     EnemyShoots *enemy2;
     Obstacle2 *obs2;
     Bonus *bonus;
+    Boss *boss;
+    Power *power;
 
     QTimer *timerE;
     QTimer *timerO;
@@ -51,6 +57,11 @@ public slots:
     void makeEnemies2();
     void makeObstacles2();
     void makeBonus();
+private slots:
+    void on_stop_clicked();
+    void on_cont_clicked();
+    void on_retry_clicked();
+    void on_home_clicked();
 };
 
 #endif // LEVEL1_H

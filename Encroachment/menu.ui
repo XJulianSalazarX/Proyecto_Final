@@ -175,28 +175,40 @@
   <widget class="QSplitter" name="splitter">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>40</y>
-     <width>350</width>
-     <height>120</height>
+     <x>660</x>
+     <y>10</y>
+     <width>161</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
    </property>
    <widget class="QPushButton" name="logOut">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/images/log out.png);
+font: 15pt &quot;MV Boli&quot;;</string>
+    </property>
     <property name="text">
-     <string>Log out</string>
+     <string>Log Out</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_11">
+   <widget class="QPushButton" name="deleteProfile">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/images/delete profile.png);
+font: 15pt &quot;MV Boli&quot;;</string>
+    </property>
     <property name="text">
-     <string>Delete profile</string>
+     <string>Rid Profile</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_12">
+   <widget class="QPushButton" name="deleteProgress">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/images/delete progress.png);
+font: 15pt &quot;MV Boli&quot;;</string>
+    </property>
     <property name="text">
-     <string>Delete Progress</string>
+     <string>Rid Growth</string>
     </property>
    </widget>
   </widget>
