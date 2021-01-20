@@ -1,6 +1,9 @@
 #include "login.h"
 #include "ui_login.h"
+#include "menu.h"
 #include <QDebug>
+
+extern Menu *menu;
 
 Login::Login(QWidget *parent) :
     QMainWindow(parent),
@@ -92,28 +95,32 @@ void Login::on_next_clicked()
             ui->password_2->setText("");
 
 
-                    return;
+            return;
         }
         else if (ui->Password->text()!= ui->password_2->text()) {
             QMessageBox::critical(this,"Error","Las claves ingresadas no coinciden");
             ui->Username->setText("");
             ui->Password->setText("");
             ui->password_2->setText("");
-                    return;
-}
+            return;
+        }
 
         else if (existUser(user)==-1) {
             adduser(user,password);
             //pasar a otra pantalla, porque ya se registrara
+            menu->setUsername(ui->Username->text());
+            menu->show();
+            menu->showMenu();
+            delete this;
             return;
         }
         else if (existUser(user)!=-1) {
-    QMessageBox::critical(this,"Error","El usuario ya existe");
-    ui->Username->setText("");
-    ui->Password->setText("");
-    ui->password_2->setText("");
+            QMessageBox::critical(this,"Error","El usuario ya existe");
+            ui->Username->setText("");
+            ui->Password->setText("");
+            ui->password_2->setText("");
             return;
-}
+        }
 
     }
     else{
@@ -140,9 +147,13 @@ void Login::on_next_clicked()
         else if(CheckPassword(user,password)==true) {
             //pasar a otra pantalla, porque ya inicio sesion
             qDebug() << "Usuario y clave correctas";
+            menu->setUsername(ui->Username->text());
+            menu->show();
+            menu->showMenu();
+            delete this;
             return;
         }
-return;
+        return;
 
     }
 

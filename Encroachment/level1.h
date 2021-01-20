@@ -44,12 +44,10 @@ private:
     Power *power;
 
     QTimer *timerE;
-    QTimer *timerO;
-    QTimer *timerE2;
-    QTimer *timerO2;
     QTimer *timerB;
 
     int posx;
+    bool isBoss;
 
 public slots:
     void makeEnemies();

@@ -64,6 +64,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">border-image: url(:/images/Button.png);
+color: rgb(255, 255, 255);
 font: italic 30pt &quot;Monotype Corsiva&quot;;</string>
     </property>
     <property name="text">
@@ -81,6 +82,7 @@ font: italic 30pt &quot;Monotype Corsiva&quot;;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">border-image: url(:/images/Button.png);
+color: rgb(255, 255, 255);
 font: italic 30pt &quot;Monotype Corsiva&quot;;</string>
     </property>
     <property name="text">

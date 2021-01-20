@@ -212,6 +212,24 @@ font: 15pt &quot;MV Boli&quot;;</string>
     </property>
    </widget>
   </widget>
+  <widget class="QPushButton" name="start">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>130</y>
+     <width>316</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/continue.png);
+color: rgb(255, 255, 255);
+font: 20pt &quot;MV Boli&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Start</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

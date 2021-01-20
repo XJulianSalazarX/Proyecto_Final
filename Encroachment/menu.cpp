@@ -9,6 +9,7 @@ Menu::Menu(QWidget *parent) :
     ui->setupUi(this);
 
     ui->splitter->setGeometry(482,150,316,420);
+    ui->start->setGeometry(482,400,316,140);
 
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
@@ -24,6 +25,12 @@ Menu::Menu(QWidget *parent) :
     ui->back->setVisible(false);
     ui->levels->setVisible(false);
     ui->play_2->setVisible(false);
+
+    ui->play->setVisible(false);
+    ui->top->setVisible(false);
+    ui->profile->setVisible(false);
+    ui->settings->setVisible(false);
+    ui->howToPLay->setVisible(false);
 }
 
 Menu::~Menu()
@@ -47,6 +54,15 @@ void Menu::Invisible()
     ui->top->setVisible(false);
     ui->settings->setVisible(false);
     ui->howToPLay->setVisible(false);
+}
+
+void Menu::showMenu()
+{
+    ui->play->setVisible(true);
+    ui->top->setVisible(true);
+    ui->profile->setVisible(true);
+    ui->settings->setVisible(true);
+    ui->howToPLay->setVisible(true);
 }
 
 void Menu::on_play_clicked()
@@ -79,6 +95,16 @@ void Menu::on_back_clicked()
     ui->back->setVisible(false);
     Visible();
     level = 0;
+}
+
+QString Menu::getUsername() const
+{
+    return username;
+}
+
+void Menu::setUsername(const QString &value)
+{
+    username = value;
 }
 void Menu::on_level1_clicked()
 {
@@ -128,4 +154,13 @@ void Menu::on_logOut_clicked()
 short Menu::getLevel() const
 {
     return level;
+}
+
+void Menu::on_start_clicked()
+{
+     ui->start->setVisible(false);
+     close();
+     login = new Login();
+     login->show();
+     //showMenu();
 }
