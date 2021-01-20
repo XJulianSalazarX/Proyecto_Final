@@ -1,5 +1,6 @@
 #include "login.h"
 #include "ui_login.h"
+#include <QDebug>
 
 Login::Login(QWidget *parent) :
     QMainWindow(parent),
@@ -138,6 +139,7 @@ void Login::on_next_clicked()
         }
         else if(CheckPassword(user,password)==true) {
             //pasar a otra pantalla, porque ya inicio sesion
+            qDebug() << "Usuario y clave correctas";
             return;
         }
 return;
@@ -178,10 +180,14 @@ int Login::existUser(QString user)
 
    string texto;
    texto=LeerArchivo();
+   texto=Str_to_Binary(texto);
+   texto=decod(texto);
+   texto=Binary_to_Str(texto);
 
    int exist=texto.find(user_);
    int num=user_.length();
    num=num+exist;
+
    char x=texto[num];
    char y=texto[exist-1];
    if (x!=':')exist=-1;
@@ -192,23 +198,26 @@ int Login::existUser(QString user)
 bool Login::CheckPassword(QString user, QString password){
 
     string texto;
-    string password_=password.toStdString();
 
     texto=LeerArchivo();
+    texto=Str_to_Binary(texto);
+    texto=decod(texto);
+    texto=Binary_to_Str(texto);
+
+    qDebug() << QString::fromStdString(texto);
 
     int posUser=existUser(user);
-    int num=user.length();
-     int num2=password.length();
-    posUser=posUser+num-1;
-    int posPass=texto.find(password_,posUser);
-    char y=texto[posPass+num2];
-    num=(posPass-posUser)-1;
-    string Check=texto.substr(posUser+1,num);
-    if(Check==":" and y=='\n') return true;
+    qDebug() << posUser;
 
-    else {
-        return false;
-    }
+    posUser=posUser+user.length();
+    qDebug() << posUser;
+
+    string check = texto.substr(posUser+1,password.size());
+
+    qDebug() << QString::fromStdString(check);
+
+    if(password.toStdString() == check) return true;
+    else return false;
 }
 
 
