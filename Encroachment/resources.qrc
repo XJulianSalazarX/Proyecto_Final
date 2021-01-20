@@ -36,5 +36,6 @@
         <file>images/home.png</file>
         <file>images/continue.png</file>
         <file>images/metal.png</file>
+        <file>images/Button.png</file>
     </qresource>
 </RCC>
