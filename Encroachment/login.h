@@ -38,6 +38,8 @@ public:
     int existUser(QString);
     bool CheckPassword(QString,QString);
     void adduser(QString, QString);
+    void deleteUSer(QString,QString);
+    void deleteScore(QString, QString);
 
 private slots:
     void on_singIn_clicked();

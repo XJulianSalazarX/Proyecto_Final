@@ -173,6 +173,85 @@ string password_=password.toStdString();
  SaveArchivo(text);
 }
 
+void Login::deleteUSer(QString user, QString password)
+{
+    string text;
+    string text_new;
+
+    if (Login::CheckPassword(user,password)==true) {
+
+
+     text=LeerArchivo();
+     text=Str_to_Binary(text);
+     text=decod( text);
+     text=Binary_to_Str( text);
+
+
+
+     int posUSer_initial=existUser(user);
+     int posUser_final=0;
+     int aux=posUSer_initial;
+
+     for (int i=0;i<=4 ;) {
+         posUser_final=text.find('\n',aux);
+         aux= posUser_final+1;
+         i+=1;
+     }
+     if(posUser_final==-1) text_new=text.substr(0,posUSer_initial-1);
+     else {
+         text_new=text.substr(0,posUSer_initial-1)+text.substr(posUser_final);
+
+     }
+
+     text_new=Str_to_Binary(text_new);
+     text_new=Cod( text_new);
+     text_new=Binary_to_Str( text_new);
+
+     SaveArchivo(text_new);
+    }
+}
+
+void Login::deleteScore(QString user, QString password)
+{
+
+    string text;
+    string text_new;
+    string Password= password.toStdString();
+    if (Login::CheckPassword(user,password)==true) {
+
+
+     text=LeerArchivo();
+     text=Str_to_Binary(text);
+     text=decod( text);
+     text=Binary_to_Str( text);
+
+
+     string score="\n0:0:0\n0:0:0\n0:0:0\n0:0:0";
+     int posUser=existUser(user);
+     int posPass_initial=text.find(Password,posUser)+password.length()+1;
+     int posPass_final=0;
+     int aux=posPass_initial;
+
+     for (int i=0;i<4 ;) {
+         posPass_final=text.find('\n',aux);
+         aux= posPass_final+1;
+         i+=1;
+     }
+     if(posPass_final==-1) text_new=text.substr(0,posPass_initial-1)+score;
+     else {
+         text_new=text.substr(0,posPass_initial-1)+score+text.substr(posPass_final);
+
+     }
+
+     text_new=Str_to_Binary(text_new);
+     text_new=Cod( text_new);
+     text_new=Binary_to_Str( text_new);
+
+     SaveArchivo(text_new);
+    }
+
+}
+
 
 int Login::existUser(QString user)
 {
