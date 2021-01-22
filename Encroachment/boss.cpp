@@ -83,6 +83,8 @@ void Boss::Move()
                 health -= 2;
                 menu->level1->BossHealth();
                 if(health == 0){
+                    menu->level1->playerScore(100);
+                    menu->level1->complete();
                     scene()->removeItem(this);
                     delete this;
                     return;

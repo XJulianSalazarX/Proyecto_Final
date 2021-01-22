@@ -13,6 +13,7 @@ Level1::Level1(QWidget *parent) :
 
     posx = 0;
     isBoss = false;
+    ui->showScore->setVisible(false);
 
     ui->cont->setVisible(false);
     ui->retry->setVisible(false);
@@ -82,6 +83,11 @@ void Level1::playerHealth()
     ui->progressBar->setValue(player->getHealth());
 }
 
+void Level1::playerScore(int increase)
+{
+    ui->score->display(ui->score->intValue()+increase);
+}
+
 void Level1::Final()
 {
     isBoss = true;
@@ -135,6 +141,16 @@ void Level1::returnMenu()
     ui->graphicsView->setSceneRect(0,0,width(),720);
 
     ui->retry->setVisible(true);
+    ui->home->setVisible(true);
+}
+
+void Level1::complete()
+{
+    scene->removeItem(power);
+    delete power;
+    ui->stop->setVisible(false);
+    ui->showScore->setNum(ui->score->intValue());
+    ui->showScore->setVisible(true);
     ui->home->setVisible(true);
 }
 

@@ -1,5 +1,8 @@
 #include "enemyshoots.h"
+#include <menu.h>
 #include <QDebug>
+
+extern Menu *menu;
 
 EnemyShoots::EnemyShoots(int posx): Enemy(posx)
 {
@@ -65,6 +68,7 @@ void EnemyShoots::Dead()
                 delete i;
                 health --;
                 if(health == 0){
+                    menu->level1->playerScore(5);
                     scene()->removeItem(this);
                     delete this;
                     return;

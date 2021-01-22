@@ -26,10 +26,12 @@ public:
     double playerPos();
     int getObstacle();
     void playerHealth();
+    void playerScore(int increase);
     void Final();
     void BossHealth();
     double getPlayerHealth();
     void returnMenu();
+    void complete();
 
 private:
     Ui::Level1 *ui;

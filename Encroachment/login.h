@@ -35,7 +35,7 @@ public:
     string cambiar_decof(string );
     string Cambiar_pos(string );
 
-    int existUser(QString);
+    bool existUser(QString);
     bool CheckPassword(QString,QString);
     void adduser(QString, QString);
 
