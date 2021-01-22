@@ -105,7 +105,7 @@ void Login::on_next_clicked()
             return;
         }
 
-        else if (existUser(user)==-1) {
+        else if (existUser(user)==false) {
             adduser(user,password);
             //pasar a otra pantalla, porque ya se registrara
             menu->setUsername(ui->Username->text());
@@ -114,7 +114,7 @@ void Login::on_next_clicked()
             delete this;
             return;
         }
-        else if (existUser(user)!=-1) {
+        else if (existUser(user)==true) {
             QMessageBox::critical(this,"Error","El usuario ya existe");
             ui->Username->setText("");
             ui->Password->setText("");
@@ -175,7 +175,7 @@ string password_=password.toStdString();
  text=decod( text);
  text=Binary_to_Str( text);
 
- text= text + user_+ ":"+password_+"\n"+"0:0:0"+"\n"+"0:0:0"+"\n"+"0:0:0"+"\n"+"0:0:0"+"\n";
+ text= text + user_+ ":"+password_+"\r\n"+"0:0:0"+"\r\n"+"0:0:0"+"\r\n"+"0:0:0"+"\r\n"+"0:0:0"+"\r\n";
 
  text=Str_to_Binary(text);
  text=Cod( text);
@@ -183,7 +183,6 @@ string password_=password.toStdString();
 
  SaveArchivo(text);
 }
-
 
 bool Login::existUser(QString user)
 {
@@ -197,12 +196,13 @@ bool Login::existUser(QString user)
    qDebug() << texto.length();
 
    int exist=texto.find(user.toStdString());
+   if (exist == -1) return false;
    qDebug() << exist;
    user_ = texto.substr(exist,user.length());
    qDebug() << QString::fromStdString(user_) << " = " << user;
 
    if(user.toStdString() == user_) return true;
-   else return false;
+   return false;
 //   int num=user_.length();
 //   num=num+exist;
 
@@ -229,17 +229,19 @@ bool Login::CheckPassword(QString user, QString password){
 
     //int posUser=existUser(user);
     int posUser = texto.find(user.toStdString());
+    int end = texto.find("\r",posUser);
     qDebug() << posUser;
+    qDebug() << end;
 
     posUser=posUser+user.length();
     qDebug() << posUser;
 
-    string check = texto.substr(posUser+1,password.size());
+    string check = texto.substr(posUser+1,end-posUser-1);
 
-    qDebug() << QString::fromStdString(check);
+    qDebug() << QString::fromStdString(check) << " = " << password;
 
     if(password.toStdString() == check) return true;
-    else return false;
+    return false;
 }
 
 
