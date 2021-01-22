@@ -23,6 +23,7 @@ SOURCES += \
     enemy.cpp \
     enemybullet.cpp \
     enemyshoots.cpp \
+    file.cpp \
     level1.cpp \
     login.cpp \
     main.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     enemy.h \
     enemybullet.h \
     enemyshoots.h \
+    file.h \
     level1.h \
     login.h \
     menu.h \
