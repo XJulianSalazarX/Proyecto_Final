@@ -36,7 +36,9 @@ void deleteUSer(QString user, QString password)
 
 
 
-     int posUSer_initial=existUser(user);
+    // int posUSer_initial=existUser(user);
+     int posUSer_initial= text.find(user.toStdString());
+
      int posUser_final=0;
      int aux=posUSer_initial;
 
@@ -75,7 +77,9 @@ void deleteScore(QString user, QString password)
 
 
      string score="\n0:0:0\n0:0:0\n0:0:0\n0:0:0";
-     int posUser=existUser(user);
+     //int posUser=existUser(user);
+     int posUser = text.find(user.toStdString());
+
      int posPass_initial=text.find(Password,posUser)+password.length()+1;
      int posPass_final=0;
      int aux=posPass_initial;
@@ -100,53 +104,121 @@ void deleteScore(QString user, QString password)
 
 }
 
+void GoScore(QString user, QString Score,int level){
 
-int existUser(QString user)
+    string text;
+    string text_new;
+
+string score = Score.toStdString();
+     text=LeerArchivo();
+     text=Str_to_Binary(text);
+     text=decod( text);
+     text=Binary_to_Str( text);
+
+
+     //int posUser=existUser(user);
+     int pos_initial = text.find(user.toStdString());
+     int pos_final=0;
+     int aux=pos_initial;
+
+     for (int i=0;i<=level ;) {
+         pos_initial=text.find('\n',aux);
+         aux= pos_initial+1;
+         i+=1;
+     }
+
+     pos_final= text.find('\n', pos_initial+1);
+
+
+     string mod=text.substr(pos_initial,(pos_final-pos_initial));
+
+     string a,b,c;
+
+     int pScore=mod.find(":");
+     pScore+=1;
+     int pScore_final=mod.find(":", pScore);
+     a=mod.substr(1,pScore-2);
+     b=mod.substr(pScore,pScore_final-pScore);
+     c=mod.substr(pScore_final+1);
+
+     int a_ =stoi(a);
+     int b_ =stoi(b);
+     int c_ =stoi(c);
+     int score_=stoi(score);
+
+     if(a=="0")a=score;
+     else if(b=="0")b=score;
+     else if(c=="0")c=score;
+     else if(c_<score_  and b_>score_)c=score;
+     else if(b_<score_ and a_>score_){
+         c=b;
+         b=score;
+     }
+     else if(a_<score_){
+
+         c=b;
+         b=a;
+         a=score;
+     }
+
+
+       if (pos_final == -1)
+         text_new = text.substr (0, pos_initial) +'\n' + a+":"+b+":"+c;
+       else
+         {
+           text_new = text.substr (0, pos_initial) + '\n' + a+":"+b+":"+c + text.substr (pos_final);
+
+         }
+
+     text_new=Str_to_Binary(text_new);
+     text_new=Cod( text_new);
+     text_new=Binary_to_Str( text_new);
+
+     SaveArchivo(text_new);
+    }
+
+
+
+bool existUser(QString user)
 {
-    string user_=user.toStdString();
-
-   string texto;
+   string texto,user_;
    texto=LeerArchivo();
    texto=Str_to_Binary(texto);
    texto=decod(texto);
    texto=Binary_to_Str(texto);
 
-   int exist=texto.find(user_);
-   int num=user_.length();
-   num=num+exist;
 
-   char x=texto[num];
-   char y=texto[exist-1];
-   if (x!=':')exist=-1;
-   if (y!='\n')exist=-1;
+   int exist=texto.find(user.toStdString());
+   if (exist == -1) return false;
+   user_ = texto.substr(exist,user.length());
 
-   return exist;
+   if(user.toStdString() == user_) return true;
+   return false;
+
 }
 bool CheckPassword(QString user, QString password){
 
     string texto;
-    string password_=password.toStdString();
 
     texto=LeerArchivo();
     texto=Str_to_Binary(texto);
     texto=decod(texto);
     texto=Binary_to_Str(texto);
 
-    int posUser=existUser(user);
-    int num=user.length();
-     int num2=password.length();
-    posUser=posUser+num-1;
-    int posPass=texto.find(password_,posUser);
-    char y=texto[posPass+num2];
-    num=(posPass-posUser)-1;
-    string Check=texto.substr(posUser+1,num);
-    if(Check==":" and y=='\n') return true;
 
-    else {
-        return false;
-    }
+    //int posUser=existUser(user);
+    int posUser = texto.find(user.toStdString());
+    int end = texto.find("\r",posUser);
+
+
+    posUser=posUser+user.length();
+
+
+    string check = texto.substr(posUser+1,end-posUser-1);
+
+    if(password.toStdString() == check) return true;
+    return false;
 }
-
 
 string LeerArchivo()
 {

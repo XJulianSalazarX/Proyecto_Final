@@ -105,7 +105,7 @@ void Login::on_next_clicked()
             return;
         }
 
-        else if (existUser(user)==-1) {
+        else if (existUser(user)==false) {
             adduser(user,password);
             //pasar a otra pantalla, porque ya se registrara
             menu->setUsername(ui->Username->text());
@@ -114,7 +114,7 @@ void Login::on_next_clicked()
             delete this;
             return;
         }
-        else if (existUser(user)!=-1) {
+        else if (existUser(user)==true) {
             QMessageBox::critical(this,"Error","El usuario ya existe");
             ui->Username->setText("");
             ui->Password->setText("");

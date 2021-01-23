@@ -17,10 +17,11 @@ string Cod(string );
 string cambiar_decof(string );
 string Cambiar_pos(string );
 
-int existUser(QString);
+bool existUser(QString);
 bool CheckPassword(QString,QString);
 void adduser(QString, QString);
 void deleteUSer(QString,QString);
 void deleteScore(QString, QString);
+void GoScore();
 
 #endif // FILE_H
