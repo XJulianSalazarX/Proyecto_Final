@@ -99,6 +99,12 @@ void Menu::on_back_clicked()
     ui->back->setVisible(false);
     Visible();
     level = 0;
+    ui->level1->setIcon(QIcon(":/images/level1 b.jpg"));
+    ui->level1->setIconSize(QSize(350,400));
+    ui->level2->setIcon(QIcon(":/images/level2 b.jpg"));
+    ui->level2->setIconSize(QSize(350,400));
+    ui->level3->setIcon(QIcon(":/images/level3 b.jpg"));
+    ui->level3->setIconSize(QSize(350,400));
 }
 
 QString Menu::getUsername() const
@@ -193,5 +199,4 @@ void Menu::on_start_clicked()
      close();
      login = new Login();
      login->show();
-     //showMenu();
 }
