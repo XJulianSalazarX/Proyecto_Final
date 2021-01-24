@@ -117,7 +117,7 @@
    </property>
    <widget class="QPushButton" name="level1">
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/images/level 1.2.jpg);</string>
+     <string notr="true">border-image: url(:/images/level1 b.jpg);</string>
     </property>
     <property name="text">
      <string/>
@@ -125,7 +125,7 @@
    </widget>
    <widget class="QPushButton" name="level2">
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/images/level 2.2.jpg);</string>
+     <string notr="true">border-image: url(:/images/level2 b.jpg);</string>
     </property>
     <property name="text">
      <string/>
@@ -133,7 +133,7 @@
    </widget>
    <widget class="QPushButton" name="level3">
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/images/level 3.2.jpg);</string>
+     <string notr="true">border-image: url(:/images/level3 b.jpg);</string>
     </property>
     <property name="text">
      <string/>

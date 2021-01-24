@@ -37,5 +37,8 @@
         <file>images/continue.png</file>
         <file>images/metal.png</file>
         <file>images/Button.png</file>
+        <file>images/level3 b.jpg</file>
+        <file>images/level1 b.jpg</file>
+        <file>images/level2 b.jpg</file>
     </qresource>
 </RCC>

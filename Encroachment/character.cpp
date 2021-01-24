@@ -171,17 +171,6 @@ void Character::Move()
                 delete i;
                 health += 2;
             }
-
-            else if(typeid (*(i)) == typeid (Power)){
-                health --;
-                qDebug() << "Pega el coder";
-                if(health <= 0){
-                    scene()->removeItem(this);
-                    delete this;
-                     menu->level1->returnMenu();
-                    return;
-                }
-            }
         }
     }
     //actualizar vida
@@ -222,7 +211,7 @@ void Character::End()
                 scene()->removeItem(i);
                 delete i;
                 health --;
-                menu->level1->playerHealth();
+                //menu->level1->playerHealth();
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
@@ -230,6 +219,18 @@ void Character::End()
                     return;
                 }
             }
+            else if(typeid (*(i)) == typeid (Power)){
+                health -= 0.1;
+                if (health < 1) health = 0;
+                qDebug() << health;
+                if(health <= 0){
+                    scene()->removeItem(this);
+                    delete this;
+                     menu->level1->returnMenu();
+                    return;
+                }
+            }
         }
     }
+    menu->level1->playerHealth();
 }
