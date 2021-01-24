@@ -55,9 +55,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>49</y>
-     <width>101</width>
-     <height>41</height>
+     <y>50</y>
+     <width>100</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="styleSheet">

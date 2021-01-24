@@ -24,7 +24,7 @@ Menu::Menu(QWidget *parent) :
     ui->graphicsView->setSceneRect(0,0,width(),height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/wallpaper.png").scaled(1280,720)));
     ui->splitter->setVisible(false);
     ui->back->setVisible(false);
     ui->levels->setVisible(false);
@@ -169,7 +169,10 @@ void Menu::on_play_2_clicked()
     }
         break;
     case 2:{
+        close();
         qDebug() << "Nivel 2";
+        level1 = new Level2();
+        level1->show();
     }
         break;
     case 3:{

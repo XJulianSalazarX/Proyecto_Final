@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QMessageBox>
 #include "level1.h"
+#include "level2.h"
 #include "login.h"
 
 namespace Ui {

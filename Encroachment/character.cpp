@@ -178,12 +178,10 @@ void Character::Move()
 
     //mover el auto
     setPos(x(),y()-speed);
-    if(menu->getLevel() == 1){
-        menu->level1->FocusPlayer();
-        menu->level1->playerHealth();
-        if(y() < 0){
-            menu->level1->Final();
-        }
+    menu->level1->FocusPlayer();
+    menu->level1->playerHealth();
+    if(y() < 0){
+        menu->level1->Final();
     }
 }
 

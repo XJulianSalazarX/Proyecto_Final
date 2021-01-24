@@ -33,7 +33,7 @@ public:
     void returnMenu();
     void complete();
 
-private:
+protected:
     Ui::Level1 *ui;
     QGraphicsScene *scene;
     Character *player;
@@ -57,6 +57,7 @@ public slots:
     void makeEnemies2();
     void makeObstacles2();
     void makeBonus();
+
 private slots:
     void on_stop_clicked();
     void on_cont_clicked();

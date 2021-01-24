@@ -140,8 +140,12 @@ void Level1::returnMenu()
     scene->setBackgroundBrush(QPixmap(":/images/fondo.jpg").scaled(1280,720));
     ui->graphicsView->setSceneRect(0,0,width(),720);
 
+    ui->showScore->setNum(ui->score->intValue());
+    ui->showScore->setVisible(true);
+
     ui->retry->setVisible(true);
     ui->home->setVisible(true);
+    ui->stop->setVisible(false);
 }
 
 void Level1::complete()
