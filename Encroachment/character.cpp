@@ -13,6 +13,9 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         w = 142.75;
         h = 67;
 
+        min = 70;
+        max = 1240;
+
         health = menu->level1->getPlayerHealth();
         speed = 10;
 
@@ -39,6 +42,9 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         health = 10;
         speed = 7.5;
 
+        min = 30;
+        max = 1090;
+
         //    timer = new QTimer();
         //    connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
         //timer->start(1000);
@@ -58,10 +64,10 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
 
 void Character::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_A and x()>220){
+    if(event->key() == Qt::Key_A and x()>min){
         setPos(x()-speed,y());
     }
-    else if(event->key() == Qt::Key_D and x()+30<1090){
+    else if(event->key() == Qt::Key_D and x()+30<max){
         setPos(x()+speed,y());
     }
 }
@@ -178,12 +184,10 @@ void Character::Move()
 
     //mover el auto
     setPos(x(),y()-speed);
-    if(menu->getLevel() == 1){
-        menu->level1->FocusPlayer();
-        menu->level1->playerHealth();
-        if(y() < 0){
-            menu->level1->Final();
-        }
+    menu->level1->FocusPlayer();
+    menu->level1->playerHealth();
+    if(y() < 0){
+        menu->level1->Final();
     }
 }
 
@@ -223,6 +227,17 @@ void Character::End()
                 health -= 0.1;
                 if (health < 1) health = 0;
                 qDebug() << health;
+                if(health <= 0){
+                    scene()->removeItem(this);
+                    delete this;
+                     menu->level1->returnMenu();
+                    return;
+                }
+            }
+            else if(typeid (*(i)) == typeid (CanonBullet)){
+                health -= 2;
+                scene()->removeItem(i);
+                delete i;
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;

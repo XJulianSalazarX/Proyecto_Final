@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/carrito_bueno.png</file>
-        <file>images/carrito_malo.png</file>
         <file>images/bala.png</file>
         <file>images/how to play.png</file>
         <file>images/play.png</file>
@@ -40,5 +38,10 @@
         <file>images/level3 b.jpg</file>
         <file>images/level1 b.jpg</file>
         <file>images/level2 b.jpg</file>
+        <file>images/wallpaper.png</file>
+        <file>images/ufo.png</file>
+        <file>images/ufo2.png</file>
+        <file>images/canonbullet.png</file>
+        <file>images/portal.png</file>
     </qresource>
 </RCC>

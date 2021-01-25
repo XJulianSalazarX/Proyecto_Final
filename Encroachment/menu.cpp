@@ -11,9 +11,14 @@ Menu::Menu(QWidget *parent) :
     ui->splitter->setGeometry(482,150,316,420);
     ui->start->setGeometry(482,400,316,140);
 
-//    ui->level1->setMaximumSize(ui->level1->width(),ui->level1->height());
-//    ui->level2->setMaximumSize(ui->level2->width(),ui->level2->height());
-//    ui->level3->setMaximumSize(ui->level3->width(),ui->level3->height());
+    ui->level1->setIcon(QIcon(":/images/level1 b.jpg"));
+    ui->level1->setIconSize(QSize(350,400));
+
+    ui->level2->setIcon(QIcon(":/images/level2 b.jpg"));
+    ui->level2->setIconSize(QSize(350,400));
+
+    ui->level3->setIcon(QIcon(":/images/level3 b.jpg"));
+    ui->level3->setIconSize(QSize(350,400));
 
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
@@ -24,7 +29,7 @@ Menu::Menu(QWidget *parent) :
     ui->graphicsView->setSceneRect(0,0,width(),height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/wallpaper.png").scaled(1280,720)));
     ui->splitter->setVisible(false);
     ui->back->setVisible(false);
     ui->levels->setVisible(false);
@@ -169,7 +174,10 @@ void Menu::on_play_2_clicked()
     }
         break;
     case 2:{
+        close();
         qDebug() << "Nivel 2";
+        level1 = new Level2();
+        level1->show();
     }
         break;
     case 3:{
