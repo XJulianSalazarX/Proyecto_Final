@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <enemybullet.h>
+#include <math.h>
+#include "portal.h"
 
 class Boss2: public QObject, public QGraphicsPixmapItem
 {
@@ -19,6 +21,7 @@ private:
     EnemyBullet *bullet;
     QTimer *timerM;
     QTimer *timerS;
+    Portal *portal;
 
 public slots:
     void Move();

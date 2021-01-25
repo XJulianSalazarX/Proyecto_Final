@@ -23,6 +23,7 @@ Boss2::Boss2()
 Boss2::~Boss2()
 {
   delete timerM;
+    delete timerS;
 }
 
 int Boss2::getHealth() const
@@ -40,6 +41,11 @@ void Boss2::Move()
                 delete i;
                 health -= 1.5;
                 menu->level1->BossHealth();
+                if(health == 50){
+                    portal = new Portal();
+                    portal->setPos(50,350);
+                    scene()->addItem(portal);
+                }
                 if(health == 0){
                     menu->level1->playerScore(100);
                     menu->level1->complete();
@@ -58,7 +64,8 @@ void Boss2::Move()
         speed = -5;
         setPixmap(QPixmap(":/images/ufo2.png").scaled(159,100));
     }
-    setPos(x()+speed,y());
+    if(abs(x()-menu->level1->playerPosX()) > 3)
+        setPos(x()+speed,y());
 }
 
 void Boss2::Shoot()

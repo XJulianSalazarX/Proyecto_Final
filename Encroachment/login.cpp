@@ -48,8 +48,6 @@ void Login::on_singIn_clicked()
 
 }
 
-
-
 void Login::on_singUp_clicked()
 {
     ui->singIn->setVisible(false);
@@ -62,9 +60,6 @@ void Login::on_singUp_clicked()
     ui->next->setVisible(true);
     ui->label_3->setVisible(true);
     ui->password_2->setVisible(true);
-
-
-
 }
 
 void Login::on_back_clicked()
@@ -161,8 +156,6 @@ void Login::on_next_clicked()
 }
 
 //manejo de archivos
-
-
 
 void Login::adduser(QString user, QString password)
 {

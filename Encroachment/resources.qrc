@@ -41,5 +41,7 @@
         <file>images/wallpaper.png</file>
         <file>images/ufo.png</file>
         <file>images/ufo2.png</file>
+        <file>images/canonbullet.png</file>
+        <file>images/portal.png</file>
     </qresource>
 </RCC>

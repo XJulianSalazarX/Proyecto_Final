@@ -13,7 +13,6 @@
 #include <QGraphicsItem>
 #include <QPixmap>
 #include <QPainter>
-//#include <QGraphicsPixmapItem>
 #include <QKeyEvent>
 #include <QGraphicsScene>
 #include "bullet.h"

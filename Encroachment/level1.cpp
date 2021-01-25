@@ -143,6 +143,10 @@ void Level1::Final()
         boss2 = new Boss2();
         scene->addItem(boss2);
 
+        ui->progressBar_2->setVisible(true);
+        ui->progressBar_2->setRange(0,100);
+        BossHealth();
+
         //poder
         power = new Power();
         scene->addItem(power);
@@ -153,6 +157,8 @@ void Level1::BossHealth()
 {
     if(menu->getLevel() == 1)
         ui->progressBar_2->setValue(boss->getHealth());
+    if(menu->getLevel() == 2)
+        ui->progressBar_2->setValue(boss2->getHealth());
 }
 
 double Level1::getPlayerHealth()

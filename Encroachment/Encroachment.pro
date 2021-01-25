@@ -20,6 +20,7 @@ SOURCES += \
     boss.cpp \
     boss2.cpp \
     bullet.cpp \
+    canonbullet.cpp \
     character.cpp \
     enemy.cpp \
     enemybullet.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
     menu.cpp \
     obstacle.cpp \
     obstacle2.cpp \
+    portal.cpp \
     power.cpp \
     widget.cpp
 
@@ -39,6 +41,7 @@ HEADERS += \
     boss.h \
     boss2.h \
     bullet.h \
+    canonbullet.h \
     character.h \
     enemy.h \
     enemybullet.h \
@@ -49,6 +52,7 @@ HEADERS += \
     menu.h \
     obstacle.h \
     obstacle2.h \
+    portal.h \
     power.h \
     widget.h
 
