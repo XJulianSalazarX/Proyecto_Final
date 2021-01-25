@@ -9,6 +9,7 @@
 #include "bonus.h"
 #include "boss.h"
 #include "power.h"
+#include "boss2.h"
 
 namespace Ui {
 class Level1;
@@ -24,6 +25,7 @@ public:
 
     void FocusPlayer();
     double playerPos();
+    double playerPosX();
     int getObstacle();
     void playerHealth();
     void playerScore(int increase);
@@ -44,6 +46,7 @@ protected:
     Bonus *bonus;
     Boss *boss;
     Power *power;
+    Boss2 *boss2;
 
     QTimer *timerE;
     QTimer *timerB;

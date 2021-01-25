@@ -18,7 +18,6 @@ public:
 
 //    void Final();
 //    void BossHealth();
-
 private:
     Ui::Level2 *ui;
 

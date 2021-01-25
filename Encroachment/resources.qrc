@@ -39,5 +39,7 @@
         <file>images/level1 b.jpg</file>
         <file>images/level2 b.jpg</file>
         <file>images/wallpaper.png</file>
+        <file>images/ufo.png</file>
+        <file>images/ufo2.png</file>
     </qresource>
 </RCC>

@@ -73,6 +73,11 @@ double Level1::playerPos()
     return player->y();
 }
 
+double Level1::playerPosX()
+{
+    return player->x();
+}
+
 int Level1::getObstacle()
 {
     return obs->getType_obs();
@@ -134,6 +139,9 @@ void Level1::Final()
         //Poner focus sobre el item (reciba la tacla que se presione por teclado)
         player->setFlag(QGraphicsItem::ItemIsFocusable);
         player->setFocus();
+
+        boss2 = new Boss2();
+        scene->addItem(boss2);
 
         //poder
         power = new Power();
