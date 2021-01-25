@@ -154,9 +154,7 @@ void Login::on_next_clicked()
 
 
 }
-
 //manejo de archivos
-
 void Login::adduser(QString user, QString password)
 {
 string text;
@@ -196,18 +194,8 @@ bool Login::existUser(QString user)
 
    if(user.toStdString() == user_) return true;
    return false;
-//   int num=user_.length();
-//   num=num+exist;
-
-
-
-//   char x=texto[num];
-//   char y=texto[exist-1];
-//   if (x!=':')exist=-1;
-//   if (y!='\n')exist=-1;
-
-//   return exist;
 }
+
 bool Login::CheckPassword(QString user, QString password){
 
     qDebug() << "Comprobar contraseña";

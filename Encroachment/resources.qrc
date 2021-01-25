@@ -45,5 +45,7 @@
         <file>images/portal.png</file>
         <file>images/last.png</file>
         <file>images/last2.png</file>
+        <file>images/character 2.png</file>
+        <file>images/character 3.png</file>
     </qresource>
 </RCC>

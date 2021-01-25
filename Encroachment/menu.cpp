@@ -8,8 +8,14 @@ Menu::Menu(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    level = 0;
+    character = 0;
+
     ui->splitter->setGeometry(482,150,316,420);
     ui->start->setGeometry(482,400,316,140);
+
+    ui->characteres->setGeometry(400,400,450,70);
+    ui->characteres->setVisible(false);
 
     ui->level1->setIcon(QIcon(":/images/level1 b.jpg"));
     ui->level1->setIconSize(QSize(350,400));
@@ -79,6 +85,7 @@ void Menu::on_play_clicked()
     ui->back->setVisible(true);
     ui->levels->setVisible(true);
     ui->play_2->setVisible(true);
+    ui->characteres->setVisible(true);
     Invisible();
 }
 
@@ -100,16 +107,23 @@ void Menu::on_back_clicked()
 {
     ui->splitter->setVisible(false);
     ui->levels->setVisible(false);
+    ui->characteres->setVisible(false);
     ui->play_2->setVisible(false);
     ui->back->setVisible(false);
     Visible();
     level = 0;
+    character = 0;
     ui->level1->setIcon(QIcon(":/images/level1 b.jpg"));
     ui->level1->setIconSize(QSize(350,400));
     ui->level2->setIcon(QIcon(":/images/level2 b.jpg"));
     ui->level2->setIconSize(QSize(350,400));
     ui->level3->setIcon(QIcon(":/images/level3 b.jpg"));
     ui->level3->setIconSize(QSize(350,400));
+}
+
+short Menu::getCharacter() const
+{
+    return character;
 }
 
 QString Menu::getUsername() const
@@ -165,6 +179,10 @@ void Menu::on_level3_clicked()
 
 void Menu::on_play_2_clicked()
 {
+    if(character == 0){
+        QMessageBox::critical(this,"Error","Seleccione un personaje.");
+        return;
+    }
     switch (level) {
     case 1:{
         close();
@@ -210,4 +228,19 @@ void Menu::on_start_clicked()
      close();
      login = new Login();
      login->show();
+}
+
+void Menu::on_character1_clicked()
+{
+    character = 1;
+}
+
+void Menu::on_character2_clicked()
+{
+   character = 2;
+}
+
+void Menu::on_character3_clicked()
+{
+   character = 3;
 }

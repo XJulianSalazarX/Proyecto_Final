@@ -32,6 +32,8 @@ public:
     QString getUsername() const;
     void setUsername(const QString &value);
 
+    short getCharacter() const;
+
 private slots:
     void on_play_clicked();
 
@@ -51,6 +53,12 @@ private slots:
 
     void on_start_clicked();
 
+    void on_character1_clicked();
+
+    void on_character2_clicked();
+
+    void on_character3_clicked();
+
 public slots:
     void on_back_clicked();
 
@@ -58,7 +66,7 @@ private:
     Ui::Menu *ui;
     QGraphicsScene *scene;
     Login *login;
-    short level;    
+    short level, character;
     QString username;
 //    Level1 *level1;
 

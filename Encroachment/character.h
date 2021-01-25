@@ -42,7 +42,7 @@ public:
 private:
     double health, speed;
     double w,h,col;
-    int min, max;
+    int min, max, last;
     QPixmap *pixmap;
     QTimer *timer;
     QTimer *timerM;

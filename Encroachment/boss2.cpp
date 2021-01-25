@@ -114,10 +114,12 @@ void Boss2::Move2()
     if(x() <= 50){
         speed = 7;
         setPos(x()+speed,y()+30);
+        setPixmap(QPixmap(":/images/last2.png").scaled(160,100));
     }
     else if(x() >= 1180){
         speed = -7;
         setPos(x()+speed,y());
+        setPixmap(QPixmap(":/images/last.png").scaled(160,100));
     }
     else setPos(x()+speed,y());
 }
