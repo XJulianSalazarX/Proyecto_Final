@@ -39,7 +39,12 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
     }
 
     else{
-        pixmap = new QPixmap(":/images/character 1.2.png");
+        if(menu->getCharacter() == 1)
+            pixmap = new QPixmap(":/images/character1.2.png");
+        else if(menu->getCharacter() == 2)
+            pixmap = new QPixmap(":/images/character2.2.png");
+        else if(menu->getCharacter() == 3)
+            pixmap = new QPixmap(":/images/character3.2.png");
 
         col=0;
         w = 55;
@@ -54,7 +59,7 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
 
         timer = new QTimer();
         connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
-        timer->start(100);
+        timer->start(250);
 
         timerM = new QTimer();
         connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));

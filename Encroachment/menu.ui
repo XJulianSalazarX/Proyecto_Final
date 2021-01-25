@@ -245,6 +245,7 @@ font: 20pt &quot;MV Boli&quot;;</string>
    <widget class="QPushButton" name="character1">
     <property name="styleSheet">
      <string notr="true">background-image: url(:/images/character 1.png);
+
 </string>
     </property>
     <property name="text">

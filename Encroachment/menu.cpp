@@ -26,6 +26,10 @@ Menu::Menu(QWidget *parent) :
     ui->level3->setIcon(QIcon(":/images/level3 b.jpg"));
     ui->level3->setIconSize(QSize(350,400));
 
+    ui->character1->setStyleSheet("background-image: url(:/images/character 1.png);");
+    ui->character2->setStyleSheet("background-image: url(:/images/character 2.png);");
+    ui->character3->setStyleSheet("background-image: url(:/images/character 3.png);");
+
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
     scene = new QGraphicsScene();
@@ -119,6 +123,9 @@ void Menu::on_back_clicked()
     ui->level2->setIconSize(QSize(350,400));
     ui->level3->setIcon(QIcon(":/images/level3 b.jpg"));
     ui->level3->setIconSize(QSize(350,400));
+    ui->character1->setStyleSheet("background-image: url(:/images/character 1.png);");
+    ui->character2->setStyleSheet("background-image: url(:/images/character 2.png);");
+    ui->character3->setStyleSheet("background-image: url(:/images/character 3.png);");
 }
 
 short Menu::getCharacter() const
@@ -233,14 +240,26 @@ void Menu::on_start_clicked()
 void Menu::on_character1_clicked()
 {
     character = 1;
+    ui->character1->setStyleSheet("background-image: url(:/images/character 1.png);"
+    "background-color: qradialgradient(spread:repeat, cx:0.5, cy:0.5, radius:0.077, fx:0.5, fy:0.5, stop:0 rgba(0, 169, 255, 147), stop:0.497326 rgba(0, 0, 0, 147), stop:1 rgba(0, 169, 255, 147))");
+    ui->character2->setStyleSheet("background-image: url(:/images/character 2.png);");
+    ui->character3->setStyleSheet("background-image: url(:/images/character 3.png);");
 }
 
 void Menu::on_character2_clicked()
 {
    character = 2;
+   ui->character2->setStyleSheet("background-image: url(:/images/character 2.png);"
+   "background-color: qradialgradient(spread:repeat, cx:0.5, cy:0.5, radius:0.077, fx:0.5, fy:0.5, stop:0 rgba(0, 169, 255, 147), stop:0.497326 rgba(0, 0, 0, 147), stop:1 rgba(0, 169, 255, 147))");
+   ui->character1->setStyleSheet("background-image: url(:/images/character 1.png);");
+   ui->character3->setStyleSheet("background-image: url(:/images/character 3.png);");
 }
 
 void Menu::on_character3_clicked()
 {
    character = 3;
+   ui->character3->setStyleSheet("background-image: url(:/images/character 3.png);"
+   "background-color: qradialgradient(spread:repeat, cx:0.5, cy:0.5, radius:0.077, fx:0.5, fy:0.5, stop:0 rgba(0, 169, 255, 147), stop:0.497326 rgba(0, 0, 0, 147), stop:1 rgba(0, 169, 255, 147))");
+   ui->character1->setStyleSheet("background-image: url(:/images/character 1.png);");
+   ui->character2->setStyleSheet("background-image: url(:/images/character 2.png);");
 }

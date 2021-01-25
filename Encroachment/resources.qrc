@@ -47,5 +47,8 @@
         <file>images/last2.png</file>
         <file>images/character 2.png</file>
         <file>images/character 3.png</file>
+        <file>images/character2.2.png</file>
+        <file>images/character3.2.png</file>
+        <file>images/character1.2.png</file>
     </qresource>
 </RCC>
