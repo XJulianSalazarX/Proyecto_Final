@@ -43,5 +43,7 @@
         <file>images/ufo2.png</file>
         <file>images/canonbullet.png</file>
         <file>images/portal.png</file>
+        <file>images/last.png</file>
+        <file>images/last2.png</file>
     </qresource>
 </RCC>

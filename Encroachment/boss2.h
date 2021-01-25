@@ -11,7 +11,7 @@ class Boss2: public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Boss2();
+    Boss2(bool boss3 = false);
     ~Boss2();
 
     int getHealth() const;
@@ -25,6 +25,7 @@ private:
 
 public slots:
     void Move();
+    void Move2();
     void Shoot();
 };
 

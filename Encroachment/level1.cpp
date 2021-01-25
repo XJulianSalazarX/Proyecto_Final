@@ -36,8 +36,8 @@ Level1::Level1(QWidget *parent) :
     //player
     player = new Character();
     scene->addItem(player);
-    player->setPos(630,21500);
-    //player->setPos(630,720);
+    //player->setPos(630,21500);
+    player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
     ui->progressBar->setRange(0,10);
     ui->progressBar_2->setVisible(false);
@@ -165,9 +165,12 @@ void Level1::Final()
         player->setFlag(QGraphicsItem::ItemIsFocusable);
         player->setFocus();
 
-//        ui->progressBar_2->setVisible(true);
-//        ui->progressBar_2->setRange(0,100);
-//        BossHealth();
+        boss2 = new Boss2(true);
+        scene->addItem(boss2);
+
+        ui->progressBar_2->setVisible(true);
+        ui->progressBar_2->setRange(0,100);
+        BossHealth();
 
         //poder
         power = new Power();
@@ -179,7 +182,7 @@ void Level1::BossHealth()
 {
     if(menu->getLevel() == 1)
         ui->progressBar_2->setValue(boss->getHealth());
-    if(menu->getLevel() == 2)
+    if(menu->getLevel() == 2 or menu->getLevel() == 3)
         ui->progressBar_2->setValue(boss2->getHealth());
 }
 

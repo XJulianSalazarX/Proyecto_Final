@@ -80,7 +80,7 @@ void Boss::Move()
             if(typeid(*(i))==typeid (Bullet)){
                 scene()->removeItem(i);
                 delete i;
-                health -= 2;
+                health -= 1.5;
                 menu->level1->BossHealth();
                 if(health == 0){
                     menu->level1->playerScore(100);

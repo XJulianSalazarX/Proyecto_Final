@@ -245,6 +245,17 @@ void Character::End()
                     return;
                 }
             }
+            else if(typeid (*(i)) == typeid (Boss2)){
+                health = 0;
+                scene()->removeItem(i);
+                delete i;
+                if(health <= 0){
+                    scene()->removeItem(this);
+                    delete this;
+                    menu->level1->returnMenu();
+                    return;
+                }
+            }
         }
     }
     menu->level1->playerHealth();
