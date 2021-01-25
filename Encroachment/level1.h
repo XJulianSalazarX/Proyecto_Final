@@ -9,6 +9,7 @@
 #include "bonus.h"
 #include "boss.h"
 #include "power.h"
+#include "boss2.h"
 
 namespace Ui {
 class Level1;
@@ -24,14 +25,17 @@ public:
 
     void FocusPlayer();
     double playerPos();
+    double playerPosX();
     int getObstacle();
     void playerHealth();
+    void playerScore(int increase);
     void Final();
     void BossHealth();
     double getPlayerHealth();
     void returnMenu();
+    void complete();
 
-private:
+protected:
     Ui::Level1 *ui;
     QGraphicsScene *scene;
     Character *player;
@@ -42,14 +46,13 @@ private:
     Bonus *bonus;
     Boss *boss;
     Power *power;
+    Boss2 *boss2;
 
     QTimer *timerE;
-    QTimer *timerO;
-    QTimer *timerE2;
-    QTimer *timerO2;
     QTimer *timerB;
 
     int posx;
+    bool isBoss;
 
 public slots:
     void makeEnemies();
@@ -57,6 +60,7 @@ public slots:
     void makeEnemies2();
     void makeObstacles2();
     void makeBonus();
+
 private slots:
     void on_stop_clicked();
     void on_cont_clicked();

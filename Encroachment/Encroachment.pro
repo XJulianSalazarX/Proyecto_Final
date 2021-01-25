@@ -18,38 +18,47 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     bonus.cpp \
     boss.cpp \
+    boss2.cpp \
     bullet.cpp \
+    canonbullet.cpp \
     character.cpp \
     enemy.cpp \
     enemybullet.cpp \
     enemyshoots.cpp \
     level1.cpp \
+    level2.cpp \
     login.cpp \
     main.cpp \
     menu.cpp \
     obstacle.cpp \
     obstacle2.cpp \
+    portal.cpp \
     power.cpp \
     widget.cpp
 
 HEADERS += \
     bonus.h \
     boss.h \
+    boss2.h \
     bullet.h \
+    canonbullet.h \
     character.h \
     enemy.h \
     enemybullet.h \
     enemyshoots.h \
     level1.h \
+    level2.h \
     login.h \
     menu.h \
     obstacle.h \
     obstacle2.h \
+    portal.h \
     power.h \
     widget.h
 
 FORMS += \
     level1.ui \
+    level2.ui \
     login.ui \
     menu.ui \
     widget.ui

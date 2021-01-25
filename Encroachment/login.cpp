@@ -1,6 +1,9 @@
 #include "login.h"
 #include "ui_login.h"
+#include "menu.h"
 #include <QDebug>
+
+extern Menu *menu;
 
 Login::Login(QWidget *parent) :
     QMainWindow(parent),
@@ -45,8 +48,6 @@ void Login::on_singIn_clicked()
 
 }
 
-
-
 void Login::on_singUp_clicked()
 {
     ui->singIn->setVisible(false);
@@ -59,9 +60,6 @@ void Login::on_singUp_clicked()
     ui->next->setVisible(true);
     ui->label_3->setVisible(true);
     ui->password_2->setVisible(true);
-
-
-
 }
 
 void Login::on_back_clicked()
@@ -92,28 +90,32 @@ void Login::on_next_clicked()
             ui->password_2->setText("");
 
 
-                    return;
+            return;
         }
         else if (ui->Password->text()!= ui->password_2->text()) {
             QMessageBox::critical(this,"Error","Las claves ingresadas no coinciden");
             ui->Username->setText("");
             ui->Password->setText("");
             ui->password_2->setText("");
-                    return;
-}
-
-        else if (existUser(user)==-1) {
-            adduser(user,password);
-            //pasar a otra pantalla, porque ya se registrara
             return;
         }
-        else if (existUser(user)!=-1) {
-    QMessageBox::critical(this,"Error","El usuario ya existe");
-    ui->Username->setText("");
-    ui->Password->setText("");
-    ui->password_2->setText("");
+
+        else if (existUser(user)==false) {
+            adduser(user,password);
+            //pasar a otra pantalla, porque ya se registrara
+            menu->setUsername(ui->Username->text());
+            menu->show();
+            menu->showMenu();
+            delete this;
             return;
-}
+        }
+        else if (existUser(user)==true) {
+            QMessageBox::critical(this,"Error","El usuario ya existe");
+            ui->Username->setText("");
+            ui->Password->setText("");
+            ui->password_2->setText("");
+            return;
+        }
 
     }
     else{
@@ -123,7 +125,7 @@ void Login::on_next_clicked()
             ui->Password->setText("");
             return;
         }
-        else if (existUser(user)==-1) {
+        else if (existUser(user)==false) {
             QMessageBox::critical(this,"Error","El usuario no existe");
             ui->Username->setText("");
             ui->Password->setText("");
@@ -140,9 +142,13 @@ void Login::on_next_clicked()
         else if(CheckPassword(user,password)==true) {
             //pasar a otra pantalla, porque ya inicio sesion
             qDebug() << "Usuario y clave correctas";
+            menu->setUsername(ui->Username->text());
+            menu->show();
+            menu->showMenu();
+            delete this;
             return;
         }
-return;
+        return;
 
     }
 
@@ -150,8 +156,6 @@ return;
 }
 
 //manejo de archivos
-
-
 
 void Login::adduser(QString user, QString password)
 {
@@ -164,7 +168,7 @@ string password_=password.toStdString();
  text=decod( text);
  text=Binary_to_Str( text);
 
- text= text + user_+ ":"+password_+"\n"+"0:0:0"+"\n"+"0:0:0"+"\n"+"0:0:0"+"\n"+"0:0:0"+"\n";
+ text= text + user_+ ":"+password_+"\r\n"+"0:0:0"+"\r\n"+"0:0:0"+"\r\n"+"0:0:0"+"\r\n"+"0:0:0"+"\r\n";
 
  text=Str_to_Binary(text);
  text=Cod( text);
@@ -173,30 +177,40 @@ string password_=password.toStdString();
  SaveArchivo(text);
 }
 
-
-int Login::existUser(QString user)
+bool Login::existUser(QString user)
 {
-    string user_=user.toStdString();
-
-   string texto;
+   qDebug() << "Comprobar usuario";
+   string texto,user_;
    texto=LeerArchivo();
    texto=Str_to_Binary(texto);
    texto=decod(texto);
    texto=Binary_to_Str(texto);
 
-   int exist=texto.find(user_);
-   int num=user_.length();
-   num=num+exist;
+   qDebug() << texto.length();
 
-   char x=texto[num];
-   char y=texto[exist-1];
-   if (x!=':')exist=-1;
-   if (y!='\n')exist=-1;
+   int exist=texto.find(user.toStdString());
+   if (exist == -1) return false;
+   qDebug() << exist;
+   user_ = texto.substr(exist,user.length());
+   qDebug() << QString::fromStdString(user_) << " = " << user;
 
-   return exist;
+   if(user.toStdString() == user_) return true;
+   return false;
+//   int num=user_.length();
+//   num=num+exist;
+
+
+
+//   char x=texto[num];
+//   char y=texto[exist-1];
+//   if (x!=':')exist=-1;
+//   if (y!='\n')exist=-1;
+
+//   return exist;
 }
 bool Login::CheckPassword(QString user, QString password){
 
+    qDebug() << "Comprobar contraseña";
     string texto;
 
     texto=LeerArchivo();
@@ -206,18 +220,21 @@ bool Login::CheckPassword(QString user, QString password){
 
     qDebug() << QString::fromStdString(texto);
 
-    int posUser=existUser(user);
+    //int posUser=existUser(user);
+    int posUser = texto.find(user.toStdString());
+    int end = texto.find("\r",posUser);
     qDebug() << posUser;
+    qDebug() << end;
 
     posUser=posUser+user.length();
     qDebug() << posUser;
 
-    string check = texto.substr(posUser+1,password.size());
+    string check = texto.substr(posUser+1,end-posUser-1);
 
-    qDebug() << QString::fromStdString(check);
+    qDebug() << QString::fromStdString(check) << " = " << password;
 
     if(password.toStdString() == check) return true;
-    else return false;
+    return false;
 }
 
 

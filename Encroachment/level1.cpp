@@ -12,6 +12,8 @@ Level1::Level1(QWidget *parent) :
     ui->setupUi(this);
 
     posx = 0;
+    isBoss = false;
+    ui->showScore->setVisible(false);
 
     ui->cont->setVisible(false);
     ui->retry->setVisible(false);
@@ -50,18 +52,6 @@ Level1::Level1(QWidget *parent) :
     connect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies()));
     timerE->start(2000);
 
-    //generar obstaculos
-    timerO = new QTimer();
-    connect(timerO,SIGNAL(timeout()),this,SLOT(makeObstacles()));
-
-    //generar tanques enemigos
-    timerE2 = new QTimer();
-    connect(timerE2,SIGNAL(timeout()),this,SLOT(makeEnemies2()));
-
-    //generar obstaculos 2
-    timerO2 = new QTimer();
-    connect(timerO2,SIGNAL(timeout()),this,SLOT(makeObstacles2()));
-
     //generar bonus
     timerB = new QTimer();
     connect(timerB,SIGNAL(timeout()),this,SLOT(makeBonus()));
@@ -83,6 +73,11 @@ double Level1::playerPos()
     return player->y();
 }
 
+double Level1::playerPosX()
+{
+    return player->x();
+}
+
 int Level1::getObstacle()
 {
     return obs->getType_obs();
@@ -93,43 +88,77 @@ void Level1::playerHealth()
     ui->progressBar->setValue(player->getHealth());
 }
 
+void Level1::playerScore(int increase)
+{
+    ui->score->display(ui->score->intValue()+increase);
+}
+
 void Level1::Final()
 {
+    isBoss = true;
     timerB->stop();
     timerE->stop();
-    timerO->stop();
-    timerE2->stop();
-    timerO2->stop();
 
     scene->clear();
 
-    scene->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
-    ui->graphicsView->setSceneRect(0,0,width(),720);
+    if(menu->getLevel() == 1){
 
-    player = new Character(true);
-    scene->addItem(player);
-    player->setPos(630,650);
-    playerHealth();
+        scene->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
+        ui->graphicsView->setSceneRect(0,0,width(),720);
 
-    //Poner focus sobre el item (reciba la tacla que se presione por teclado)
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    player->setFocus();
+        player = new Character(true);
+        scene->addItem(player);
+        player->setPos(630,650);
+        playerHealth();
 
-    boss = new Boss();
-    scene->addItem(boss);
+        //Poner focus sobre el item (reciba la tacla que se presione por teclado)
+        player->setFlag(QGraphicsItem::ItemIsFocusable);
+        player->setFocus();
 
-    ui->progressBar_2->setVisible(true);
-    ui->progressBar_2->setRange(0,100);
-    BossHealth();
+        boss = new Boss();
+        scene->addItem(boss);
 
-    //poder
-    power = new Power();
-    scene->addItem(power);
+        ui->progressBar_2->setVisible(true);
+        ui->progressBar_2->setRange(0,100);
+        BossHealth();
+
+        //poder
+        power = new Power();
+        scene->addItem(power);
+    }
+    else if(menu->getLevel() == 2){
+
+        scene->setBackgroundBrush(QPixmap(":/images/level 2.2.jpg"));
+        ui->graphicsView->setSceneRect(0,0,width(),720);
+
+        player = new Character(true);
+        scene->addItem(player);
+        player->setPos(630,650);
+        playerHealth();
+
+        //Poner focus sobre el item (reciba la tacla que se presione por teclado)
+        player->setFlag(QGraphicsItem::ItemIsFocusable);
+        player->setFocus();
+
+        boss2 = new Boss2();
+        scene->addItem(boss2);
+
+        ui->progressBar_2->setVisible(true);
+        ui->progressBar_2->setRange(0,100);
+        BossHealth();
+
+        //poder
+        power = new Power();
+        scene->addItem(power);
+    }
 }
 
 void Level1::BossHealth()
 {
-    ui->progressBar_2->setValue(boss->getHealth());
+    if(menu->getLevel() == 1)
+        ui->progressBar_2->setValue(boss->getHealth());
+    if(menu->getLevel() == 2)
+        ui->progressBar_2->setValue(boss2->getHealth());
 }
 
 double Level1::getPlayerHealth()
@@ -141,20 +170,28 @@ void Level1::returnMenu()
 {
     timerB->stop();
     timerE->stop();
-    timerO->stop();
-    timerE2->stop();
-    timerO2->stop();
 
     scene->clear();
 
     scene->setBackgroundBrush(QPixmap(":/images/fondo.jpg").scaled(1280,720));
     ui->graphicsView->setSceneRect(0,0,width(),720);
 
+    ui->showScore->setNum(ui->score->intValue());
+    ui->showScore->setVisible(true);
+
     ui->retry->setVisible(true);
     ui->home->setVisible(true);
+    ui->stop->setVisible(false);
+}
 
-    //close();
-    //menu->show();
+void Level1::complete()
+{
+    scene->removeItem(power);
+    delete power;
+    ui->stop->setVisible(false);
+    ui->showScore->setNum(ui->score->intValue());
+    ui->showScore->setVisible(true);
+    ui->home->setVisible(true);
 }
 
 void Level1::makeEnemies()
@@ -167,8 +204,11 @@ void Level1::makeEnemies()
 
     enemy = new Enemy(posx);
     scene->addItem(enemy);
+
     timerE->stop();
-    timerO->start(2000);
+    disconnect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies()));
+    connect(timerE,SIGNAL(timeout()),this,SLOT(makeObstacles()));
+    timerE->start(2000);
 }
 
 void Level1::makeObstacles()
@@ -181,8 +221,11 @@ void Level1::makeObstacles()
 
     obs = new Obstacle(posx);
     scene->addItem(obs);
-    timerO->stop();
-    timerE2->start(2000);
+
+    timerE->stop();
+    disconnect(timerE,SIGNAL(timeout()),this,SLOT(makeObstacles()));
+    connect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies2()));
+    timerE->start(2000);
 }
 
 void Level1::makeEnemies2()
@@ -195,8 +238,11 @@ void Level1::makeEnemies2()
 
     enemy2 = new EnemyShoots(posx);
     scene->addItem(enemy2);
-    timerE2->stop();
-    timerO2->start(2000);
+    timerE->stop();
+
+    disconnect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies2()));
+    connect(timerE,SIGNAL(timeout()),this,SLOT(makeObstacles2()));
+    timerE->start(2000);
 }
 
 void Level1::makeObstacles2()
@@ -209,7 +255,10 @@ void Level1::makeObstacles2()
 
     obs2 = new Obstacle2(posx);
     scene->addItem(obs2);
-    timerO2->stop();
+
+    timerE->stop();
+    disconnect(timerE,SIGNAL(timeout()),this,SLOT(makeObstacles2()));
+    connect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies()));
     timerE->start(2000);
 }
 
@@ -221,24 +270,16 @@ void Level1::makeBonus()
 
 void Level1::on_stop_clicked()
 {
-    timerB->stop();
-//    timerE->stop();
-//    timerO->stop();
-//    timerE2->stop();
-//    timerO2->stop();
-
-    if(timerE->isActive()) timerE->stop();
-    if(timerO->isActive()) timerO->stop();
-    if(timerE2->isActive()) timerE2->stop();
-    if(timerO2->isActive()) timerO2->stop();
-
-    player->stopMove();
+    if(!isBoss){
+        timerB->stop();
+        timerE->start();
+        player->stopMove();
+    }
 //    enemy->stopMove();
 //    enemy2->stopMove();
 //    obs->stopMove();
 //    obs2->stopMove();
 //    bonus->stopMove();
-
     ui->cont->setVisible(true);
     ui->retry->setVisible(true);
     ui->home->setVisible(true);
@@ -246,10 +287,11 @@ void Level1::on_stop_clicked()
 
 void Level1::on_cont_clicked()
 {
-    timerB->start();
-    timerE->start();
-
-    player->continueMove();
+    if(!isBoss){
+        timerB->start();
+        timerE->start();
+        player->continueMove();
+    }
 
     ui->cont->setVisible(false);
     ui->retry->setVisible(false);

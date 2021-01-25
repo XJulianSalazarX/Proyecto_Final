@@ -5,6 +5,8 @@
 #include <QGraphicsScene>
 #include <QMessageBox>
 #include "level1.h"
+#include "level2.h"
+#include "login.h"
 
 namespace Ui {
 class Menu;
@@ -20,9 +22,14 @@ public:
     void Visible();
     void Invisible();
 
+    void showMenu();
+
     short getLevel() const;
 
     Level1 *level1;
+
+    QString getUsername() const;
+    void setUsername(const QString &value);
 
 private slots:
     void on_play_clicked();
@@ -41,13 +48,17 @@ private slots:
 
     void on_logOut_clicked();
 
+    void on_start_clicked();
+
 public slots:
     void on_back_clicked();
 
 private:
     Ui::Menu *ui;
     QGraphicsScene *scene;
-    short level;
+    Login *login;
+    short level;    
+    QString username;
 //    Level1 *level1;
 
 };

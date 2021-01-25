@@ -75,6 +75,7 @@ void Enemy::Move()
                 delete i;
                 health --;
                 if(health == 0){
+                    menu->level1->playerScore(2);
                     scene()->removeItem(this);
                     delete this;
                     return;
