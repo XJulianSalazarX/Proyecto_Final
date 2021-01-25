@@ -36,8 +36,8 @@ Level1::Level1(QWidget *parent) :
     //player
     player = new Character();
     scene->addItem(player);
-    //player->setPos(630,21500);
-    player->setPos(630,720);
+    player->setPos(630,21500);
+    //player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
     ui->progressBar->setRange(0,10);
     ui->progressBar_2->setVisible(false);
@@ -146,6 +146,28 @@ void Level1::Final()
         ui->progressBar_2->setVisible(true);
         ui->progressBar_2->setRange(0,100);
         BossHealth();
+
+        //poder
+        power = new Power();
+        scene->addItem(power);
+    }
+    else if(menu->getLevel() == 3){
+
+        scene->setBackgroundBrush(QPixmap(":/images/level 3.2.jpg"));
+        ui->graphicsView->setSceneRect(0,0,width(),720);
+
+        player = new Character(true);
+        scene->addItem(player);
+        player->setPos(630,650);
+        playerHealth();
+
+        //Poner focus sobre el item (reciba la tacla que se presione por teclado)
+        player->setFlag(QGraphicsItem::ItemIsFocusable);
+        player->setFocus();
+
+//        ui->progressBar_2->setVisible(true);
+//        ui->progressBar_2->setRange(0,100);
+//        BossHealth();
 
         //poder
         power = new Power();

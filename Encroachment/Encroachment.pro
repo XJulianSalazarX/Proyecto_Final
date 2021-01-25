@@ -27,6 +27,7 @@ SOURCES += \
     enemyshoots.cpp \
     level1.cpp \
     level2.cpp \
+    level3.cpp \
     login.cpp \
     main.cpp \
     menu.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     enemyshoots.h \
     level1.h \
     level2.h \
+    level3.h \
     login.h \
     menu.h \
     obstacle.h \
@@ -59,6 +61,7 @@ HEADERS += \
 FORMS += \
     level1.ui \
     level2.ui \
+    level3.ui \
     login.ui \
     menu.ui \
     widget.ui

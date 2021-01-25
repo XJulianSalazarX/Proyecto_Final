@@ -182,6 +182,8 @@ void Menu::on_play_2_clicked()
         break;
     case 3:{
         qDebug() << "Nivel 3";
+        level1 = new Level3();
+        level1->show();
     }
         break;
     default:{
