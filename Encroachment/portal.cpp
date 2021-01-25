@@ -55,7 +55,7 @@ void Portal::shoot()
     }
     if(speed < 0){
         give = 5;
-        speed = 15;
+        speed = 30;
     }
 }
 

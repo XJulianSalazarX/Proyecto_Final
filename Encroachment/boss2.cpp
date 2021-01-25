@@ -39,7 +39,7 @@ void Boss2::Move()
             if(typeid(*(i))==typeid (Bullet)){
                 scene()->removeItem(i);
                 delete i;
-                health -= 1.5;
+                health -= 1;
                 menu->level1->BossHealth();
                 if(health == 50){
                     portal = new Portal();
