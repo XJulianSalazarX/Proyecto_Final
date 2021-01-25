@@ -22,6 +22,9 @@ bool CheckPassword(QString,QString);
 void adduser(QString, QString);
 void deleteUSer(QString,QString);
 void deleteScore(QString, QString);
-void GoScore();
+void GoScore(QString, QString ,int );
+bool CheckLevel(QString,int );
+bool ValidUandP(QString);
+void UpdateLevel(QString, int);
 
 #endif // FILE_H

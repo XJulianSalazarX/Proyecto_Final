@@ -104,7 +104,7 @@ void deleteScore(QString user, QString password)
 
 }
 
-void GoScore(QString user, QString Score,int level){
+void GoScore(QString user,QString Score,int level){
 
     string text;
     string text_new;
@@ -137,6 +137,7 @@ string score = Score.toStdString();
      int pScore=mod.find(":");
      pScore+=1;
      int pScore_final=mod.find(":", pScore);
+
      a=mod.substr(1,pScore-2);
      b=mod.substr(pScore,pScore_final-pScore);
      c=mod.substr(pScore_final+1);
@@ -177,7 +178,89 @@ string score = Score.toStdString();
      SaveArchivo(text_new);
     }
 
+bool CheckLevel(QString user, int level)
+{
+    string text;
+    string text_new;
 
+    text=LeerArchivo();
+    text=Str_to_Binary(text);
+    text=decod( text);
+    text=Binary_to_Str( text);
+
+    int posUser_initial = text.find(user.toStdString());
+    posUser_initial=text.find('\n',posUser_initial)+1;
+
+    int posUser_final = 0;
+
+    int aux = posUser_initial;
+
+    for (int i = 1; i < level;)
+    {
+
+        posUser_initial = text.find (":", aux);
+        aux = posUser_initial + 1;
+        i += 1;
+    }
+    if (level==3) posUser_final=text.find('\n',aux-1);
+    else{
+        posUser_final = text.find (":", aux);
+    }
+
+    text_new = text.substr (aux, posUser_final- aux);
+
+    int text_int=stoi(text_new);
+
+    if (text_int==1) return true;
+    else{
+        return false;
+    }
+}
+void UpdateLevel(QString user, int level)
+{
+    string text;
+    string text_new;
+
+     text=LeerArchivo();
+     text=Str_to_Binary(text);
+     text=decod( text);
+     text=Binary_to_Str( text);
+
+    int pos_initial = text.find (user.toStdString());
+       pos_initial=text.find('\n',pos_initial)+1;
+
+      int pos_final = text.find('\n',pos_initial);
+
+     if(level==1) text_new = text.substr (0, pos_initial) + "1:0:0"+text.substr (pos_final);
+
+       else if(level==2) text_new = text.substr (0, pos_initial) + "1:1:0"+text.substr (pos_final);
+
+          else {
+               text_new = text.substr (0, pos_initial) + "1:1:1"+text.substr (pos_final);
+          }
+     text_new=Str_to_Binary(text_new);
+     text_new=Cod(text_new);
+     text_new=Binary_to_Str( text_new);
+
+     SaveArchivo(text_new);
+}
+
+bool ValidUandP(QString user_pass)
+{
+    int error;
+   for(int i=0;i<=user_pass.length();i+=1){
+       if(user_pass.at(i)=='\n' or user_pass.at(i)==":" ){
+           error=1;
+       }
+       else{
+           error=0;
+       }
+   }
+   if(error==1)return false;
+   else{
+       return true;
+   }
+}
 
 bool existUser(QString user)
 {
@@ -335,4 +418,3 @@ string cambiar_decof(string binario)
     binario_decof += binario[0];
     return binario_decof;
 }
-
