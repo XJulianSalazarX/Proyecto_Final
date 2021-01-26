@@ -36,8 +36,8 @@ Level1::Level1(QWidget *parent) :
     //player
     player = new Character();
     scene->addItem(player);
-    player->setPos(630,21500);
-    //player->setPos(630,720);
+    //player->setPos(630,21500);
+    player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
     ui->progressBar->setRange(0,10);
     ui->progressBar_2->setVisible(false);
@@ -196,6 +196,8 @@ void Level1::returnMenu()
     timerB->stop();
     timerE->stop();
 
+    GoScore(menu->getUsername(),QString::number(ui->score->intValue()),menu->getLevel());
+
     scene->clear();
 
     scene->setBackgroundBrush(QPixmap(":/images/fondo.jpg").scaled(1280,720));
@@ -213,6 +215,8 @@ void Level1::complete()
 {
     scene->removeItem(power);
     delete power;
+    GoScore(menu->getUsername(),QString::number(ui->score->intValue()),menu->getLevel());
+    UpdateLevel(menu->getUsername(),menu->getLevel());
     ui->stop->setVisible(false);
     ui->showScore->setNum(ui->score->intValue());
     ui->showScore->setVisible(true);

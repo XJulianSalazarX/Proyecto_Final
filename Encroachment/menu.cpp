@@ -190,6 +190,11 @@ void Menu::on_play_2_clicked()
         QMessageBox::critical(this,"Error","Seleccione un personaje.");
         return;
     }
+    if(!CheckLevel(username,level)){
+        QMessageBox::critical(this,"Error","Nivel bloqueado.");
+        return;
+    }
+
     switch (level) {
     case 1:{
         close();
@@ -262,4 +267,15 @@ void Menu::on_character3_clicked()
    "background-color: qradialgradient(spread:repeat, cx:0.5, cy:0.5, radius:0.077, fx:0.5, fy:0.5, stop:0 rgba(0, 169, 255, 147), stop:0.497326 rgba(0, 0, 0, 147), stop:1 rgba(0, 169, 255, 147))");
    ui->character1->setStyleSheet("background-image: url(:/images/character 1.png);");
    ui->character2->setStyleSheet("background-image: url(:/images/character 2.png);");
+}
+
+void Menu::on_deleteProfile_clicked()
+{
+    deleteUSer(username);
+    close();
+}
+
+void Menu::on_deleteProgress_clicked()
+{
+    deleteScore(username);
 }

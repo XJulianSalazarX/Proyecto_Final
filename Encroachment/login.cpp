@@ -74,6 +74,9 @@ void Login::on_back_clicked()
     ui->singUp->setVisible(true);
     ui->label_3->setVisible(false);
     ui->password_2->setVisible(false);
+    ui->Username->setText("");
+    ui->Password->setText("");
+    ui->password_2->setText("");
 }
 
 void Login::on_next_clicked()
@@ -84,12 +87,24 @@ void Login::on_next_clicked()
     if (ui->password_2->isVisible()) {
 
         if (ui->Username->text()=="" or ui->Password->text()=="") {
-            QMessageBox::critical(this,"Error","Ingrese nombre de usuario y clave para continuar");
+            QMessageBox::critical(this,"Error","Ingrese nombre de usuario y clave para continuar.");
             ui->Username->setText("");
             ui->Password->setText("");
             ui->password_2->setText("");
-
-
+            return;
+        }
+        else if(!ValidUandP(ui->Username->text())){
+            QMessageBox::critical(this,"Error","Usuario y clave no deben llevar : o \\n o \\r");
+            ui->Username->setText("");
+            ui->Password->setText("");
+            ui->password_2->setText("");
+            return;
+        }
+        else if(!ValidUandP(ui->Password->text())){
+            QMessageBox::critical(this,"Error","Usuario y clave no deben llevar : o \\n o \\r");
+            ui->Username->setText("");
+            ui->Password->setText("");
+            ui->password_2->setText("");
             return;
         }
         else if (ui->Password->text()!= ui->password_2->text()) {
@@ -116,7 +131,6 @@ void Login::on_next_clicked()
             ui->password_2->setText("");
             return;
         }
-
     }
     else{
         if (ui->Username->text()=="" or ui->Password->text()=="") {
@@ -149,195 +163,5 @@ void Login::on_next_clicked()
             return;
         }
         return;
-
     }
-
-
-}
-//manejo de archivos
-void Login::adduser(QString user, QString password)
-{
-string text;
-string user_=user.toStdString();
-string password_=password.toStdString();
-
- text=LeerArchivo();
- text=Str_to_Binary(text);
- text=decod( text);
- text=Binary_to_Str( text);
-
- text= text + user_+ ":"+password_+"\r\n"+"0:0:0"+"\r\n"+"0:0:0"+"\r\n"+"0:0:0"+"\r\n"+"0:0:0"+"\r\n";
-
- text=Str_to_Binary(text);
- text=Cod( text);
- text=Binary_to_Str( text);
-
- SaveArchivo(text);
-}
-
-bool Login::existUser(QString user)
-{
-   qDebug() << "Comprobar usuario";
-   string texto,user_;
-   texto=LeerArchivo();
-   texto=Str_to_Binary(texto);
-   texto=decod(texto);
-   texto=Binary_to_Str(texto);
-
-   qDebug() << texto.length();
-
-   int exist=texto.find(user.toStdString());
-   if (exist == -1) return false;
-   qDebug() << exist;
-   user_ = texto.substr(exist,user.length());
-   qDebug() << QString::fromStdString(user_) << " = " << user;
-
-   if(user.toStdString() == user_) return true;
-   return false;
-}
-
-bool Login::CheckPassword(QString user, QString password){
-
-    qDebug() << "Comprobar contraseña";
-    string texto;
-
-    texto=LeerArchivo();
-    texto=Str_to_Binary(texto);
-    texto=decod(texto);
-    texto=Binary_to_Str(texto);
-
-    qDebug() << QString::fromStdString(texto);
-
-    //int posUser=existUser(user);
-    int posUser = texto.find(user.toStdString());
-    int end = texto.find("\r",posUser);
-    qDebug() << posUser;
-    qDebug() << end;
-
-    posUser=posUser+user.length();
-    qDebug() << posUser;
-
-    string check = texto.substr(posUser+1,end-posUser-1);
-
-    qDebug() << QString::fromStdString(check) << " = " << password;
-
-    if(password.toStdString() == check) return true;
-    return false;
-}
-
-
-string Login::LeerArchivo()
-{
-    string texto,linea;
-    fstream lectura;
-
-    lectura.open("users.dat",fstream::in|fstream::binary);
-    if(lectura.fail()){
-        cout<<"No se pudo abrir el archivo." << endl;
-        exit(1);
-    }
-    while(lectura.good()){
-        linea=lectura.get();
-        texto.append(linea);
-    }
-    lectura.close();
-    texto.pop_back();
-    return texto;
-
-}
-
-void Login::SaveArchivo( string texto)
-{
-    fstream archivobinario;
-    archivobinario.open("users.dat",fstream::out|fstream::binary);
-
-    if(archivobinario.fail()){
-        cout<<"No se pudo abrir el archivo."<<endl;
-        exit(1);
-    }
-    archivobinario<<texto;
-    archivobinario.close();
-}
-
-
-
-string Login::Str_to_Binary(string texto)
-{
-    string binario;
-    for(unsigned long long int i=0; i<texto.length(); i++){
-        for(int j=0;j<8;j++) binario.push_back(char((((texto[i]<<j)&(0x80))/128)+48));
-    }
-    return binario;
-}
-
-string Login::Binary_to_Str(string binario)
-{
-    string caracter,texto;
-    for(int i=0; i<int(binario.length());i+=8){
-        caracter = binario.substr(i,8);
-        caracter = stoi(caracter, nullptr, 2);
-        texto.append(caracter);
-    }
-    return texto;
-}
-
-string Login::Cod(string texto)
-{
-    int semilla=4;
-    string parte,codificado;
-    if(semilla < int(texto.length()))  {
-        for(unsigned long long int i=0;i<texto.length();i+=semilla){
-            if(i+semilla<texto.length())
-                parte = texto.substr(i,semilla);
-            else
-                parte = texto.substr(i);
-            codificado.append(Cambiar_pos(parte));
-            parte.clear();
-        }
-    }
-    else
-        codificado.append(Cambiar_pos(texto));
-    return codificado;
-}
-
-string Login::Cambiar_pos(string binario)
-{
-    string binarioCodif;
-    binarioCodif += binario[binario.length()-1];
-    for(int i=0; i<int(binario.length())-1; i++){
-        binarioCodif += binario[i];
-    }
-    return binarioCodif;
-}
-
-string Login::decod(string texto)
-{
-    int semilla=4;
-    string parte,decodificado;
-    if(semilla < int(texto.length()))  {
-        for(unsigned long long int i=0;i<texto.length();i+=semilla){
-            if(i+semilla<texto.length())
-                parte = texto.substr(i,semilla);
-            else
-                parte = texto.substr(i);
-            decodificado.append(cambiar_decof(parte));
-
-            parte.clear();
-        }
-    }
-    else
-        decodificado.append(cambiar_decof(texto));
-
-    return decodificado;
-}
-
-string Login::cambiar_decof(string binario)
-{
-    string binario_decof;
-    binario_decof += binario[1];
-    for(int i=2; i<int(binario.length()); i++){
-        binario_decof += binario[i];
-    }
-    binario_decof += binario[0];
-    return binario_decof;
 }

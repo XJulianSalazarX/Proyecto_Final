@@ -59,6 +59,10 @@ private slots:
 
     void on_character3_clicked();
 
+    void on_deleteProfile_clicked();
+
+    void on_deleteProgress_clicked();
+
 public slots:
     void on_back_clicked();
 

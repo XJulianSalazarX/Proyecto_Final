@@ -5,12 +5,9 @@
 #include <QGraphicsScene>
 #include <QString>
 #include <QFile>
-#include <QDebug>
 #include <fstream>
 #include <QMessageBox>
-#include <iostream>
-
-using namespace std;
+#include <file.h>
 
 namespace Ui {
 class Login;
@@ -23,21 +20,6 @@ class Login : public QMainWindow
 public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
-
-    string LeerArchivo();
-    void SaveArchivo(string );
-
-    string Str_to_Binary(string );
-    string Binary_to_Str(string );
-
-    string decod(string );
-    string Cod(string );
-    string cambiar_decof(string );
-    string Cambiar_pos(string );
-
-    bool existUser(QString);
-    bool CheckPassword(QString,QString);
-    void adduser(QString, QString);
 
 private slots:
     void on_singIn_clicked();

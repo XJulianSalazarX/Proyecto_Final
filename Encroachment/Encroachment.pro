@@ -25,6 +25,7 @@ SOURCES += \
     enemy.cpp \
     enemybullet.cpp \
     enemyshoots.cpp \
+    file.cpp \
     level1.cpp \
     level2.cpp \
     level3.cpp \
@@ -47,6 +48,7 @@ HEADERS += \
     enemy.h \
     enemybullet.h \
     enemyshoots.h \
+    file.h \
     level1.h \
     level2.h \
     level3.h \
