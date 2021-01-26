@@ -3,26 +3,43 @@
 
 extern Menu *menu;
 
-Boss2::Boss2()
+Boss2::Boss2(bool boss3)
 {
-    setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
-    this->setPos(540,50);
+    if (!boss3){
+        setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
+        this->setPos(540,50);
 
-    health = 100;
-    speed = 5;
+        health = 100;
+        speed = 7;
 
-    timerM = new QTimer();
-    connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
-    timerM->start(20);
+        timerM = new QTimer();
+        connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
+        timerM->start(20);
 
-    timerS = new QTimer();
-    connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
-    timerS->start(1000);
+        timerS = new QTimer();
+        connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
+        timerS->start(1000);
+    }
+    else{
+        setPixmap(QPixmap(":/images/last2.png").scaled(160,100));
+        this->setPos(540,50);
+
+        health = 100;
+        speed = 8;
+
+        timerM = new QTimer();
+        connect(timerM,SIGNAL(timeout()),this,SLOT(Move2()));
+        timerM->start(20);
+
+        timerS = new QTimer();
+        connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
+        timerS->start(1500);
+    }
 }
 
 Boss2::~Boss2()
 {
-  delete timerM;
+    delete timerM;
     delete timerS;
 }
 
@@ -66,6 +83,45 @@ void Boss2::Move()
     }
     if(abs(x()-menu->level1->playerPosX()) > 3)
         setPos(x()+speed,y());
+}
+
+void Boss2::Move2()
+{
+    QList<QGraphicsItem *> collisions = collidingItems();
+    for(QGraphicsItem *i : collisions){
+        if(i->collidesWithItem(this)){
+            if(typeid(*(i))==typeid (Bullet)){
+                scene()->removeItem(i);
+                delete i;
+                health -= 0.5;
+                menu->level1->BossHealth();
+                if(health == 75 or health == 50){
+                    portal = new Portal();
+                    portal->setPos(50,350);
+                    scene()->addItem(portal);
+                }
+                if(health == 0){
+                    menu->level1->playerScore(100);
+                    menu->level1->complete();
+                    scene()->removeItem(this);
+                    delete this;
+                    return;
+                }
+            }
+        }
+    }
+
+    if(x() <= 50){
+        speed = 7;
+        setPos(x()+speed,y()+30);
+        setPixmap(QPixmap(":/images/last2.png").scaled(160,100));
+    }
+    else if(x() >= 1180){
+        speed = -7;
+        setPos(x()+speed,y());
+        setPixmap(QPixmap(":/images/last.png").scaled(160,100));
+    }
+    else setPos(x()+speed,y());
 }
 
 void Boss2::Shoot()

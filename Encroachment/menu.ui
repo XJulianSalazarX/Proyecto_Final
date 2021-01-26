@@ -230,6 +230,45 @@ font: 20pt &quot;MV Boli&quot;;</string>
     <string>Start</string>
    </property>
   </widget>
+  <widget class="QSplitter" name="characteres">
+   <property name="geometry">
+    <rect>
+     <x>1010</x>
+     <y>420</y>
+     <width>240</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <widget class="QPushButton" name="character1">
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/character 1.png);
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="character2">
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/character 2.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="character3">
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/images/character 3.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>

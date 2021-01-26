@@ -7,11 +7,17 @@ extern Menu *menu;
 Character::Character(bool boss,QObject *parent):QObject(parent)
 {
     if(boss == true){
-        pixmap = new QPixmap(":/images/character 1.png");
+        if(menu->getCharacter() == 1)
+            pixmap = new QPixmap(":/images/character 1.png");
+        else if(menu->getCharacter() == 2)
+            pixmap = new QPixmap(":/images/character 2.png");
+        else if(menu->getCharacter() == 3)
+            pixmap = new QPixmap(":/images/character 3.png");
 
         col = 0;
         w = 142.75;
         h = 67;
+        last = 571;
 
         min = 70;
         max = 1240;
@@ -33,11 +39,17 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
     }
 
     else{
-        pixmap = new QPixmap(":/images/character 1.2.png");
+        if(menu->getCharacter() == 1)
+            pixmap = new QPixmap(":/images/character1.2.png");
+        else if(menu->getCharacter() == 2)
+            pixmap = new QPixmap(":/images/character2.2.png");
+        else if(menu->getCharacter() == 3)
+            pixmap = new QPixmap(":/images/character3.2.png");
 
         col=0;
         w = 55;
-        h = 140;
+        h = 92;
+        last = 110;
 
         health = 10;
         speed = 7.5;
@@ -45,9 +57,9 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         min = 30;
         max = 1090;
 
-        //    timer = new QTimer();
-        //    connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
-        //timer->start(1000);
+        timer = new QTimer();
+        connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
+        timer->start(250);
 
         timerM = new QTimer();
         connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
@@ -102,7 +114,7 @@ void Character::continueMove()
 void Character::actualize()
 {
     col += w;
-    if(col >= 571){
+    if(col >= last){
         col = 0;
     }
     this->update(-w/2,-h/2,w,h);
@@ -242,6 +254,17 @@ void Character::End()
                     scene()->removeItem(this);
                     delete this;
                      menu->level1->returnMenu();
+                    return;
+                }
+            }
+            else if(typeid (*(i)) == typeid (Boss2)){
+                health = 0;
+                scene()->removeItem(i);
+                delete i;
+                if(health <= 0){
+                    scene()->removeItem(this);
+                    delete this;
+                    menu->level1->returnMenu();
                     return;
                 }
             }
