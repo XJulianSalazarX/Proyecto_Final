@@ -128,7 +128,6 @@ void GoScore(QString user,QString Score,int level){
 
     pos_final= text.find('\n', pos_initial+1);
 
-
     string mod=text.substr(aux,((pos_final-1)-aux));
 
     qDebug() << QString::fromStdString(mod);
@@ -161,33 +160,7 @@ void GoScore(QString user,QString Score,int level){
     }
 
     qDebug() <<QString::fromStdString(a)<<QString::fromStdString(b)<<QString::fromStdString(c);
-
-    //    if(a=="0")a=score;
-    //    else if(b=="0")b=score;
-    //    else if(c=="0")c=score;
-    //    else if(c_<score_  and b_>score_)c=score;
-    //    else if(b_<score_ and a_>score_){
-    //        c=b;
-    //        b=score;
-    //    }
-    //    else if(a_<score_){
-
-    //        c=b;
-    //        b=a;
-    //        a=score;
-    //    }
-
-
-    //    if (pos_final == -1)
-    //        text_new = text.substr (0, pos_initial) +"\r\n" + a+":"+b+":"+c;
-    //    else
-    //    {
-    //        text_new = text.substr (0, pos_initial) + "\r\n" + a+":"+b+":"+c + text.substr (pos_final);
-
-    //    }
     text_new = text.substr (0, pos_initial-1) + "\r\n" + a+":"+b+":"+c + text.substr (pos_final-1);
-
-
 
     qDebug() << QString::fromStdString(text_new);
 
@@ -218,28 +191,6 @@ bool CheckLevel(QString user, int level)
     else if(level == 3 and text.at(posUser_initial+2) == '1') return true;
 
     return false;
-
-
-
-//    for (int i = 1; i < level;)
-//    {
-//        posUser_initial = text.find (":", aux);
-//        aux = posUser_initial + 1;
-//        i += 1;
-//    }
-//    if (level==3) posUser_final=text.find('\n',aux-1);
-//    else{
-//        posUser_final = text.find (":", aux);
-//    }
-
-//    text_new = text.substr (aux, posUser_final- aux);
-
-//    int text_int=stoi(text_new);
-
-//    if (text_int==1) return true;
-//    else{
-//        return false;
-//    }
 }
 void UpdateLevel(QString user, int level)
 {
