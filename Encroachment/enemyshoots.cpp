@@ -6,7 +6,13 @@ extern Menu *menu;
 
 EnemyShoots::EnemyShoots(int posx): Enemy(posx)
 {
-    pixmap->load(":/images/tank1.png");
+    short random = 1 + rand()%(4-1);
+    if(random == 1)
+        pixmap->load(":/images/tank1.png");
+    else if(random == 2)
+        pixmap->load(":/images/tank2.png");
+    else
+        pixmap->load(":/images/tank3.png");
     //pixmap = new QPixmap(":/images/tank1.png");
     timerS = new QTimer();
 

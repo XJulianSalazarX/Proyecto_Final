@@ -15,7 +15,7 @@ Enemy::Enemy(int posx,QObject *parent):QObject(parent)
 
 //    int random = 190 +rand() % (800-190);
 //    setPos(random,menu->level1->playerPos()-1000);
-    setPos(posx,menu->level1->playerPos()-1000);
+    setPos(posx,menu->level1->playerPos()-1150);
 
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));

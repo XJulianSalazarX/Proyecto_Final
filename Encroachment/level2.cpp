@@ -28,7 +28,7 @@ void Level2::makeEnemies()
     for(short i = 0; i < 2; i++){
         do{
             random = 190 +rand() % (800-190);
-        }while(abs(posx-random) < 100);
+        }while(abs(posx-random) < 150);
         posx = random;
 
         enemy = new Enemy(posx);
@@ -47,7 +47,7 @@ void Level2::makeObstacles()
     for(short i = 0; i < 2; i++){
         do{
             random = 190 +rand() % (800-190);
-        }while(abs(posx-random) < 100);
+        }while(abs(posx-random) < 150);
         posx = random;
 
         obs = new Obstacle(posx);
@@ -66,7 +66,7 @@ void Level2::makeEnemies2()
     for(short i = 0; i < 2; i++){
         do{
             random = 190 +rand() % (800-190);
-        }while(abs(posx-random) < 100);
+        }while(abs(posx-random) < 150);
         posx = random;
 
         enemy2 = new EnemyShoots(posx);
@@ -85,7 +85,7 @@ void Level2::makeObstacles2()
     for(short i = 0; i < 2; i++){
         do{
             random = 190 +rand() % (800-190);
-        }while(abs(posx-random) < 100);
+        }while(abs(posx-random) < 150);
         posx = random;
 
         obs2 = new Obstacle2(posx);

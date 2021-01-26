@@ -12,8 +12,13 @@ public:
     ~Obstacle2();
     void start();
 
+private:
+    QTimer *timerWind;
+    short pix;
+
 public slots:
     void move();
+    void moveWind();
 };
 
 #endif // OBSTACLE2_H

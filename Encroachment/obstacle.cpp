@@ -9,7 +9,7 @@ Obstacle::Obstacle(int posx)
 
 //    int obs_random= 140 + rand() % (1000- 140);
 //    setPos(obs_random,menu->level1->playerPos()-1000);
-    setPos(posx,menu->level1->playerPos()-1000);
+    setPos(posx,menu->level1->playerPos()-1150);
 
      type_obs=1+rand()%2;
 

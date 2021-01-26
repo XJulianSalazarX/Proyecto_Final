@@ -36,10 +36,10 @@ Level1::Level1(QWidget *parent) :
     //player
     player = new Character();
     scene->addItem(player);
-    //player->setPos(630,21500);
-    player->setPos(630,720);
+    player->setPos(630,21500);
+    //player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
-    ui->progressBar->setRange(0,10);
+    ui->progressBar->setRange(0,100);
     ui->progressBar_2->setVisible(false);
     playerHealth();
 
@@ -193,6 +193,7 @@ double Level1::getPlayerHealth()
 
 void Level1::returnMenu()
 {
+    playerHealth();
     timerB->stop();
     timerE->stop();
 
@@ -228,7 +229,7 @@ void Level1::makeEnemies()
     int random;
     do{
         random = 190 +rand() % (800-190);
-    }while(abs(posx-random) < 100);
+    }while(abs(posx-random) < 150);
     posx = random;
 
     enemy = new Enemy(posx);
@@ -245,7 +246,7 @@ void Level1::makeObstacles()
     int random;
     do{
         random = 190 +rand() % (800-190);
-    }while(abs(posx-random) < 100);
+    }while(abs(posx-random) < 150);
     posx = random;
 
     obs = new Obstacle(posx);
@@ -262,7 +263,7 @@ void Level1::makeEnemies2()
     int random;
     do{
         random = 190 +rand() % (800-190);
-    }while(abs(posx-random) < 100);
+    }while(abs(posx-random) < 150);
     posx = random;
 
     enemy2 = new EnemyShoots(posx);
@@ -279,7 +280,7 @@ void Level1::makeObstacles2()
     int random;
     do{
         random = 190 +rand() % (800-190);
-    }while(abs(posx-random) < 100);
+    }while(abs(posx-random) < 150);
     posx = random;
 
     obs2 = new Obstacle2(posx);
@@ -304,11 +305,7 @@ void Level1::on_stop_clicked()
         timerE->start();
         player->stopMove();
     }
-//    enemy->stopMove();
-//    enemy2->stopMove();
-//    obs->stopMove();
-//    obs2->stopMove();
-//    bonus->stopMove();
+
     ui->cont->setVisible(true);
     ui->retry->setVisible(true);
     ui->home->setVisible(true);

@@ -23,7 +23,7 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         max = 1240;
 
         health = menu->level1->getPlayerHealth();
-        speed = 10;
+        speed = 5;
 
         timer = new QTimer();
         connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
@@ -51,10 +51,10 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         h = 92;
         last = 110;
 
-        health = 10;
+        health = 100;
         speed = 7.5;
 
-        min = 30;
+        min = 210;
         max = 1090;
 
         timer = new QTimer();
@@ -77,10 +77,10 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
 void Character::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_A and x()>min){
-        setPos(x()-speed,y());
+        setPos(x()-speed-5,y());
     }
     else if(event->key() == Qt::Key_D and x()+30<max){
-        setPos(x()+speed,y());
+        setPos(x()+speed+5,y());
     }
 }
 
@@ -130,7 +130,7 @@ void Character::Move()
             if(typeid(*(i)) == typeid (Enemy)){
                 scene()->removeItem(i);
                 delete i;
-                health --;
+                health -= 3;
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
@@ -142,7 +142,7 @@ void Character::Move()
             else if(typeid (*(i)) == typeid (EnemyBullet)){
                 scene()->removeItem(i);
                 delete i;
-                health --;
+                health -= 5;
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
@@ -154,7 +154,7 @@ void Character::Move()
             else if(typeid (*(i)) == typeid (EnemyShoots)){
                 scene()->removeItem(i);
                 delete i;
-                health -= 3;
+                health -= 10;
 
                 if(health <= 0){
                     scene()->removeItem(this);
@@ -168,7 +168,7 @@ void Character::Move()
                 qDebug() << menu->level1->getObstacle();
                 scene()->removeItem(i);
                 delete i;
-                health -= 2;
+                health -= 7;
 
                 if(health <= 0){
                     scene()->removeItem(this);
@@ -187,7 +187,8 @@ void Character::Move()
             else if(typeid (*(i)) == typeid (Bonus)){
                 scene()->removeItem(i);
                 delete i;
-                health += 2;
+                short num = 10 + rand()&(21-10);
+                health += num;
             }
         }
     }
@@ -226,7 +227,7 @@ void Character::End()
             if(typeid(*(i)) == typeid (EnemyBullet)){
                 scene()->removeItem(i);
                 delete i;
-                health --;
+                health -= 7;
                 //menu->level1->playerHealth();
                 if(health <= 0){
                     scene()->removeItem(this);
@@ -236,8 +237,7 @@ void Character::End()
                 }
             }
             else if(typeid (*(i)) == typeid (Power)){
-                health -= 0.1;
-                if (health < 1) health = 0;
+                health -= 1;
                 qDebug() << health;
                 if(health <= 0){
                     scene()->removeItem(this);
