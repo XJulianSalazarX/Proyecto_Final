@@ -302,8 +302,16 @@ void Level1::on_stop_clicked()
 {
     if(!isBoss){
         timerB->stop();
-        timerE->start();
+        timerE->stop();
         player->stopMove();
+    }
+    else if(menu->getLevel() == 1){
+        boss->stopMove();
+        player->stopMove2();
+    }
+    else{
+        boss2->stopMove();
+        player->stopMove2();
     }
 
     ui->cont->setVisible(true);
@@ -317,6 +325,14 @@ void Level1::on_cont_clicked()
         timerB->start();
         timerE->start();
         player->continueMove();
+    }
+    else if(menu->getLevel() == 1){
+        boss->continueMove();
+        player->continueMove2();
+    }
+    else{
+        boss2->continueMove();
+        player->continueMove2();
     }
 
     ui->cont->setVisible(false);
@@ -339,7 +355,6 @@ void Level1::on_home_clicked()
     close();
     menu->show();
     menu->on_back_clicked();
-
     delete this;
     return;
 }

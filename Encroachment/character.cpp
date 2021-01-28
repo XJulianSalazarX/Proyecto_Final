@@ -104,11 +104,25 @@ double Character::getHealth() const
 void Character::stopMove()
 {
     timerM->stop();
+    timerS->stop();
 }
 
 void Character::continueMove()
 {
     timerM->start();
+    timerS->start();
+}
+
+void Character::stopMove2()
+{
+    timerS->stop();
+    timerBoss->stop();
+}
+
+void Character::continueMove2()
+{
+    timerS->start();
+    timerBoss->start();
 }
 
 void Character::actualize()

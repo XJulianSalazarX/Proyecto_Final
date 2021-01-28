@@ -38,6 +38,8 @@ public:
 
     void stopMove();
     void continueMove();
+    void stopMove2();
+    void continueMove2();
 
 private:
     double health, speed;

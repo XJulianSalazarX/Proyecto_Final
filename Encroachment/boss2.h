@@ -16,6 +16,9 @@ public:
 
     int getHealth() const;
 
+    void stopMove();
+    void continueMove();
+
 private:
     int speed,health;
     EnemyBullet *bullet;

@@ -48,6 +48,18 @@ int Boss2::getHealth() const
     return health;
 }
 
+void Boss2::stopMove()
+{
+    timerM->stop();
+    timerS->stop();
+}
+
+void Boss2::continueMove()
+{
+    timerM->start();
+    timerS->start();
+}
+
 void Boss2::Move()
 {
     QList<QGraphicsItem *> collisions = collidingItems();

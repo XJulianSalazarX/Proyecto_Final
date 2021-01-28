@@ -54,11 +54,15 @@ int Boss::getHealth() const
 void Boss::stopMove()
 {
     timerM->stop();
+    timerS->stop();
+    timer->stop();
 }
 
 void Boss::continueMove()
 {
     timerM->start();
+    timerS->start();
+    timer->start();
 }
 
 void Boss::actualize()
