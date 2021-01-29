@@ -224,6 +224,14 @@ void Level1::complete()
     ui->home->setVisible(true);
 }
 
+void Level1::changePower()
+{
+    scene->removeItem(power);
+    delete power;
+    power = new Power(90,4,0.05);
+    scene->addItem(power);
+}
+
 void Level1::makeEnemies()
 {
     int random;

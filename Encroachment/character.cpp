@@ -201,7 +201,7 @@ void Character::Move()
             else if(typeid (*(i)) == typeid (Bonus)){
                 scene()->removeItem(i);
                 delete i;
-                short num = 10 + rand()&(21-10);
+                short num = 10 + rand()%(21-10);
                 health += num;
             }
         }

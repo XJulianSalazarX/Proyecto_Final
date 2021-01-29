@@ -10,7 +10,7 @@ Boss::Boss(QObject *parent):QObject(parent)
     col = 0;
     w = 100;
     h = 100;
-    speed = 5;
+    speed = 7;
     health = 100;
 
     timer = new QTimer();
@@ -19,13 +19,14 @@ Boss::Boss(QObject *parent):QObject(parent)
 
     timerM = new QTimer();
     connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
-    timerM->start(18);
+    timerM->start(20);
 
     timerS = new QTimer();
     connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
     timerS->start(2000);
 
     setPos(540,100);
+    other_power = true;
 }
 
 Boss::~Boss()
@@ -86,6 +87,10 @@ void Boss::Move()
                 delete i;
                 health -= 1.5;
                 menu->level1->BossHealth();
+                if(health <= 25 and other_power){
+                    menu->level1->changePower();
+                    other_power=false;
+                }
                 if(health == 0){
                     menu->level1->playerScore(100);
                     menu->level1->complete();
@@ -98,8 +103,8 @@ void Boss::Move()
     }
 
     //movimiento
-    if(x() <= 50) speed = 5;
-    else if(x() >= 1180) speed = -5;
+    if(x() <= 50) speed = 7;
+    else if(x() >= 1180) speed = -7;
     setPos(x()+speed,y());
 }
 

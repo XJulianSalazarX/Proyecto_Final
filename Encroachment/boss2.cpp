@@ -35,6 +35,7 @@ Boss2::Boss2(bool boss3)
         connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
         timerS->start(1500);
     }
+    other_power = true;
 }
 
 Boss2::~Boss2()
@@ -75,6 +76,10 @@ void Boss2::Move()
                     portal->setPos(50,350);
                     scene()->addItem(portal);
                 }
+                if(health <= 25 and other_power){
+                    menu->level1->changePower();
+                    other_power=false;
+                }
                 if(health == 0){
                     menu->level1->playerScore(100);
                     menu->level1->complete();
@@ -111,6 +116,10 @@ void Boss2::Move2()
                     portal = new Portal();
                     portal->setPos(50,350);
                     scene()->addItem(portal);
+                }
+                if(health <= 25 and other_power){
+                    menu->level1->changePower();
+                    other_power=false;
                 }
                 if(health == 0){
                     menu->level1->playerScore(100);

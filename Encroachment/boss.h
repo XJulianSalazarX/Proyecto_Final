@@ -30,6 +30,7 @@ private:
     QTimer *timerS;
     int speed, health;
     EnemyBullet *bullet;
+    bool other_power;
 
 public slots:
     void actualize();

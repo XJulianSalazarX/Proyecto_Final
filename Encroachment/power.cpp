@@ -12,9 +12,25 @@ Power::Power()
 
     setPos(posx,posy);
 
-    timerCircular = new QTimer();
-    connect(timerCircular,SIGNAL(timeout()),this,SLOT(Circular()));
-    timerCircular->start(17);
+    timer = new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(Circular()));
+    timer->start(17);
+}
+
+Power::Power(double amplitude_, double period_, double friction_)
+{
+    setPixmap(QPixmap(":/images/pendulum.png"));
+    amplitude = amplitude_;
+    period = period_;
+    w = 2*M_PI/period;
+    friction = friction_;
+    time = 0;
+
+    setPos(640,300);
+
+    timer = new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(MAS()));
+    timer->start(50);
 }
 
 void Power::Circular()
@@ -24,4 +40,14 @@ void Power::Circular()
     posx = x+(radio*cos(angle*3.14/180));
     posy = y-(radio*sin(angle*3.14/180));
     setPos(posx,posy);
+}
+
+void Power::MAS()
+{
+    time += 0.05;
+
+      x = amplitude*exp(-friction*time)*cos(w*time);
+      //x = amplitude*cos(w*time);
+      //qDebug() << x;
+      setRotation(x);
 }
