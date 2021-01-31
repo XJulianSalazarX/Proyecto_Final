@@ -300,6 +300,7 @@ void Menu::on_deleteProfile_clicked()
 void Menu::on_deleteProgress_clicked()
 {
     deleteScore(username);
+    on_back_clicked();
 }
 void Menu::on_multiplayer_clicked()
 {
