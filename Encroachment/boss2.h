@@ -25,6 +25,7 @@ private:
     QTimer *timerM;
     QTimer *timerS;
     Portal *portal;
+    bool other_power;
 
 public slots:
     void Move();

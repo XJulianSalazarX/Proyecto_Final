@@ -32,6 +32,7 @@ SOURCES += \
     login.cpp \
     main.cpp \
     menu.cpp \
+    multiplayer.cpp \
     obstacle.cpp \
     obstacle2.cpp \
     portal.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     level3.h \
     login.h \
     menu.h \
+    multiplayer.h \
     obstacle.h \
     obstacle2.h \
     portal.h \
@@ -66,6 +68,7 @@ FORMS += \
     level3.ui \
     login.ui \
     menu.ui \
+    multiplayer.ui \
     widget.ui
 
 # Default rules for deployment.

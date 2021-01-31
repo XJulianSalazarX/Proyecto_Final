@@ -34,6 +34,7 @@ public:
     double getPlayerHealth();
     void returnMenu();
     void complete();
+    void changePower();
 
 protected:
     Ui::Level1 *ui;

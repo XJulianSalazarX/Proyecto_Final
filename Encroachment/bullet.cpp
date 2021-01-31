@@ -33,9 +33,19 @@ void Bullet::move()
     //mover la bala hacia arriba
     setPos(x(),y()-10);
     //eliminar la bala
-    if(pos().y() < menu->level1->playerPos()-720){
-        scene()->removeItem(this);
-        qDebug() << "Bala eliminada";
-        delete this;
+
+    if(menu->getMult() == true){
+        if(pos().y() < menu->multiplayer->playerPos()-720){
+            scene()->removeItem(this);
+            qDebug() << "Bala eliminada";
+            delete this;
+        }
+    }
+    else{
+        if(pos().y() < menu->level1->playerPos()-720){
+            scene()->removeItem(this);
+            qDebug() << "Bala eliminada";
+            delete this;
+        }
     }
 }

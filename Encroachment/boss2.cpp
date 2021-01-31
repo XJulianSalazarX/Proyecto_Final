@@ -1,5 +1,6 @@
 #include "boss2.h"
 #include "menu.h"
+#include <QDebug>
 
 extern Menu *menu;
 
@@ -9,7 +10,7 @@ Boss2::Boss2(bool boss3)
         setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
         this->setPos(540,50);
 
-        health = 100;
+        health = 10;
         speed = 7;
 
         timerM = new QTimer();
@@ -24,7 +25,7 @@ Boss2::Boss2(bool boss3)
         setPixmap(QPixmap(":/images/last2.png").scaled(160,100));
         this->setPos(540,50);
 
-        health = 100;
+        health = 10;
         speed = 8;
 
         timerM = new QTimer();
@@ -35,6 +36,7 @@ Boss2::Boss2(bool boss3)
         connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
         timerS->start(1500);
     }
+    other_power = true;
 }
 
 Boss2::~Boss2()
@@ -69,32 +71,62 @@ void Boss2::Move()
                 scene()->removeItem(i);
                 delete i;
                 health -= 1;
-                menu->level1->BossHealth();
+                if(!menu->getMult())
+                    menu->level1->BossHealth();
+                else
+                    menu->multiplayer->BossHealth();
                 if(health == 50){
                     portal = new Portal();
                     portal->setPos(50,350);
                     scene()->addItem(portal);
                 }
+                if(health <= 25 and other_power){
+                   if(!menu->getMult())
+                        menu->level1->changePower();
+                   else
+                       menu->multiplayer->changePower();
+                    other_power=false;
+                }
                 if(health == 0){
-                    menu->level1->playerScore(100);
-                    menu->level1->complete();
                     scene()->removeItem(this);
                     delete this;
+                    if(!menu->getMult()){
+                        menu->level1->playerScore(100);
+                        menu->level1->complete();
+                    }
+                    else{
+                        menu->multiplayer->setBoss_win(false);
+                        menu->multiplayer->endTurn();
+                    }
                     return;
                 }
             }
         }
     }
-    if(x() < menu->level1->playerPosX()){
-        speed = 5;
-        setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
+    if(!menu->getMult()){
+        if(x() < menu->level1->playerPosX()){
+            speed = 5;
+            setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
+        }
+        else if(x() > menu->level1->playerPosX()){
+            speed = -5;
+            setPixmap(QPixmap(":/images/ufo2.png").scaled(159,100));
+        }
+        if(abs(x()-menu->level1->playerPosX()) > 3)
+            setPos(x()+speed,y());
     }
-    else if(x() > menu->level1->playerPosX()){
-        speed = -5;
-        setPixmap(QPixmap(":/images/ufo2.png").scaled(159,100));
+    else{
+        if(x() < menu->multiplayer->playerPosX()){
+            speed = 5;
+            setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
+        }
+        else if(x() > menu->multiplayer->playerPosX()){
+            speed = -5;
+            setPixmap(QPixmap(":/images/ufo2.png").scaled(159,100));
+        }
+        if(abs(x()-menu->multiplayer->playerPosX()) > 3)
+            setPos(x()+speed,y());
     }
-    if(abs(x()-menu->level1->playerPosX()) > 3)
-        setPos(x()+speed,y());
 }
 
 void Boss2::Move2()
@@ -106,17 +138,35 @@ void Boss2::Move2()
                 scene()->removeItem(i);
                 delete i;
                 health -= 0.5;
-                menu->level1->BossHealth();
+
+                if(!menu->getMult())
+                    menu->level1->BossHealth();
+                else
+                    menu->multiplayer->BossHealth();
+
                 if(health == 75 or health == 50){
                     portal = new Portal();
                     portal->setPos(50,350);
                     scene()->addItem(portal);
                 }
+                if(health <= 25 and other_power){
+                    if(!menu->getMult())
+                        menu->level1->changePower();
+                    else
+                        menu->multiplayer->changePower();
+                    other_power=false;
+                }
                 if(health == 0){
-                    menu->level1->playerScore(100);
-                    menu->level1->complete();
                     scene()->removeItem(this);
                     delete this;
+                    if(!menu->getMult()){
+                        menu->level1->playerScore(100);
+                        menu->level1->complete();
+                    }
+                    else{
+                        menu->multiplayer->setBoss_win(false);
+                        menu->multiplayer->endTurn();
+                    }
                     return;
                 }
             }

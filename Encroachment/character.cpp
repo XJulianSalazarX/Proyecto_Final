@@ -21,8 +21,11 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
 
         min = 70;
         max = 1240;
+        if(menu->getMult() == true)
+            health = menu->multiplayer->getPlayerHealth();
+        else
+            health = menu->level1->getPlayerHealth();
 
-        health = menu->level1->getPlayerHealth();
         speed = 5;
 
         timer = new QTimer();
@@ -72,6 +75,11 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         timerMove = new QTimer();
         connect(timerMove,SIGNAL(timeout()),this,SLOT(Slow()));
     }
+}
+
+Character::~Character()
+{
+
 }
 
 void Character::keyPressEvent(QKeyEvent *event)
@@ -201,7 +209,7 @@ void Character::Move()
             else if(typeid (*(i)) == typeid (Bonus)){
                 scene()->removeItem(i);
                 delete i;
-                short num = 10 + rand()&(21-10);
+                short num = 10 + rand()%(21-10);
                 health += num;
             }
         }
@@ -246,7 +254,12 @@ void Character::End()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
-                    menu->level1->returnMenu();
+                    if(!menu->getMult())
+                        menu->level1->returnMenu();
+                    else{
+                        menu->multiplayer->setBoss_win(true);
+                        menu->multiplayer->endTurn();
+                    }
                     return;
                 }
             }
@@ -256,7 +269,12 @@ void Character::End()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
-                     menu->level1->returnMenu();
+                    if(!menu->getMult())
+                        menu->level1->returnMenu();
+                    else{
+                        menu->multiplayer->setBoss_win(true);
+                        menu->multiplayer->endTurn();
+                    }
                     return;
                 }
             }
@@ -267,7 +285,12 @@ void Character::End()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
-                     menu->level1->returnMenu();
+                    if(!menu->getMult())
+                        menu->level1->returnMenu();
+                    else{
+                        menu->multiplayer->setBoss_win(true);
+                        menu->multiplayer->endTurn();
+                    }
                     return;
                 }
             }
@@ -278,11 +301,19 @@ void Character::End()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
-                    menu->level1->returnMenu();
+                    if(!menu->getMult())
+                        menu->level1->returnMenu();
+                    else{
+                        menu->multiplayer->setBoss_win(true);
+                        menu->multiplayer->endTurn();
+                    }
                     return;
                 }
             }
         }
     }
-    menu->level1->playerHealth();
+    if(!menu->getMult())
+        menu->level1->playerHealth();
+    else
+        menu->multiplayer->playerHealth();
 }

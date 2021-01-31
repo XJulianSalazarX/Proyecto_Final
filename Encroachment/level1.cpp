@@ -29,14 +29,16 @@ Level1::Level1(QWidget *parent) :
     scene = new QGraphicsScene();
     scene->setBackgroundBrush(QPixmap(":/images/level1.1.jpg"));
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->setSceneRect(0,0,width(),21600);
+//    ui->graphicsView->setSceneRect(0,0,width(),21600);
+    ui->graphicsView->setSceneRect(0,0,width(),10800);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     //player
     player = new Character();
     scene->addItem(player);
-    player->setPos(630,21500);
+//    player->setPos(630,21500);
+    player->setPos(630,10700);
     //player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
     ui->progressBar->setRange(0,100);
@@ -204,7 +206,8 @@ void Level1::returnMenu()
     scene->setBackgroundBrush(QPixmap(":/images/fondo.jpg").scaled(1280,720));
     ui->graphicsView->setSceneRect(0,0,width(),720);
 
-    ui->showScore->setNum(ui->score->intValue());
+    //ui->showScore->setNum(ui->score->intValue());
+    ui->showScore->setText("score" + QString::number(ui->score->intValue()));
     ui->showScore->setVisible(true);
 
     ui->retry->setVisible(true);
@@ -214,14 +217,22 @@ void Level1::returnMenu()
 
 void Level1::complete()
 {
-    scene->removeItem(power);
-    delete power;
+    scene->clear();
     GoScore(menu->getUsername(),QString::number(ui->score->intValue()),menu->getLevel());
     UpdateLevel(menu->getUsername(),menu->getLevel());
     ui->stop->setVisible(false);
-    ui->showScore->setNum(ui->score->intValue());
+    ui->showScore->setText("score: " + QString::number(ui->score->intValue()));
+    //ui->showScore->setNum(ui->score->intValue());
     ui->showScore->setVisible(true);
     ui->home->setVisible(true);
+}
+
+void Level1::changePower()
+{
+    scene->removeItem(power);
+    delete power;
+    power = new Power(90,4,0.05);
+    scene->addItem(power);
 }
 
 void Level1::makeEnemies()
