@@ -162,14 +162,15 @@ font: 20pt &quot;MV Boli&quot;;</string>
   <widget class="QLabel" name="showScore">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>110</y>
+     <x>500</x>
+     <y>80</y>
      <width>361</width>
      <height>151</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 100pt &quot;MV Boli&quot;;</string>
+    <string notr="true">font: 50pt &quot;MV Boli&quot;;
+color: rgb(255, 255, 0);</string>
    </property>
    <property name="text">
     <string>100</string>

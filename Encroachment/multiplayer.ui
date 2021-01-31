@@ -183,6 +183,23 @@
     </property>
    </widget>
   </widget>
+  <widget class="QLabel" name="playerName">
+   <property name="geometry">
+    <rect>
+     <x>1030</x>
+     <y>10</y>
+     <width>250</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>POR AHORA</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

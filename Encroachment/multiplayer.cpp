@@ -1,6 +1,7 @@
 #include "multiplayer.h"
 #include "ui_multiplayer.h"
 #include "menu.h"
+#include <QDebug>
 
 extern Menu *menu;
 
@@ -11,11 +12,18 @@ Multiplayer::Multiplayer(QWidget *parent) :
     ui->setupUi(this);
     player1 = menu->getUsername();
 
+    turn2 = false;
+    boss_win = false;
+
     ui->progressBar->setVisible(false);
     ui->progressBar_2->setVisible(false);
 
+    ui->playerName->setVisible(false);
+
     level = 0;
     character = 0;
+    time1 = 0;
+    time2 = 0;
 
     ui->levels->setVisible(false);
     ui->levels->setGeometry(245,170,790,190);
@@ -44,8 +52,8 @@ Multiplayer::Multiplayer(QWidget *parent) :
     ui->graphicsView->setSceneRect(0,0,width(),height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
-
+    //scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
 }
 
 Multiplayer::~Multiplayer()
@@ -55,12 +63,23 @@ Multiplayer::~Multiplayer()
 
 void Multiplayer::selectLevel()
 {
+    if(turn2)
+        ui->playerName->setText(player2);
+    else
+        ui->playerName->setText(player1);
+
+    ui->playerName->setVisible(true);
+    //scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->username->setVisible(false);
     ui->password->setVisible(false);
     ui->label->setVisible(false);
     ui->label_2->setVisible(false);
+    if(!turn2)
     ui->levels->setVisible(true);
     ui->characteres->setVisible(true);
+    ui->next->setVisible(true);
+    ui->back->setVisible(true);
 }
 
 void Multiplayer::startGame()
@@ -75,12 +94,17 @@ void Multiplayer::startGame()
     ui->back->setVisible(false);
     ui->next->setVisible(false);
 
+    timer = new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(time()));
+    timer->start(1000);
+
     menu->setLevel(level);
     menu->setCharacter(character);
 
     if(menu->getLevel() == 1){
 
-        scene->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
+//        scene->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
+        ui->graphicsView->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
         ui->graphicsView->setSceneRect(0,0,width(),720);
 
         player = new Character(true);
@@ -105,7 +129,8 @@ void Multiplayer::startGame()
     }
     else if(menu->getLevel() == 2){
 
-        scene->setBackgroundBrush(QPixmap(":/images/level 2.2.jpg"));
+//        scene->setBackgroundBrush(QPixmap(":/images/level 2.2.jpg"));
+        ui->graphicsView->setBackgroundBrush(QPixmap(":/images/level 2.2.jpg"));
         ui->graphicsView->setSceneRect(0,0,width(),720);
 
         player = new Character(true);
@@ -130,7 +155,8 @@ void Multiplayer::startGame()
     }
     else if(menu->getLevel() == 3){
 
-        scene->setBackgroundBrush(QPixmap(":/images/level 3.2.jpg"));
+//        scene->setBackgroundBrush(QPixmap(":/images/level 3.2.jpg"));
+        ui->graphicsView->setBackgroundBrush(QPixmap(":/images/level 3.2.jpg"));
         ui->graphicsView->setSceneRect(0,0,width(),720);
 
         player = new Character(true);
@@ -191,6 +217,46 @@ void Multiplayer::changePower()
     scene->addItem(power);
 }
 
+void Multiplayer::endTurn()
+{
+    ui->progressBar->setVisible(false);
+    ui->progressBar_2->setVisible(false);
+    scene->removeItem(power);
+    delete power;
+    scene->clear();
+//    scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
+    if(!turn2){
+        if(!boss_win)
+            time1 = 0;
+        if(time1 == 0)
+            score1 = "No pass";
+        else
+            score1 = QString::number(time1);
+        turn2 = true;
+        boss_win = false;
+        QMessageBox::critical(this,"Information","turno del jugador 2.");
+        selectLevel();
+    }
+
+    else{
+        if(!boss_win)
+            time2 = 0;
+        if(time2 == 0)
+            score2 = "No pass";
+        else
+            score2 = QString::number(time1);
+        turn2 = true;
+        boss_win = false;
+        showResult();
+    }
+}
+
+void Multiplayer::showResult()
+{
+
+}
+
 void Multiplayer::on_next_clicked()
 {
     if(ui->username->isVisible()){
@@ -217,6 +283,7 @@ void Multiplayer::on_next_clicked()
         else if(CheckPassword(ui->username->text(),ui->password->text())==true) {
             //pasar a otra pantalla, porque ya inicio sesion
             player2 = ui->username->text();
+            QMessageBox::critical(this,"Information","turno del jugador 1.");
             selectLevel();
             return;
         }
@@ -311,4 +378,16 @@ void Multiplayer::on_back_clicked()
     close();
     delete this;
     return;
+}
+
+void Multiplayer::setBoss_win(bool value)
+{
+    boss_win = value;
+}
+
+void Multiplayer::time()
+{
+    if(!turn2)
+        time1 ++;
+    else time2 ++;
 }

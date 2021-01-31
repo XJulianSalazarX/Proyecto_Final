@@ -93,8 +93,10 @@ void Boss::Move()
                         other_power=false;
                     }
                     if(health == 0){
-                        menu->level1->playerScore(100);
-                        menu->level1->complete();
+                        if(!menu->getMult()){
+                            menu->level1->playerScore(100);
+                            menu->level1->complete();
+                        }
                         scene()->removeItem(this);
                         delete this;
                         return;
@@ -107,6 +109,8 @@ void Boss::Move()
                         other_power = false;
                     }
                     if(health == 0){
+                        menu->multiplayer->endTurn();
+                        menu->multiplayer->setBoss_win(false);
                         scene()->removeItem(this);
                         delete this;
                         return;

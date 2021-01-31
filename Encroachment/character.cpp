@@ -77,6 +77,11 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
     }
 }
 
+Character::~Character()
+{
+
+}
+
 void Character::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_A and x()>min){
@@ -251,6 +256,10 @@ void Character::End()
                     delete this;
                     if(!menu->getMult())
                         menu->level1->returnMenu();
+                    else{
+                        menu->multiplayer->endTurn();
+                        menu->multiplayer->setBoss_win(true);
+                    }
                     return;
                 }
             }
@@ -262,6 +271,10 @@ void Character::End()
                     delete this;
                     if(!menu->getMult())
                         menu->level1->returnMenu();
+                    else{
+                        menu->multiplayer->endTurn();
+                        menu->multiplayer->setBoss_win(true);
+                    }
                     return;
                 }
             }
@@ -274,6 +287,10 @@ void Character::End()
                     delete this;
                     if(!menu->getMult())
                         menu->level1->returnMenu();
+                    else{
+                        menu->multiplayer->endTurn();
+                        menu->multiplayer->setBoss_win(true);
+                    }
                     return;
                 }
             }
@@ -286,6 +303,10 @@ void Character::End()
                     delete this;
                     if(!menu->getMult())
                         menu->level1->returnMenu();
+                    else{
+                        menu->multiplayer->endTurn();
+                        menu->multiplayer->setBoss_win(true);
+                    }
                     return;
                 }
             }

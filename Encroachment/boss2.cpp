@@ -1,5 +1,6 @@
 #include "boss2.h"
 #include "menu.h"
+#include <QDebug>
 
 extern Menu *menu;
 
@@ -9,7 +10,7 @@ Boss2::Boss2(bool boss3)
         setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
         this->setPos(540,50);
 
-        health = 100;
+        health = 10;
         speed = 7;
 
         timerM = new QTimer();
@@ -87,12 +88,16 @@ void Boss2::Move()
                     other_power=false;
                 }
                 if(health == 0){
+                    scene()->removeItem(this);
+                    delete this;
                     if(!menu->getMult()){
                         menu->level1->playerScore(100);
                         menu->level1->complete();
                     }
-                    scene()->removeItem(this);
-                    delete this;
+                    else{
+                        menu->multiplayer->endTurn();
+                        menu->multiplayer->setBoss_win(false);
+                    }
                     return;
                 }
             }
@@ -151,13 +156,17 @@ void Boss2::Move2()
                         menu->multiplayer->changePower();
                     other_power=false;
                 }
+                scene()->removeItem(this);
+                delete this;
                 if(health == 0){
                     if(!menu->getMult()){
                         menu->level1->playerScore(100);
                         menu->level1->complete();
                     }
-                    scene()->removeItem(this);
-                    delete this;
+                    else{
+                        menu->multiplayer->endTurn();
+                        menu->multiplayer->setBoss_win(false);
+                    }
                     return;
                 }
             }

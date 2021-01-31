@@ -33,6 +33,10 @@ public:
     double playerPosX();
     void BossHealth();
     void changePower();
+    void endTurn();
+    void showResult();
+
+    void setBoss_win(bool value);
 
 private slots:
     void on_next_clicked();
@@ -59,9 +63,14 @@ private:
     Boss *boss;
     Boss2 *boss2;
     Power *power;
-    QString player1,time1;
-    QString player2,time2;
+    QString player1,score1;
+    QString player2,score2;
+    int time1,time2;
     short level,character;
+    bool turn2,boss_win;
+
+public slots:
+    void time();
 };
 
 #endif // MULTIPLAYER_H
