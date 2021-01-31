@@ -86,17 +86,31 @@ void Boss::Move()
                 scene()->removeItem(i);
                 delete i;
                 health -= 1.5;
-                menu->level1->BossHealth();
-                if(health <= 25 and other_power){
-                    menu->level1->changePower();
-                    other_power=false;
+                if(!menu->getMult()){
+                    menu->level1->BossHealth();
+                    if(health <= 25 and other_power){
+                        menu->level1->changePower();
+                        other_power=false;
+                    }
+                    if(health == 0){
+                        menu->level1->playerScore(100);
+                        menu->level1->complete();
+                        scene()->removeItem(this);
+                        delete this;
+                        return;
+                    }
                 }
-                if(health == 0){
-                    menu->level1->playerScore(100);
-                    menu->level1->complete();
-                    scene()->removeItem(this);
-                    delete this;
-                    return;
+                else{
+                    menu->multiplayer->BossHealth();
+                    if(health <= 25 and other_power){
+                        menu->multiplayer->changePower();
+                        other_power = false;
+                    }
+                    if(health == 0){
+                        scene()->removeItem(this);
+                        delete this;
+                        return;
+                    }
                 }
             }
         }

@@ -52,5 +52,6 @@
         <file>images/character1.2.png</file>
         <file>images/tank3.png</file>
         <file>images/pendulum.png</file>
+        <file>images/multiplayer.png</file>
     </qresource>
 </RCC>

@@ -8,6 +8,7 @@
 #include "level2.h"
 #include "level3.h"
 #include "login.h"
+#include "multiplayer.h"
 
 namespace Ui {
 class Menu;
@@ -28,11 +29,18 @@ public:
     short getLevel() const;
 
     Level1 *level1;
+    Multiplayer *multiplayer;
 
     QString getUsername() const;
     void setUsername(const QString &value);
 
     short getCharacter() const;
+
+    void setLevel(short value);
+
+    bool getMult() const;
+
+    void setCharacter(short value);
 
 private slots:
     void on_play_clicked();
@@ -63,6 +71,8 @@ private slots:
 
     void on_deleteProgress_clicked();
 
+    void on_multiplayer_clicked();
+
 public slots:
     void on_back_clicked();
 
@@ -72,8 +82,9 @@ private:
     Login *login;
     short level, character;
     QString username;
+//    Multiplayer *multiplayer;
+    bool mult;
 //    Level1 *level1;
-
 };
 
 #endif // MENU_H

@@ -21,8 +21,11 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
 
         min = 70;
         max = 1240;
+        if(menu->getMult() == true)
+            health = menu->multiplayer->getPlayerHealth();
+        else
+            health = menu->level1->getPlayerHealth();
 
-        health = menu->level1->getPlayerHealth();
         speed = 5;
 
         timer = new QTimer();
@@ -246,7 +249,8 @@ void Character::End()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
-                    menu->level1->returnMenu();
+                    if(!menu->getMult())
+                        menu->level1->returnMenu();
                     return;
                 }
             }
@@ -256,7 +260,8 @@ void Character::End()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
-                     menu->level1->returnMenu();
+                    if(!menu->getMult())
+                        menu->level1->returnMenu();
                     return;
                 }
             }
@@ -267,7 +272,8 @@ void Character::End()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
-                     menu->level1->returnMenu();
+                    if(!menu->getMult())
+                        menu->level1->returnMenu();
                     return;
                 }
             }
@@ -278,11 +284,15 @@ void Character::End()
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
-                    menu->level1->returnMenu();
+                    if(!menu->getMult())
+                        menu->level1->returnMenu();
                     return;
                 }
             }
         }
     }
-    menu->level1->playerHealth();
+    if(!menu->getMult())
+        menu->level1->playerHealth();
+    else
+        menu->multiplayer->playerHealth();
 }

@@ -70,19 +70,27 @@ void Boss2::Move()
                 scene()->removeItem(i);
                 delete i;
                 health -= 1;
-                menu->level1->BossHealth();
+                if(!menu->getMult())
+                    menu->level1->BossHealth();
+                else
+                    menu->multiplayer->BossHealth();
                 if(health == 50){
                     portal = new Portal();
                     portal->setPos(50,350);
                     scene()->addItem(portal);
                 }
                 if(health <= 25 and other_power){
-                    menu->level1->changePower();
+                   if(!menu->getMult())
+                        menu->level1->changePower();
+                   else
+                       menu->multiplayer->changePower();
                     other_power=false;
                 }
                 if(health == 0){
-                    menu->level1->playerScore(100);
-                    menu->level1->complete();
+                    if(!menu->getMult()){
+                        menu->level1->playerScore(100);
+                        menu->level1->complete();
+                    }
                     scene()->removeItem(this);
                     delete this;
                     return;
@@ -90,16 +98,30 @@ void Boss2::Move()
             }
         }
     }
-    if(x() < menu->level1->playerPosX()){
-        speed = 5;
-        setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
+    if(!menu->getMult()){
+        if(x() < menu->level1->playerPosX()){
+            speed = 5;
+            setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
+        }
+        else if(x() > menu->level1->playerPosX()){
+            speed = -5;
+            setPixmap(QPixmap(":/images/ufo2.png").scaled(159,100));
+        }
+        if(abs(x()-menu->level1->playerPosX()) > 3)
+            setPos(x()+speed,y());
     }
-    else if(x() > menu->level1->playerPosX()){
-        speed = -5;
-        setPixmap(QPixmap(":/images/ufo2.png").scaled(159,100));
+    else{
+        if(x() < menu->multiplayer->playerPosX()){
+            speed = 5;
+            setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
+        }
+        else if(x() > menu->multiplayer->playerPosX()){
+            speed = -5;
+            setPixmap(QPixmap(":/images/ufo2.png").scaled(159,100));
+        }
+        if(abs(x()-menu->multiplayer->playerPosX()) > 3)
+            setPos(x()+speed,y());
     }
-    if(abs(x()-menu->level1->playerPosX()) > 3)
-        setPos(x()+speed,y());
 }
 
 void Boss2::Move2()
@@ -111,19 +133,29 @@ void Boss2::Move2()
                 scene()->removeItem(i);
                 delete i;
                 health -= 0.5;
-                menu->level1->BossHealth();
+
+                if(!menu->getMult())
+                    menu->level1->BossHealth();
+                else
+                    menu->multiplayer->BossHealth();
+
                 if(health == 75 or health == 50){
                     portal = new Portal();
                     portal->setPos(50,350);
                     scene()->addItem(portal);
                 }
                 if(health <= 25 and other_power){
-                    menu->level1->changePower();
+                    if(!menu->getMult())
+                        menu->level1->changePower();
+                    else
+                        menu->multiplayer->changePower();
                     other_power=false;
                 }
                 if(health == 0){
-                    menu->level1->playerScore(100);
-                    menu->level1->complete();
+                    if(!menu->getMult()){
+                        menu->level1->playerScore(100);
+                        menu->level1->complete();
+                    }
                     scene()->removeItem(this);
                     delete this;
                     return;

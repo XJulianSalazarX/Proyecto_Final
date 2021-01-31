@@ -19,9 +19,18 @@ void EnemyBullet::move()
     //mover la bala hacia arriba
     setPos(x(),y()+10);
     //eliminar la bala
-    if(pos().y() > menu->level1->playerPos()+100){
-        scene()->removeItem(this);
-        qDebug() << "Bala enemiga eliminada";
-        delete this;
+    if(menu->getMult()){
+        if(pos().y() > menu->multiplayer->playerPos()+100){
+            scene()->removeItem(this);
+            qDebug() << "Bala enemiga eliminada";
+            delete this;
+        }
+    }
+    else{
+        if(pos().y() > menu->level1->playerPos()+100){
+            scene()->removeItem(this);
+            qDebug() << "Bala enemiga eliminada";
+            delete this;
+        }
     }
 }

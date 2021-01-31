@@ -45,11 +45,14 @@ Menu::Menu(QWidget *parent) :
     ui->levels->setVisible(false);
     ui->play_2->setVisible(false);
 
-    ui->play->setVisible(false);
-    ui->top->setVisible(false);
-    ui->profile->setVisible(false);
-    ui->settings->setVisible(false);
-    ui->howToPLay->setVisible(false);
+//    ui->play->setVisible(false);
+//    ui->top->setVisible(false);
+//    ui->profile->setVisible(false);
+//    ui->settings->setVisible(false);
+//    ui->howToPLay->setVisible(false);
+//    ui->multiplayer->setVisible(false);
+    Invisible();
+
 }
 
 Menu::~Menu()
@@ -64,6 +67,7 @@ void Menu::Visible()
     ui->top->setVisible(true);
     ui->settings->setVisible(true);
     ui->howToPLay->setVisible(true);
+    ui->multiplayer->setVisible(true);
 }
 
 void Menu::Invisible()
@@ -73,15 +77,17 @@ void Menu::Invisible()
     ui->top->setVisible(false);
     ui->settings->setVisible(false);
     ui->howToPLay->setVisible(false);
+    ui->multiplayer->setVisible(false);
 }
 
 void Menu::showMenu()
 {
-    ui->play->setVisible(true);
-    ui->top->setVisible(true);
-    ui->profile->setVisible(true);
-    ui->settings->setVisible(true);
-    ui->howToPLay->setVisible(true);
+//    ui->play->setVisible(true);
+//    ui->top->setVisible(true);
+//    ui->profile->setVisible(true);
+//    ui->settings->setVisible(true);
+//    ui->howToPLay->setVisible(true);
+    Visible();
 }
 
 void Menu::on_play_clicked()
@@ -104,7 +110,6 @@ void Menu::on_settings_clicked()
     ui->splitter->setVisible(true);
     ui->back->setVisible(true);
     Invisible();
-
 }
 
 void Menu::on_back_clicked()
@@ -117,6 +122,7 @@ void Menu::on_back_clicked()
     Visible();
     level = 0;
     character = 0;
+    mult = false;
     ui->level1->setIcon(QIcon(":/images/level1 b.jpg"));
     ui->level1->setIconSize(QSize(350,400));
     ui->level2->setIcon(QIcon(":/images/level2 b.jpg"));
@@ -126,6 +132,21 @@ void Menu::on_back_clicked()
     ui->character1->setStyleSheet("background-image: url(:/images/character 1.png);");
     ui->character2->setStyleSheet("background-image: url(:/images/character 2.png);");
     ui->character3->setStyleSheet("background-image: url(:/images/character 3.png);");
+}
+
+void Menu::setCharacter(short value)
+{
+    character = value;
+}
+
+bool Menu::getMult() const
+{
+    return mult;
+}
+
+void Menu::setLevel(short value)
+{
+    level = value;
 }
 
 short Menu::getCharacter() const
@@ -278,4 +299,11 @@ void Menu::on_deleteProfile_clicked()
 void Menu::on_deleteProgress_clicked()
 {
     deleteScore(username);
+}
+void Menu::on_multiplayer_clicked()
+{
+    close();
+    mult = true;
+    multiplayer = new Multiplayer();
+    multiplayer->show();
 }
