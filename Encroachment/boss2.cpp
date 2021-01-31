@@ -25,7 +25,7 @@ Boss2::Boss2(bool boss3)
         setPixmap(QPixmap(":/images/last2.png").scaled(160,100));
         this->setPos(540,50);
 
-        health = 100;
+        health = 10;
         speed = 8;
 
         timerM = new QTimer();
@@ -95,8 +95,8 @@ void Boss2::Move()
                         menu->level1->complete();
                     }
                     else{
-                        menu->multiplayer->endTurn();
                         menu->multiplayer->setBoss_win(false);
+                        menu->multiplayer->endTurn();
                     }
                     return;
                 }
@@ -156,16 +156,16 @@ void Boss2::Move2()
                         menu->multiplayer->changePower();
                     other_power=false;
                 }
-                scene()->removeItem(this);
-                delete this;
                 if(health == 0){
+                    scene()->removeItem(this);
+                    delete this;
                     if(!menu->getMult()){
                         menu->level1->playerScore(100);
                         menu->level1->complete();
                     }
                     else{
-                        menu->multiplayer->endTurn();
                         menu->multiplayer->setBoss_win(false);
+                        menu->multiplayer->endTurn();
                     }
                     return;
                 }

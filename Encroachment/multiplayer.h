@@ -65,7 +65,7 @@ private:
     Power *power;
     QString player1,score1;
     QString player2,score2;
-    int time1,time2;
+    double time1,time2;
     short level,character;
     bool turn2,boss_win;
 

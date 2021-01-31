@@ -17,6 +17,7 @@ Multiplayer::Multiplayer(QWidget *parent) :
 
     ui->progressBar->setVisible(false);
     ui->progressBar_2->setVisible(false);
+    ui->result->setVisible(false);
 
     ui->playerName->setVisible(false);
 
@@ -54,6 +55,8 @@ Multiplayer::Multiplayer(QWidget *parent) :
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
+    timer = new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(time()));
 }
 
 Multiplayer::~Multiplayer()
@@ -94,9 +97,7 @@ void Multiplayer::startGame()
     ui->back->setVisible(false);
     ui->next->setVisible(false);
 
-    timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(time()));
-    timer->start(1000);
+    timer->start(100);
 
     menu->setLevel(level);
     menu->setCharacter(character);
@@ -219,6 +220,7 @@ void Multiplayer::changePower()
 
 void Multiplayer::endTurn()
 {
+    timer->stop();
     ui->progressBar->setVisible(false);
     ui->progressBar_2->setVisible(false);
     scene->removeItem(power);
@@ -227,7 +229,7 @@ void Multiplayer::endTurn()
 //    scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     if(!turn2){
-        if(!boss_win)
+        if(boss_win)
             time1 = 0;
         if(time1 == 0)
             score1 = "No pass";
@@ -240,13 +242,13 @@ void Multiplayer::endTurn()
     }
 
     else{
-        if(!boss_win)
+        if(boss_win)
             time2 = 0;
         if(time2 == 0)
             score2 = "No pass";
         else
-            score2 = QString::number(time1);
-        turn2 = true;
+            score2 = QString::number(time2);
+        turn2 = false;
         boss_win = false;
         showResult();
     }
@@ -254,7 +256,16 @@ void Multiplayer::endTurn()
 
 void Multiplayer::showResult()
 {
-
+    qDebug() << time1 << time2;
+    ui->result->setVisible(true);
+    if(time1 == time2)
+        ui->result->setText(player1+" time : "+score1+"\n"+player2+" time: "+score2+"\n"+"\tDRAW");
+    else if(time1 < time2 and time1!=0)
+        ui->result->setText(player1+" time : "+score1+"\n"+player2+" time: "+score2+"\n"+"WINNER: "+player1);
+    else
+        ui->result->setText(player1+" time : "+score1+"\n"+player2+" time: "+score2+"\n"+"WINNER: "+player2);
+    ui->back->setVisible(true);
+    ui->next->setVisible(true);
 }
 
 void Multiplayer::on_next_clicked()
@@ -287,6 +298,30 @@ void Multiplayer::on_next_clicked()
             selectLevel();
             return;
         }
+    }
+    else if(ui->result->isVisible()){
+        character = 0;
+        level = 0;
+        time1 = 0;
+        time2 = 0;
+        ui->levels->setVisible(true);
+        ui->characteres->setVisible(true);
+        ui->level1->setIcon(QIcon(":/images/level1 b.jpg"));
+        ui->level1->setIconSize(QSize(350,400));
+
+        ui->level2->setIcon(QIcon(":/images/level2 b.jpg"));
+        ui->level2->setIconSize(QSize(350,400));
+
+        ui->level3->setIcon(QIcon(":/images/level3 b.jpg"));
+        ui->level3->setIconSize(QSize(350,400));
+
+        ui->character1->setStyleSheet("background-image: url(:/images/character 1.png);");
+        ui->character2->setStyleSheet("background-image: url(:/images/character 2.png);");
+        ui->character3->setStyleSheet("background-image: url(:/images/character 3.png);");
+        ui->result->setVisible(false);
+        turn2 = false;
+        selectLevel();
+
     }
     else{
         if(character == 0){
@@ -375,6 +410,7 @@ void Multiplayer::on_back_clicked()
 {
     menu->show();
     menu->setLevel(0);
+    menu->setCharacter(0);
     close();
     delete this;
     return;
@@ -388,6 +424,6 @@ void Multiplayer::setBoss_win(bool value)
 void Multiplayer::time()
 {
     if(!turn2)
-        time1 ++;
-    else time2 ++;
+        time1 += 0.1;
+    else time2 += 0.1;
 }

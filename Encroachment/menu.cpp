@@ -92,6 +92,7 @@ void Menu::showMenu()
 
 void Menu::on_play_clicked()
 {
+    mult = false;
     ui->back->setVisible(true);
     ui->levels->setVisible(true);
     ui->play_2->setVisible(true);

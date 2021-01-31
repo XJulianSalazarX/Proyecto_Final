@@ -29,14 +29,16 @@ Level1::Level1(QWidget *parent) :
     scene = new QGraphicsScene();
     scene->setBackgroundBrush(QPixmap(":/images/level1.1.jpg"));
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->setSceneRect(0,0,width(),21600);
+//    ui->graphicsView->setSceneRect(0,0,width(),21600);
+    ui->graphicsView->setSceneRect(0,0,width(),10800);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     //player
     player = new Character();
     scene->addItem(player);
-    player->setPos(630,21500);
+//    player->setPos(630,21500);
+    player->setPos(630,10700);
     //player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
     ui->progressBar->setRange(0,100);
@@ -219,7 +221,7 @@ void Level1::complete()
     GoScore(menu->getUsername(),QString::number(ui->score->intValue()),menu->getLevel());
     UpdateLevel(menu->getUsername(),menu->getLevel());
     ui->stop->setVisible(false);
-    ui->showScore->setText("score" + QString::number(ui->score->intValue()));
+    ui->showScore->setText("score: " + QString::number(ui->score->intValue()));
     //ui->showScore->setNum(ui->score->intValue());
     ui->showScore->setVisible(true);
     ui->home->setVisible(true);

@@ -11,7 +11,7 @@ Boss::Boss(QObject *parent):QObject(parent)
     w = 100;
     h = 100;
     speed = 7;
-    health = 100;
+    health = 10;
 
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
@@ -92,13 +92,11 @@ void Boss::Move()
                         menu->level1->changePower();
                         other_power=false;
                     }
-                    if(health == 0){
-                        if(!menu->getMult()){
-                            menu->level1->playerScore(100);
-                            menu->level1->complete();
-                        }
+                    if(health <= 0){
                         scene()->removeItem(this);
                         delete this;
+                        menu->level1->playerScore(100);
+                        menu->level1->complete();
                         return;
                     }
                 }
@@ -108,11 +106,11 @@ void Boss::Move()
                         menu->multiplayer->changePower();
                         other_power = false;
                     }
-                    if(health == 0){
-                        menu->multiplayer->endTurn();
-                        menu->multiplayer->setBoss_win(false);
+                    if(health <= 0){
                         scene()->removeItem(this);
                         delete this;
+                        menu->multiplayer->setBoss_win(false);
+                        menu->multiplayer->endTurn();
                         return;
                     }
                 }

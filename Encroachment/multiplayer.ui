@@ -200,6 +200,23 @@ color: rgb(255, 255, 255);</string>
     <string>POR AHORA</string>
    </property>
   </widget>
+  <widget class="QLabel" name="result">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>150</y>
+     <width>491</width>
+     <height>201</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 0, 0);
+font: 20pt &quot;Papyrus&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Por ahora</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

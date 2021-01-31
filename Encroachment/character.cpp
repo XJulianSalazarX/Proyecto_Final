@@ -257,8 +257,8 @@ void Character::End()
                     if(!menu->getMult())
                         menu->level1->returnMenu();
                     else{
-                        menu->multiplayer->endTurn();
                         menu->multiplayer->setBoss_win(true);
+                        menu->multiplayer->endTurn();
                     }
                     return;
                 }
@@ -272,8 +272,8 @@ void Character::End()
                     if(!menu->getMult())
                         menu->level1->returnMenu();
                     else{
-                        menu->multiplayer->endTurn();
                         menu->multiplayer->setBoss_win(true);
+                        menu->multiplayer->endTurn();
                     }
                     return;
                 }
@@ -288,8 +288,8 @@ void Character::End()
                     if(!menu->getMult())
                         menu->level1->returnMenu();
                     else{
-                        menu->multiplayer->endTurn();
                         menu->multiplayer->setBoss_win(true);
+                        menu->multiplayer->endTurn();
                     }
                     return;
                 }
@@ -304,8 +304,8 @@ void Character::End()
                     if(!menu->getMult())
                         menu->level1->returnMenu();
                     else{
-                        menu->multiplayer->endTurn();
                         menu->multiplayer->setBoss_win(true);
+                        menu->multiplayer->endTurn();
                     }
                     return;
                 }
