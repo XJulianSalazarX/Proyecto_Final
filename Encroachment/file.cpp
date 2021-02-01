@@ -401,3 +401,94 @@ string cambiar_decof(string binario)
     binario_decof += binario[0];
     return binario_decof;
 }
+
+vector<string> usersName()
+{
+    string text;
+    text=LeerArchivo();
+    text=Str_to_Binary(text);
+    text=decod( text);
+    text=Binary_to_Str( text);
+
+    vector <string> users;
+
+    qDebug() << QString::fromStdString(text);
+
+    int posI=text.find('\n')+1;
+    int posJ=text.find(':',posI);
+    int aux=posI;
+    users.push_back(text.substr(posI,posJ-posI));
+
+    while(aux!=-1){
+        for(int i=0;i<=4;i+=1){
+
+            posI=text.find('\n',aux);
+            aux=posI+1;
+
+        }
+        if(aux>=int(text.size()))aux=-1;
+        else if(aux!=int(text.size())){
+
+            posJ=text.find(':',aux);
+
+            users.push_back(text.substr(aux,posJ-aux));}
+    }
+
+    for(auto i = users.begin();i!=users.end();i++){
+        qDebug() << QString::fromStdString(*i);
+    }
+    return users;
+}
+
+vector<string> playerScore(QString user_)
+{
+    string text;
+    text=LeerArchivo();
+    text=Str_to_Binary(text);
+    text=decod( text);
+    text=Binary_to_Str( text);
+
+    //string user= user_.tostdstring();
+
+    vector <string> score;
+
+    int posI=text.find(user_.toStdString());
+
+
+    int posJ;
+    int aux=posI;
+
+    for(int i=0;i<2;i+=1){
+
+        posI=text.find('\n',aux);
+        aux=posI+1;
+
+    }
+    posI = aux;
+    for(int i=0;i<3;i+=1){
+        for(short i=0;i<3;i++){
+            if(i==2)
+                posJ = text.find('\r',aux);
+            else
+                posJ = text.find(':',aux);
+            score.push_back(text.substr(posI,posJ-posI));
+            posI = posJ+1;
+            aux = posI;
+        }
+        posI = posJ += 2;
+        aux = posI;
+
+//        posJ=text.find('\n',aux);
+
+//        score.push_back(text.substr(posI+1,posJ-1-posI-1));
+
+//        posI=text.find('\n',aux);
+
+//        aux=posI+1;
+    }
+
+    for(auto i=score.begin();i!=score.end();i++)
+        qDebug() << QString::fromStdString(*i);
+
+    return score;
+}

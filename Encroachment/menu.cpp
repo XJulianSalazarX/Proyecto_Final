@@ -11,8 +11,10 @@ Menu::Menu(QWidget *parent) :
     level = 0;
     character = 0;
 
+    ui->label->setVisible(false);
+
     ui->splitter->setGeometry(482,150,316,420);
-    ui->start->setGeometry(482,400,316,140);
+    ui->start->setGeometry(520,520,316,140);
 
     ui->characteres->setGeometry(400,400,450,70);
     ui->characteres->setVisible(false);
@@ -39,7 +41,7 @@ Menu::Menu(QWidget *parent) :
     ui->graphicsView->setSceneRect(0,0,width(),height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/wallpaper.png").scaled(1280,720)));
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/objetivo.png").scaled(1280,720)));
     ui->splitter->setVisible(false);
     ui->back->setVisible(false);
     ui->levels->setVisible(false);
@@ -82,11 +84,12 @@ void Menu::Invisible()
 
 void Menu::showMenu()
 {
-//    ui->play->setVisible(true);
-//    ui->top->setVisible(true);
-//    ui->profile->setVisible(true);
-//    ui->settings->setVisible(true);
-//    ui->howToPLay->setVisible(true);
+    //    ui->play->setVisible(true);
+    //    ui->top->setVisible(true);
+    //    ui->profile->setVisible(true);
+    //    ui->settings->setVisible(true);
+    //    ui->howToPLay->setVisible(true);
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/wallpaper.png").scaled(1280,720)));
     Visible();
 }
 
@@ -102,6 +105,7 @@ void Menu::on_play_clicked()
 
 void Menu::on_howToPLay_clicked()
 {
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/instrucciones.jpg").scaled(1280,720)));
     ui->back->setVisible(true);
     Invisible();
 }
@@ -115,6 +119,7 @@ void Menu::on_settings_clicked()
 
 void Menu::on_back_clicked()
 {
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/wallpaper.png").scaled(1280,720)));
     ui->splitter->setVisible(false);
     ui->levels->setVisible(false);
     ui->characteres->setVisible(false);
@@ -133,6 +138,7 @@ void Menu::on_back_clicked()
     ui->character1->setStyleSheet("background-image: url(:/images/character 1.png);");
     ui->character2->setStyleSheet("background-image: url(:/images/character 2.png);");
     ui->character3->setStyleSheet("background-image: url(:/images/character 3.png);");
+    ui->label->setVisible(false);
 }
 
 void Menu::setCharacter(short value)
@@ -308,4 +314,36 @@ void Menu::on_multiplayer_clicked()
     mult = true;
     multiplayer = new Multiplayer();
     multiplayer->show();
+}
+
+void Menu::on_top_clicked()
+{
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
+    Invisible();
+    ui->back->setVisible(true);
+    vector<string> users = usersName();
+    ui->label->setVisible(true);
+    ui->label->setText("Usuarios:");
+    ui->label->setGeometry(500,0,500,720);
+    for(auto i=users.begin();i!=users.end();i++){
+        ui->label->setText(ui->label->text()+"\n"+QString::fromStdString(*i));
+    }
+
+}
+
+void Menu::on_profile_clicked()
+{
+    ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
+    Invisible();
+    ui->back->setVisible(true);
+    vector<string> point = playerScore(username);
+    ui->label->setVisible(true);
+    ui->label->setText(username);
+    ui->label->setText(ui->label->text()+"\n"+"Level1: \t\t"+"Level2: \t\t"+"Level3: \t\t");
+    ui->label->setGeometry(100,0,1100,720);
+    for(short i=0;i<3;i++){
+        ui->label->setText(ui->label->text()+"\n"+QString::fromStdString(point[i]));
+        ui->label->setText(ui->label->text()+" \t\t"+QString::fromStdString(point[i+3]));
+        ui->label->setText(ui->label->text()+" \t\t"+QString::fromStdString(point[i+6]));
+    }
 }

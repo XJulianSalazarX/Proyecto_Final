@@ -156,7 +156,6 @@ void Multiplayer::startGame()
     }
     else if(menu->getLevel() == 3){
 
-//        scene->setBackgroundBrush(QPixmap(":/images/level 3.2.jpg"));
         ui->graphicsView->setBackgroundBrush(QPixmap(":/images/level 3.2.jpg"));
         ui->graphicsView->setSceneRect(0,0,width(),720);
 
@@ -179,7 +178,7 @@ void Multiplayer::startGame()
         //poder
         power = new Power();
         scene->addItem(power);
-        }
+    }
 }
 
 double Multiplayer::getPlayerHealth()

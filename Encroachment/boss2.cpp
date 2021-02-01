@@ -10,7 +10,7 @@ Boss2::Boss2(bool boss3)
         setPixmap(QPixmap(":/images/ufo.png").scaled(159,100));
         this->setPos(540,50);
 
-        health = 10;
+        health = 100;
         speed = 7;
 
         timerM = new QTimer();
@@ -25,7 +25,7 @@ Boss2::Boss2(bool boss3)
         setPixmap(QPixmap(":/images/last2.png").scaled(160,100));
         this->setPos(540,50);
 
-        health = 10;
+        health = 100;
         speed = 8;
 
         timerM = new QTimer();

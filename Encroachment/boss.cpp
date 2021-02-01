@@ -11,7 +11,7 @@ Boss::Boss(QObject *parent):QObject(parent)
     w = 100;
     h = 100;
     speed = 7;
-    health = 10;
+    health = 100;
 
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));

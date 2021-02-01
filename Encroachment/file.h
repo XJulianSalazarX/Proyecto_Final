@@ -4,6 +4,7 @@
 #include <QString>
 #include <fstream>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 string LeerArchivo();
@@ -26,5 +27,8 @@ void GoScore(QString, QString ,int );
 bool CheckLevel(QString,int );
 bool ValidUandP(QString);
 void UpdateLevel(QString, int);
+
+vector<string> usersName();
+vector<string> playerScore(QString);
 
 #endif // FILE_H

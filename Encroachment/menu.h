@@ -73,6 +73,10 @@ private slots:
 
     void on_multiplayer_clicked();
 
+    void on_top_clicked();
+
+    void on_profile_clicked();
+
 public slots:
     void on_back_clicked();
 

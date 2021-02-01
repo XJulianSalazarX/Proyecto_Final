@@ -53,5 +53,7 @@
         <file>images/tank3.png</file>
         <file>images/pendulum.png</file>
         <file>images/multiplayer.png</file>
+        <file>images/objetivo.png</file>
+        <file>images/instrucciones.jpg</file>
     </qresource>
 </RCC>
