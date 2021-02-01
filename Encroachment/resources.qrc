@@ -67,5 +67,6 @@
         <file>music/ringtones-of-caribbean.mp3</file>
         <file>music/rocky.mp3</file>
         <file>music/victory.mp3</file>
+        <file>music/choose-mario-kart.mp3</file>
     </qresource>
 </RCC>

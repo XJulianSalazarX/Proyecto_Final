@@ -42,6 +42,8 @@ public:
 
     void setCharacter(short value);
 
+    void startTimer();
+
 private slots:
     void on_play_clicked();
 
@@ -79,15 +81,18 @@ private slots:
 
 public slots:
     void on_back_clicked();
+    void Music();
 
 private:
     Ui::Menu *ui;
     QGraphicsScene *scene;
     Login *login;
-    short level, character;
+    short level,character,song;
     QString username;
     bool mult;
     QMediaPlayer *sound;
+    QTimer *timerSound;
+
 };
 
 #endif // MENU_H

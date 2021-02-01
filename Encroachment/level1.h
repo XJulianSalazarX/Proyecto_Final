@@ -52,9 +52,11 @@ protected:
 
     QTimer *timerE;
     QTimer *timerB;
+    QTimer *timerSound;
 
     int posx;
     bool isBoss;
+    short song;
 
     QMediaPlayer *sound;
 
@@ -64,6 +66,8 @@ public slots:
     void makeEnemies2();
     void makeObstacles2();
     void makeBonus();
+    void Music();
+
 
 private slots:
     void on_stop_clicked();

@@ -421,6 +421,7 @@ void Multiplayer::on_back_clicked()
     menu->setCharacter(0);
     close();
     delete this;
+    menu->startTimer();
     return;
 }
 

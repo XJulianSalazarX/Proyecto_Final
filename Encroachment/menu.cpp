@@ -10,6 +10,7 @@ Menu::Menu(QWidget *parent) :
 
     level = 0;
     character = 0;
+    song = 0;
 
     ui->label->setVisible(false);
 
@@ -50,6 +51,9 @@ Menu::Menu(QWidget *parent) :
     Invisible();
 
     sound = new QMediaPlayer();
+    timerSound = new QTimer();
+    connect(timerSound,SIGNAL(timeout()),this,SLOT(Music()));
+    timerSound->start(2000);
 
 }
 
@@ -132,9 +136,39 @@ void Menu::on_back_clicked()
     ui->label->setVisible(false);
 }
 
+void Menu::Music()
+{
+    short num=0;
+    while(song == num){
+        num=rand()%3;
+    }
+    song = num;
+    if(num == 0){
+        sound->setMedia(QUrl("qrc:/music/choose-mario-kart.mp3"));
+        sound->play();
+        timerSound->start(30000);
+    }
+    else if(num == 1){
+        sound->setMedia(QUrl("qrc:/music/ringtones-kill-bill-whistle.mp3"));
+        sound->play();
+        timerSound->start(20000);
+    }
+    else{
+        sound->setMedia(QUrl("qrc:/music/gta-san-andreas-f.mp3"));
+        sound->play();
+        timerSound->start(30000);
+    }
+    qDebug() << song;
+}
+
 void Menu::setCharacter(short value)
 {
     character = value;
+}
+
+void Menu::startTimer()
+{
+    timerSound->start(1000);
 }
 
 bool Menu::getMult() const
@@ -217,6 +251,8 @@ void Menu::on_play_2_clicked()
     switch (level) {
     case 1:{
         close();
+        timerSound->stop();
+        sound->stop();
         qDebug() << "Nivel 1";
         level1 = new Level1();
         level1->show();
@@ -224,6 +260,8 @@ void Menu::on_play_2_clicked()
         break;
     case 2:{
         close();
+        timerSound->stop();
+        sound->stop();
         qDebug() << "Nivel 2";
         level1 = new Level2();
         level1->show();
@@ -231,6 +269,8 @@ void Menu::on_play_2_clicked()
         break;
     case 3:{
         close();
+        timerSound->stop();
+        sound->stop();
         qDebug() << "Nivel 3";
         level1 = new Level3();
         level1->show();
@@ -301,6 +341,8 @@ void Menu::on_deleteProgress_clicked()
 }
 void Menu::on_multiplayer_clicked()
 {
+    timerSound->stop();
+    sound->stop();
     close();
     mult = true;
     multiplayer = new Multiplayer();

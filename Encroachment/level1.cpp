@@ -12,6 +12,7 @@ Level1::Level1(QWidget *parent) :
     ui->setupUi(this);
 
     posx = 0;
+    song = 0;
     isBoss = false;
     ui->showScore->setVisible(false);
 
@@ -29,7 +30,6 @@ Level1::Level1(QWidget *parent) :
     scene = new QGraphicsScene();
     scene->setBackgroundBrush(QPixmap(":/images/level1.1.jpg"));
     ui->graphicsView->setScene(scene);
-//    ui->graphicsView->setSceneRect(0,0,width(),21600);
     ui->graphicsView->setSceneRect(0,0,width(),10800);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -37,7 +37,6 @@ Level1::Level1(QWidget *parent) :
     //player
     player = new Character();
     scene->addItem(player);
-//    player->setPos(630,21500);
     player->setPos(630,10700);
     //player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
@@ -60,12 +59,17 @@ Level1::Level1(QWidget *parent) :
     timerB->start(20000);
 
     sound = new QMediaPlayer();
+
+    timerSound = new QTimer();
+    connect(timerSound,SIGNAL(timeout()),this,SLOT(Music()));
+    timerSound->start(2000);
 }
 
 Level1::~Level1()
 {
     delete ui;
     delete sound;
+    delete timerSound;
 }
 
 void Level1::FocusPlayer()
@@ -100,6 +104,8 @@ void Level1::playerScore(int increase)
 
 void Level1::Final()
 {
+    timerSound->stop();
+    timerSound->start(1000);
     isBoss = true;
     timerB->stop();
     timerE->stop();
@@ -198,6 +204,8 @@ double Level1::getPlayerHealth()
 
 void Level1::returnMenu()
 {
+    timerSound->stop();
+    sound->stop();
     sound->setMedia(QUrl("qrc:/music/resident-evil-game-over.mp3"));
     sound->play();
 
@@ -223,6 +231,8 @@ void Level1::returnMenu()
 
 void Level1::complete()
 {
+    timerSound->stop();
+    sound->stop();
     sound->setMedia(QUrl("qrc:/music/victory.mp3"));
     sound->play();
 
@@ -318,6 +328,47 @@ void Level1::makeBonus()
     scene->addItem(bonus);
 }
 
+void Level1::Music()
+{
+    short num = 0;
+    while(num == song){
+        num=rand()%3;
+    }
+    song = num;
+    if(isBoss){
+        if(num == 0){
+            sound->setMedia(QUrl("qrc:/music/assasin-3-assasin.mp3"));
+            sound->play();
+        }
+        else if(num == 1){
+            sound->setMedia(QUrl("qrc:/music/musica-peliculas-15-.mp3"));
+            sound->play();
+        }
+        else{
+            sound->setMedia(QUrl("qrc:/music/ringtones-of-caribbean.mp3"));
+            sound->play();
+        }
+        timerSound->start(30000);
+    }
+    else{
+        if(num == 0){
+            sound->setMedia(QUrl("qrc:/music/kill-bill-sirena.mp3"));
+            sound->play();
+            timerSound->start(15000);
+        }
+        else if(num == 1){
+            sound->setMedia(QUrl("qrc:/music/mision-imposible-peliculas-.mp3"));
+            sound->play();
+            timerSound->start(32000);
+        }
+        else{
+            sound->setMedia(QUrl("qrc:/music/pulp-fiction-tiempos-violentos-peliculas-.mp3"));
+            sound->play();
+            timerSound->start(25000);
+        }
+    }
+}
+
 void Level1::on_stop_clicked()
 {
     if(!isBoss){
@@ -366,6 +417,7 @@ void Level1::on_retry_clicked()
     close();
     menu->show();
     delete this;
+    menu->startTimer();
     return;
 }
 
@@ -374,7 +426,9 @@ void Level1::on_home_clicked()
     scene->clear();
     close();
     menu->show();
+    menu->startTimer();
     menu->on_back_clicked();
     delete this;
+    menu->startTimer();
     return;
 }
