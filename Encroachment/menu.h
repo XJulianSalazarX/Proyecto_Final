@@ -86,9 +86,8 @@ private:
     Login *login;
     short level, character;
     QString username;
-//    Multiplayer *multiplayer;
     bool mult;
-//    Level1 *level1;
+    QMediaPlayer *sound;
 };
 
 #endif // MENU_H

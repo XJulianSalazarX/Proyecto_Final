@@ -10,6 +10,7 @@
 #include "boss.h"
 #include "power.h"
 #include "boss2.h"
+#include <QMediaPlayer>
 
 namespace Ui {
 class Level1;
@@ -54,6 +55,8 @@ protected:
 
     int posx;
     bool isBoss;
+
+    QMediaPlayer *sound;
 
 public slots:
     void makeEnemies();

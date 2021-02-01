@@ -1,4 +1,5 @@
-QT       += core gui
+QT       += core gui \
+         multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -36,8 +37,7 @@ SOURCES += \
     obstacle.cpp \
     obstacle2.cpp \
     portal.cpp \
-    power.cpp \
-    widget.cpp
+    power.cpp
 
 HEADERS += \
     bonus.h \
@@ -59,8 +59,7 @@ HEADERS += \
     obstacle.h \
     obstacle2.h \
     portal.h \
-    power.h \
-    widget.h
+    power.h
 
 FORMS += \
     level1.ui \
@@ -68,8 +67,7 @@ FORMS += \
     level3.ui \
     login.ui \
     menu.ui \
-    multiplayer.ui \
-    widget.ui
+    multiplayer.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

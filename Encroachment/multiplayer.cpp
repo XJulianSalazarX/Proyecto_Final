@@ -57,11 +57,20 @@ Multiplayer::Multiplayer(QWidget *parent) :
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(time()));
+
+    sound = new QMediaPlayer();
+    sound->setMedia(QUrl("qrc:/music/ringtones-game-of-thrones-west.mp3"));
+    sound->play();
+    changeSound = true;
+    timerSound = new QTimer();
+    connect(timerSound,SIGNAL(timeout()),this,SLOT(otherMusic()));
+    timerSound->start(30000);
 }
 
 Multiplayer::~Multiplayer()
 {
     delete ui;
+    delete sound;
 }
 
 void Multiplayer::selectLevel()
@@ -425,4 +434,20 @@ void Multiplayer::time()
     if(!turn2)
         time1 += 0.1;
     else time2 += 0.1;
+}
+
+void Multiplayer::otherMusic()
+{
+    if(changeSound == true){
+        changeSound = false;
+        sound->setMedia(QUrl("qrc:/music/rocky.mp3"));
+        sound->play();
+        timer->start(37000);
+    }
+    else{
+        changeSound = true;
+        sound->setMedia(QUrl("qrc:/music/ringtones-game-of-thrones-west.mp3"));
+        sound->play();
+        timer->start(30000);
+    }
 }

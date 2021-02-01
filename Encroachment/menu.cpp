@@ -47,13 +47,9 @@ Menu::Menu(QWidget *parent) :
     ui->levels->setVisible(false);
     ui->play_2->setVisible(false);
 
-//    ui->play->setVisible(false);
-//    ui->top->setVisible(false);
-//    ui->profile->setVisible(false);
-//    ui->settings->setVisible(false);
-//    ui->howToPLay->setVisible(false);
-//    ui->multiplayer->setVisible(false);
     Invisible();
+
+    sound = new QMediaPlayer();
 
 }
 
@@ -84,11 +80,6 @@ void Menu::Invisible()
 
 void Menu::showMenu()
 {
-    //    ui->play->setVisible(true);
-    //    ui->top->setVisible(true);
-    //    ui->profile->setVisible(true);
-    //    ui->settings->setVisible(true);
-    //    ui->howToPLay->setVisible(true);
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/wallpaper.png").scaled(1280,720)));
     Visible();
 }

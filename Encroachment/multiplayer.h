@@ -10,6 +10,7 @@
 #include "boss.h"
 #include "boss2.h"
 #include "power.h"
+#include <QMediaPlayer>
 
 
 namespace Ui {
@@ -68,9 +69,13 @@ private:
     double time1,time2;
     short level,character;
     bool turn2,boss_win;
+    QMediaPlayer *sound;
+    bool changeSound;
+    QTimer *timerSound;
 
 public slots:
     void time();
+    void otherMusic();
 };
 
 #endif // MULTIPLAYER_H

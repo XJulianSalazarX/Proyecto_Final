@@ -58,11 +58,14 @@ Level1::Level1(QWidget *parent) :
     timerB = new QTimer();
     connect(timerB,SIGNAL(timeout()),this,SLOT(makeBonus()));
     timerB->start(20000);
+
+    sound = new QMediaPlayer();
 }
 
 Level1::~Level1()
 {
     delete ui;
+    delete sound;
 }
 
 void Level1::FocusPlayer()
@@ -195,6 +198,9 @@ double Level1::getPlayerHealth()
 
 void Level1::returnMenu()
 {
+    sound->setMedia(QUrl("qrc:/music/resident-evil-game-over.mp3"));
+    sound->play();
+
     playerHealth();
     timerB->stop();
     timerE->stop();
@@ -217,6 +223,9 @@ void Level1::returnMenu()
 
 void Level1::complete()
 {
+    sound->setMedia(QUrl("qrc:/music/victory.mp3"));
+    sound->play();
+
     scene->clear();
     GoScore(menu->getUsername(),QString::number(ui->score->intValue()),menu->getLevel());
     UpdateLevel(menu->getUsername(),menu->getLevel());
