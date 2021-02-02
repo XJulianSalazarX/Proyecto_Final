@@ -33,6 +33,11 @@ Power::Power(double amplitude_, double period_, double friction_)
     timer->start(50);
 }
 
+Power::~Power()
+{
+    delete timer;
+}
+
 void Power::Circular()
 {
     angle ++;
@@ -47,7 +52,5 @@ void Power::MAS()
     time += 0.05;
 
       x = amplitude*exp(-friction*time)*cos(w*time);
-      //x = amplitude*cos(w*time);
-      //qDebug() << x;
       setRotation(x);
 }

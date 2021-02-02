@@ -34,7 +34,7 @@ Boss2::Boss2(bool boss3)
 
         timerS = new QTimer();
         connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
-        timerS->start(1500);
+        timerS->start(1300);
     }
     other_power = true;
 }
@@ -175,7 +175,7 @@ void Boss2::Move2()
 
     if(x() <= 50){
         speed = 7;
-        setPos(x()+speed,y()+30);
+        setPos(x()+speed,y()+35);
         setPixmap(QPixmap(":/images/last2.png").scaled(160,100));
     }
     else if(x() >= 1180){

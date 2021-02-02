@@ -13,7 +13,6 @@ EnemyShoots::EnemyShoots(int posx): Enemy(posx)
         pixmap->load(":/images/tank2.png");
     else
         pixmap->load(":/images/tank3.png");
-    //pixmap = new QPixmap(":/images/tank1.png");
     timerS = new QTimer();
 
     col = 0;
@@ -41,7 +40,6 @@ EnemyShoots::~EnemyShoots()
 {
     delete timerS;
     delete timerD;
-    delete pixmap;
 }
 
 void EnemyShoots::Shoot()

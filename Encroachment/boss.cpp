@@ -23,7 +23,7 @@ Boss::Boss(QObject *parent):QObject(parent)
 
     timerS = new QTimer();
     connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
-    timerS->start(2000);
+    timerS->start(1300);
 
     setPos(540,100);
     other_power = true;
@@ -33,6 +33,8 @@ Boss::~Boss()
 {
     delete pixmap;
     delete timer;
+    delete timerM;
+    delete timerS;
 }
 
 QRectF Boss::boundingRect() const

@@ -36,9 +36,9 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
         timerS->start(500);
 
-        timerBoss = new QTimer();
-        connect(timerBoss,SIGNAL(timeout()),this,SLOT(End()));
-        timerBoss->start(20);
+        timerM = new QTimer();
+        connect(timerM,SIGNAL(timeout()),this,SLOT(End()));
+        timerM->start(20);
     }
 
     else{
@@ -79,6 +79,9 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
 
 Character::~Character()
 {
+    delete timer;
+    delete timerS;
+    delete timerM;
 
 }
 
@@ -119,18 +122,6 @@ void Character::continueMove()
 {
     timerM->start();
     timerS->start();
-}
-
-void Character::stopMove2()
-{
-    timerS->stop();
-    timerBoss->stop();
-}
-
-void Character::continueMove2()
-{
-    timerS->start();
-    timerBoss->start();
 }
 
 void Character::actualize()
@@ -211,6 +202,8 @@ void Character::Move()
                 delete i;
                 short num = 10 + rand()%(21-10);
                 health += num;
+                if(health > 100)
+                    health = 100;
             }
         }
     }
@@ -279,7 +272,7 @@ void Character::End()
                 }
             }
             else if(typeid (*(i)) == typeid (CanonBullet)){
-                health -= 2;
+                health -= 15;
                 scene()->removeItem(i);
                 delete i;
                 if(health <= 0){

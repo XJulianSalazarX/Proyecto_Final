@@ -37,8 +37,8 @@ Level1::Level1(QWidget *parent) :
     //player
     player = new Character();
     scene->addItem(player);
-    player->setPos(630,10700);
-    //player->setPos(630,720);
+    //player->setPos(630,10700);
+    player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
     ui->progressBar->setRange(0,100);
     ui->progressBar_2->setVisible(false);
@@ -238,10 +238,14 @@ void Level1::complete()
 
     scene->clear();
     GoScore(menu->getUsername(),QString::number(ui->score->intValue()),menu->getLevel());
-    UpdateLevel(menu->getUsername(),menu->getLevel());
+    if(menu->getLevel()==1 and !CheckLevel(menu->getUsername(),2))
+        UpdateLevel(menu->getUsername(),menu->getLevel());
+    else if(menu->getLevel()==2 and !CheckLevel(menu->getUsername(),3))
+        UpdateLevel(menu->getUsername(),menu->getLevel());
+    else if(menu->getLevel()==3)
+        UpdateLevel(menu->getUsername(),menu->getLevel());
     ui->stop->setVisible(false);
     ui->showScore->setText("score: " + QString::number(ui->score->intValue()));
-    //ui->showScore->setNum(ui->score->intValue());
     ui->showScore->setVisible(true);
     ui->home->setVisible(true);
 }
@@ -378,11 +382,11 @@ void Level1::on_stop_clicked()
     }
     else if(menu->getLevel() == 1){
         boss->stopMove();
-        player->stopMove2();
+        player->stopMove();
     }
     else{
         boss2->stopMove();
-        player->stopMove2();
+        player->stopMove();
     }
 
     ui->cont->setVisible(true);
@@ -399,11 +403,11 @@ void Level1::on_cont_clicked()
     }
     else if(menu->getLevel() == 1){
         boss->continueMove();
-        player->continueMove2();
+        player->continueMove();
     }
     else{
         boss2->continueMove();
-        player->continueMove2();
+        player->continueMove();
     }
 
     ui->cont->setVisible(false);

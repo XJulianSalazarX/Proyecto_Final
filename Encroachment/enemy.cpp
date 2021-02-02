@@ -6,15 +6,12 @@ extern Menu *menu;
 
 Enemy::Enemy(int posx,QObject *parent):QObject(parent)
 {
-    //setPixmap(QPixmap(":/images/carrito_malo.png").scaled(50,100));
     pixmap = new QPixmap(":/images/spider.png");
 
     col=0;
     w = 62.2;
     h = 43;
 
-//    int random = 190 +rand() % (800-190);
-//    setPos(random,menu->level1->playerPos()-1000);
     setPos(posx,menu->level1->playerPos()-1150);
 
     timer = new QTimer();
@@ -31,6 +28,8 @@ Enemy::Enemy(int posx,QObject *parent):QObject(parent)
 Enemy::~Enemy()
 {
     delete timerM;
+    delete pixmap;
+    delete timer;
 }
 
 QRectF Enemy::boundingRect() const

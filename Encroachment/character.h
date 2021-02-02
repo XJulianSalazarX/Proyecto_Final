@@ -51,7 +51,6 @@ private:
     QTimer *timerM;
     QTimer *timerS;
     QTimer *timerMove;
-    QTimer *timerBoss;
 
 public slots:
     void actualize();

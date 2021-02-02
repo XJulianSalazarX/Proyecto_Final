@@ -53,7 +53,6 @@ Multiplayer::Multiplayer(QWidget *parent) :
     ui->graphicsView->setSceneRect(0,0,width(),height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(time()));
@@ -81,7 +80,6 @@ void Multiplayer::selectLevel()
         ui->playerName->setText(player1);
 
     ui->playerName->setVisible(true);
-    //scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->username->setVisible(false);
     ui->password->setVisible(false);
@@ -113,7 +111,6 @@ void Multiplayer::startGame()
 
     if(menu->getLevel() == 1){
 
-//        scene->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
         ui->graphicsView->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
         ui->graphicsView->setSceneRect(0,0,width(),720);
 
@@ -139,7 +136,6 @@ void Multiplayer::startGame()
     }
     else if(menu->getLevel() == 2){
 
-//        scene->setBackgroundBrush(QPixmap(":/images/level 2.2.jpg"));
         ui->graphicsView->setBackgroundBrush(QPixmap(":/images/level 2.2.jpg"));
         ui->graphicsView->setSceneRect(0,0,width(),720);
 
@@ -234,7 +230,6 @@ void Multiplayer::endTurn()
     scene->removeItem(power);
     delete power;
     scene->clear();
-//    scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     if(!turn2){
         if(boss_win)

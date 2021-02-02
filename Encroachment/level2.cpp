@@ -12,7 +12,6 @@ Level2::Level2(Level1 *parent) :
     scene->setBackgroundBrush(QPixmap(":/images/level2.1.jpg"));
 
     disconnect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies()));
-    //disconnect(timerB,SIGNAL(timeout()),this,SLOT(makeBonus()));
     connect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies()));
     timerE->start(1750);
 }
