@@ -18,16 +18,6 @@ Bullet::~Bullet()
     delete timer;
 }
 
-void Bullet::stopMove()
-{
-    timer->stop();
-}
-
-void Bullet::continueMove()
-{
-    timer->start();
-}
-
 void Bullet::move()
 {
     //mover la bala hacia arriba

@@ -1,9 +1,9 @@
 /**
   @file bullet.h
-  @version 1.0
-  @date 23/12/2020
   @title Class Bullet
-  @brief CLase que representa una bala
+  @brief Hereda QObject y QGraphicsPixmapItem de la librereria de Qt creator,
+  clase que representa las balas disparadas por player (instancia de la clase
+  Character.h).
   */
 #ifndef BULLET_H
 #define BULLET_H
@@ -18,28 +18,25 @@ class Bullet: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     /**
-     * @brief Constructor por defecto de la clase Bullet
+     * @brief Bullet, Constructor por defecto de la clase bullet.h.
      */
     Bullet();
     /**
-      * @brief Destructor de la clase Bullet
+      * @brief ~Bullet, Destructor de la clase bullet.h.
       */
     ~Bullet();
 
-    void stopMove();
-    void continueMove();
-
 public slots:
     /**
-     * @brief move Mover la clase Bullet 5 pixeles hacia arriba
+     * @brief move, mover la clase Bullet 5 pixeles hacia arriba
      * atraves de la instancia de la clase QGraphicsScene *Scene,
-     * si la clase Bullet sale de la escena es eliminada
+     si la clase Bullet sale de la escena visible es eliminada de la
+     memoria.
      */
     void move();
 
 protected:
     QTimer *timer;
-    double damage;
 };
 
 #endif // BULLET_H

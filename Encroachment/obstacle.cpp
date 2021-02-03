@@ -35,16 +35,6 @@ int Obstacle::getType_obs() const
     return type_obs;
 }
 
-void Obstacle::stopMove()
-{
-    timer->stop();
-}
-
-void Obstacle::continueMove()
-{
-    timer->start();
-}
-
 void Obstacle::move()
 {
     QList<QGraphicsItem *> collisions = collidingItems();
