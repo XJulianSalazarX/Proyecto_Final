@@ -31,11 +31,38 @@ public:
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option,QWidget *widget);
 
 private:
+    /**
+     * @brief w, ancho de la clase portal.h.
+     */
+    /**
+     * @brief h, altura de la clase portal.h.
+     */
+    /**
+     * @brief col, se utiliza en el medoto actualize para generar el sprite de la clase portal.h.
+     */
+    /**
+     * @brief speed, velocidad de la clase portal.h.
+     */
     double w,h,col,speed;
+    /**
+     * @brief give, aumenta y disminuye la velocidad del atributo speed de la clase portal.h.
+     */
     short give;
+    /**
+     * @brief pixmap, oma el path de la imagen para la clase portal.h.
+     */
     QPixmap *pixmap;
+    /**
+     * @brief timer, se conecta con el metodo actualize de la clase portal.h.
+     */
     QTimer *timer;
+    /**
+     * @brief timerS, se conecta con el metodo shoot de la clase portal.h.
+     */
     QTimer *timerS;
+    /**
+     * @brief bullet, instancia de la clase CanonBullet.
+     */
     CanonBullet *bullet;
 
 public slots:

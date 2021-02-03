@@ -27,14 +27,23 @@ public:
     ~EnemyShoots();
 
 private:
+    /**
+     * @brief timerS, se conecta con el metodo Shoot de la clase enemyshoots.h.
+     */
     QTimer *timerS;
+    /**
+     * @brief bullet, instancia de la clase EnemyBullet.
+     */
     EnemyBullet *bullet;
+    /**
+     * @brief timerD, se conecta con el metodo Dead de la clase enemyshoots.h.
+     */
     QTimer *timerD;
 
 
 public slots:
     /**
-     * @brief Shoot, genera instancias de la clase enemybullet, y las añade a
+     * @brief Shoot, genera instancias de la clase enemybullet.h, y las añade a
      scene (instancia de la clase QGraphicsScene).
      */
     void Shoot();

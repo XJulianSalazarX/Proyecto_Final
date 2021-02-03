@@ -41,7 +41,14 @@ public:
     int getType_obs() const;
 
 protected:
+    /**
+     * @brief type_obs, elige un numero aleatorio entre 1 y 2 para asignarle una
+      imagen a la clase obstacle.h.
+     */
     int type_obs;
+    /**
+     * @brief timer, se conecta con el metodo move de la clase obstacle.h.
+     */
     QTimer *timer;
 
 public slots:

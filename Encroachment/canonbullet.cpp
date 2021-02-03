@@ -7,7 +7,6 @@ CanonBullet::CanonBullet(double Vo_,double Xo_,double Yo_)
     setPixmap(QPixmap(":/images/canonbullet.png"));
 
     angle = 45;
-    y = 600;
     g = 9.8;
     Vo = Vo_;
     Xo = Xo_;

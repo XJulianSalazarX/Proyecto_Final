@@ -2,7 +2,7 @@
 #include <QDebug>
 
 
-void adduser(QString user, QString password)
+void File::adduser(QString user, QString password)
 {
     string text;
     string user_=user.toStdString();
@@ -22,7 +22,7 @@ void adduser(QString user, QString password)
     SaveArchivo(text);
 }
 
-void deleteUSer(QString user)
+void File::deleteUSer(QString user)
 {
     string text;
     string text_new;
@@ -59,7 +59,7 @@ void deleteUSer(QString user)
     SaveArchivo(text_new);
 }
 
-void deleteScore(QString user)
+void File::deleteScore(QString user)
 {
 
     string text;
@@ -102,7 +102,7 @@ void deleteScore(QString user)
 
 }
 
-void GoScore(QString user,QString Score,int level){
+void File::GoScore(QString user,QString Score,int level){
 
     string text;
     string text_new;
@@ -171,7 +171,7 @@ void GoScore(QString user,QString Score,int level){
     SaveArchivo(text_new);
 }
 
-bool CheckLevel(QString user, int level)
+bool File::CheckLevel(QString user, int level)
 {
     if(level == 1) return true;
 
@@ -192,7 +192,7 @@ bool CheckLevel(QString user, int level)
 
     return false;
 }
-void UpdateLevel(QString user, int level)
+void File::UpdateLevel(QString user, int level)
 {
     string text;
     string text_new;
@@ -226,7 +226,7 @@ void UpdateLevel(QString user, int level)
     SaveArchivo(text_new);
 }
 
-bool ValidUandP(QString user_pass)
+bool File::ValidUandP(QString user_pass)
 {
     for(int i=0;i<=user_pass.length();i+=1){
         if(user_pass.at(i)=='\n' or user_pass.at(i)==":" or user_pass.at(i)=='\r'){
@@ -236,7 +236,7 @@ bool ValidUandP(QString user_pass)
     return true;
 }
 
-bool existUser(QString user)
+bool File::existUser(QString user)
 {
     qDebug() << "Comprobar usuario";
     string texto,user_;
@@ -257,7 +257,7 @@ bool existUser(QString user)
     return false;
 
 }
-bool CheckPassword(QString user, QString password){
+bool File::CheckPassword(QString user, QString password){
 
     qDebug() << "Comprobar contraseña";
     string texto;
@@ -286,7 +286,7 @@ bool CheckPassword(QString user, QString password){
     return false;
 }
 
-string LeerArchivo()
+string File::LeerArchivo()
 {
     string texto,linea;
     fstream lectura;
@@ -306,7 +306,7 @@ string LeerArchivo()
 
 }
 
-void SaveArchivo( string texto)
+void File::SaveArchivo( string texto)
 {
     fstream archivobinario;
     archivobinario.open("users.dat",fstream::out|fstream::binary);
@@ -321,7 +321,7 @@ void SaveArchivo( string texto)
 
 
 
-string Str_to_Binary(string texto)
+string File::Str_to_Binary(string texto)
 {
     string binario;
     for(unsigned long long int i=0; i<texto.length(); i++){
@@ -330,7 +330,7 @@ string Str_to_Binary(string texto)
     return binario;
 }
 
-string Binary_to_Str(string binario)
+string File::Binary_to_Str(string binario)
 {
     string caracter,texto;
     for(int i=0; i<int(binario.length());i+=8){
@@ -341,7 +341,7 @@ string Binary_to_Str(string binario)
     return texto;
 }
 
-string Cod(string texto)
+string File::Cod(string texto)
 {
     int semilla=4;
     string parte,codificado;
@@ -360,7 +360,7 @@ string Cod(string texto)
     return codificado;
 }
 
-string Cambiar_pos(string binario)
+string File::Cambiar_pos(string binario)
 {
     string binarioCodif;
     binarioCodif += binario[binario.length()-1];
@@ -370,7 +370,7 @@ string Cambiar_pos(string binario)
     return binarioCodif;
 }
 
-string decod(string texto)
+string File::decod(string texto)
 {
     int semilla=4;
     string parte,decodificado;
@@ -391,7 +391,7 @@ string decod(string texto)
     return decodificado;
 }
 
-string cambiar_decof(string binario)
+string File::cambiar_decof(string binario)
 {
     string binario_decof;
     binario_decof += binario[1];
@@ -402,7 +402,7 @@ string cambiar_decof(string binario)
     return binario_decof;
 }
 
-vector<string> usersName()
+vector<string> File::usersName()
 {
     string text;
     text=LeerArchivo();
@@ -440,7 +440,7 @@ vector<string> usersName()
     return users;
 }
 
-vector<string> playerScore(QString user_)
+vector<string> File::playerScore(QString user_)
 {
     string text;
     text=LeerArchivo();

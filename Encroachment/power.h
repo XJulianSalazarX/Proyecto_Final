@@ -35,9 +35,46 @@ public:
     ~Power();
 
 private:
+    /**
+     * @brief radio, radio de la clase power.h.
+     */
+    /**
+     * @brief posx, posicion en x  a traves del tiempo del metodo Circular de la clase power.h.
+     */
+    /**
+     * @brief posy, posicion en y  a traves del tiempo del metodo Circular de la clase power.h.
+     */
     double radio,posx,posy;
+    /**
+     * @brief angle, angulo del metodo Circular de la clase power.h.
+     */
+    /**
+     * @brief x, posicion inicial en x del metodo Circular de la clase power.h.
+     */
+    /**
+     * @brief y, posicion inicial del en y metodo Circular de la clase power.h.
+     */
     int angle,x,y;
+    /**
+     * @brief timer, se conecta con el metodo Circular(con el constructor por defecto)
+      y con la sobrecargar del constuctor se conecta con el metodo MAS de la clase power.h.
+     */
     QTimer *timer;
+    /**
+     * @brief amplitude, amplitud del metodo MAS de la clase power.h.
+     */
+    /**
+     * @brief period, periodo del metodo MAS de la clase power.h.
+     */
+    /**
+     * @brief friction, friccion del metodo MAS de la clase power.h.
+     */
+    /**
+     * @brief time, tiempo del metodo MAS de la clase power.h.
+     */
+    /**
+     * @brief w, velocidad tangencial del metodo MAS de la clase power.h.
+     */
     double amplitude,period,friction,time,w;
 
 public slots:

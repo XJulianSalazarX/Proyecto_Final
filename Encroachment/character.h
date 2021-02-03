@@ -54,13 +54,54 @@ public:
     void continueMove();
 
 private:
+    /**
+     * @brief health, vida de la clase character.h.
+     */
+    /**
+     * @brief speed, velocidad de la clase character.h.
+     */
     double health, speed;
+    /**
+     * @brief w, ancho de la clase character.h.
+     */
+    /**
+     * @brief h, altura de la clase character.h.
+     */
+    /**
+     * @brief col, se utiliza en el medoto actualize para generar el sprite de la clase character.h.
+     */
     double w,h,col;
+    /**
+     * @brief min, determinar el limite minimo en x de la clase character.h.
+     */
+    /**
+     * @brief max, determinar el limite maximo en x de la clase character.h.
+     */
+    /**
+     * @brief last, ancho de la imagen del atributo pixmap de la clase character.h.
+     */
     int min, max, last;
+    /**
+     * @brief pixmap, toma el path de la imagen para la clase character.h.
+     */
     QPixmap *pixmap;
+    /**
+      * @brief timer, se conecta con el metodo actualize de la clase character.h.
+      */
     QTimer *timer;
+    /**
+     * @brief timerM, si el parametro boss del constructor de la clase character.h
+      es verdadero se conecta con el metodo end, si es falso se conecta con el metodo Move.
+      de la clase character.h.
+     */
     QTimer *timerM;
+    /**
+     * @brief timerS, se conecta con el metodo shoot de la clase character.h.
+     */
     QTimer *timerS;
+    /**
+     * @brief timerMove, se conecta con el metodo slow de la clase character.h.
+     */
     QTimer *timerMove;
 
 public slots:

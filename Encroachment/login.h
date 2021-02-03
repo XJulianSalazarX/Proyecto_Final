@@ -13,7 +13,7 @@ namespace Ui {
 class Login;
 }
 
-class Login : public QMainWindow
+class Login : public QMainWindow, public File
 {
     Q_OBJECT
 
