@@ -245,7 +245,7 @@ void Multiplayer::endTurn()
             score1 = QString::number(time1);
         turn2 = true;
         boss_win = false;
-        QMessageBox::critical(this,"Information","turno del jugador 2.");
+        QMessageBox::information(this,"Information","turno del jugador 2.");
         selectLevel();
     }
 
@@ -285,6 +285,8 @@ void Multiplayer::on_next_clicked()
         }
         else if(ui->username->text() == player1){
             QMessageBox::critical(this,"Error","No puede ser el mismo usuario.");
+            ui->username->setText("");
+            ui->password->setText("");
             return;
         }
         else if (existUser(ui->username->text())==false) {
@@ -302,7 +304,7 @@ void Multiplayer::on_next_clicked()
         else if(CheckPassword(ui->username->text(),ui->password->text())==true) {
             //pasar a otra pantalla, porque ya inicio sesion
             player2 = ui->username->text();
-            QMessageBox::critical(this,"Information","turno del jugador 1.");
+            QMessageBox::information(this,"Information","turno del jugador 1.");
             selectLevel();
             return;
         }
