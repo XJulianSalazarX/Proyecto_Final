@@ -48,11 +48,34 @@ public:
     void continueMove();
 
 private:
+    /**
+     * @brief speed, velocidad de la clase boss2.h.
+     */
+    /**
+     * @brief healt, vida de la clase boss2.h.
+     */
     int speed,health;
+    /**
+     * @brief bullet, instancia de la clase EnemyBullet.h.
+     */
     EnemyBullet *bullet;
+    /**
+     * @brief timerM, si boss3(parametro del constructor) es falso se conecta con el metodo Move,
+     si es verdadero se conecta con el metodo Move2. de la clase boss2.h.
+     */
     QTimer *timerM;
+    /**
+     * @brief timerS, se conecta con el metodo Shoot de la clase boss2.h.
+     */
     QTimer *timerS;
+    /**
+     * @brief portal, instancia de la clase portal.h.
+     */
     Portal *portal;
+    /**
+     * @brief other_power, si es verdadero y el atributo health es menor que 25,
+     llama el metodo changePower de la clase level1.h.
+     */
     bool other_power;
 
 public slots:

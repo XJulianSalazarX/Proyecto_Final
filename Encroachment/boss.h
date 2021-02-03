@@ -49,13 +49,47 @@ public:
     void continueMove();
 
 private:
+    /**
+     * @brief w, ancho de la clase boss.h.
+     */
+    /**
+     * @brief h, altura de la clase boss.h.
+     */
+    /**
+     * @brief col, se utiliza en el medoto actualize para generar el sprite de la clase boss.h.
+     */
     double w,h,col;
+    /**
+     * @brief pixmap, toma el path de la imagen para la clase boss.h.
+     */
     QPixmap *pixmap;
+    /**
+     * @brief timer, se conecta con el metodo actualize de la clase boss.h.
+     */
     QTimer *timer;
+    /**
+     * @brief timerM, se conecta con el metodo move de la clase boss.h.
+     */
     QTimer *timerM;
+    /**
+     * @brief timerS, se conecta con el metodo Shoot de la clase boss.h.
+     */
     QTimer *timerS;
+    /**
+     * @brief speed, velocidad de la clase boss.h.
+     */
+    /**
+     * @brief health, vida de la clase boss.h.
+     */
     int speed, health;
+    /**
+     * @brief bullet, instancia de la clase EnemyBullet.h.
+     */
     EnemyBullet *bullet;
+    /**
+     * @brief other_power, si es verdadero y el atributo health es menor que 25,
+     llama el metodo changePower de la clase level1.h.
+     */
     bool other_power;
 
 public slots:
