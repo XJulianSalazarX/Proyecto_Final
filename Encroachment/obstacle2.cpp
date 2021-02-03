@@ -23,7 +23,9 @@ Obstacle2::Obstacle2(int posx): Obstacle(posx)
 
 Obstacle2::~Obstacle2()
 {
-
+   if(type_obs != 1){
+       delete timerWind;
+   }
 }
 
 void Obstacle2::start()

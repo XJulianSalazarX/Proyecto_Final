@@ -12,6 +12,7 @@ Level1::Level1(QWidget *parent) :
     ui->setupUi(this);
 
     posx = 0;
+    song = 0;
     isBoss = false;
     ui->showScore->setVisible(false);
 
@@ -29,7 +30,6 @@ Level1::Level1(QWidget *parent) :
     scene = new QGraphicsScene();
     scene->setBackgroundBrush(QPixmap(":/images/level1.1.jpg"));
     ui->graphicsView->setScene(scene);
-//    ui->graphicsView->setSceneRect(0,0,width(),21600);
     ui->graphicsView->setSceneRect(0,0,width(),10800);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -37,7 +37,6 @@ Level1::Level1(QWidget *parent) :
     //player
     player = new Character();
     scene->addItem(player);
-//    player->setPos(630,21500);
     player->setPos(630,10700);
     //player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
@@ -58,11 +57,19 @@ Level1::Level1(QWidget *parent) :
     timerB = new QTimer();
     connect(timerB,SIGNAL(timeout()),this,SLOT(makeBonus()));
     timerB->start(20000);
+
+    sound = new QMediaPlayer();
+
+    timerSound = new QTimer();
+    connect(timerSound,SIGNAL(timeout()),this,SLOT(Music()));
+    timerSound->start(2000);
 }
 
 Level1::~Level1()
 {
     delete ui;
+    delete sound;
+    delete timerSound;
 }
 
 void Level1::FocusPlayer()
@@ -97,6 +104,8 @@ void Level1::playerScore(int increase)
 
 void Level1::Final()
 {
+    timerSound->stop();
+    timerSound->start(1000);
     isBoss = true;
     timerB->stop();
     timerE->stop();
@@ -195,6 +204,12 @@ double Level1::getPlayerHealth()
 
 void Level1::returnMenu()
 {
+    timerSound->stop();
+    sound->stop();
+    sound->setMedia(QUrl("qrc:/music/resident-evil-game-over.mp3"));
+    sound->setVolume(50);
+    sound->play();
+
     playerHealth();
     timerB->stop();
     timerE->stop();
@@ -206,8 +221,7 @@ void Level1::returnMenu()
     scene->setBackgroundBrush(QPixmap(":/images/fondo.jpg").scaled(1280,720));
     ui->graphicsView->setSceneRect(0,0,width(),720);
 
-    //ui->showScore->setNum(ui->score->intValue());
-    ui->showScore->setText("score" + QString::number(ui->score->intValue()));
+    ui->showScore->setText("score: "+QString::number(ui->score->intValue())+"\nYOU LOOSE");
     ui->showScore->setVisible(true);
 
     ui->retry->setVisible(true);
@@ -217,12 +231,22 @@ void Level1::returnMenu()
 
 void Level1::complete()
 {
+    timerSound->stop();
+    sound->stop();
+    sound->setMedia(QUrl("qrc:/music/victory.mp3"));
+    sound->setVolume(50);
+    sound->play();
+
     scene->clear();
     GoScore(menu->getUsername(),QString::number(ui->score->intValue()),menu->getLevel());
-    UpdateLevel(menu->getUsername(),menu->getLevel());
+    if(menu->getLevel()==1 and !CheckLevel(menu->getUsername(),2) and !CheckLevel(menu->getUsername(),3))
+        UpdateLevel(menu->getUsername(),menu->getLevel());
+    else if(menu->getLevel()==2 and !CheckLevel(menu->getUsername(),3))
+        UpdateLevel(menu->getUsername(),menu->getLevel());
+    else if(menu->getLevel()==3)
+        UpdateLevel(menu->getUsername(),menu->getLevel());
     ui->stop->setVisible(false);
-    ui->showScore->setText("score: " + QString::number(ui->score->intValue()));
-    //ui->showScore->setNum(ui->score->intValue());
+    ui->showScore->setText("score: "+QString::number(ui->score->intValue())+"\nYOU WON");
     ui->showScore->setVisible(true);
     ui->home->setVisible(true);
 }
@@ -231,7 +255,7 @@ void Level1::changePower()
 {
     scene->removeItem(power);
     delete power;
-    power = new Power(90,4,0.05);
+    power = new Power(90,5,0.03);
     scene->addItem(power);
 }
 
@@ -309,6 +333,53 @@ void Level1::makeBonus()
     scene->addItem(bonus);
 }
 
+void Level1::Music()
+{
+    short num = 0;
+    while(num == song){
+        num=rand()%3;
+    }
+    song = num;
+    if(isBoss){
+        if(num == 0){
+            sound->setMedia(QUrl("qrc:/music/assasin-3-assasin.mp3"));
+            sound->setVolume(30);
+            sound->play();
+        }
+        else if(num == 1){
+            sound->setMedia(QUrl("qrc:/music/musica-peliculas-15-.mp3"));
+            sound->setVolume(30);
+            sound->play();
+        }
+        else{
+            sound->setMedia(QUrl("qrc:/music/ringtones-of-caribbean.mp3"));
+            sound->setVolume(30);
+            sound->play();
+        }
+        timerSound->start(30000);
+    }
+    else{
+        if(num == 0){
+            sound->setMedia(QUrl("qrc:/music/kill-bill-sirena.mp3"));
+            sound->setVolume(30);
+            sound->play();
+            timerSound->start(15000);
+        }
+        else if(num == 1){
+            sound->setMedia(QUrl("qrc:/music/mision-imposible-peliculas-.mp3"));
+            sound->setVolume(30);
+            sound->play();
+            timerSound->start(32000);
+        }
+        else{
+            sound->setMedia(QUrl("qrc:/music/pulp-fiction-tiempos-violentos-peliculas-.mp3"));
+            sound->setVolume(30);
+            sound->play();
+            timerSound->start(25000);
+        }
+    }
+}
+
 void Level1::on_stop_clicked()
 {
     if(!isBoss){
@@ -318,11 +389,11 @@ void Level1::on_stop_clicked()
     }
     else if(menu->getLevel() == 1){
         boss->stopMove();
-        player->stopMove2();
+        player->stopMove();
     }
     else{
         boss2->stopMove();
-        player->stopMove2();
+        player->stopMove();
     }
 
     ui->cont->setVisible(true);
@@ -339,11 +410,11 @@ void Level1::on_cont_clicked()
     }
     else if(menu->getLevel() == 1){
         boss->continueMove();
-        player->continueMove2();
+        player->continueMove();
     }
     else{
         boss2->continueMove();
-        player->continueMove2();
+        player->continueMove();
     }
 
     ui->cont->setVisible(false);
@@ -357,6 +428,7 @@ void Level1::on_retry_clicked()
     close();
     menu->show();
     delete this;
+    menu->startTimer();
     return;
 }
 
@@ -365,7 +437,9 @@ void Level1::on_home_clicked()
     scene->clear();
     close();
     menu->show();
+    menu->startTimer();
     menu->on_back_clicked();
     delete this;
+    menu->startTimer();
     return;
 }

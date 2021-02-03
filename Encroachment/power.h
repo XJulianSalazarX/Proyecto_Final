@@ -12,6 +12,7 @@ class Power:public QObject, public QGraphicsPixmapItem
 public:
     Power();
     Power(double amplitude_,double period_, double friction_);
+    ~Power();
 
 private:
     double radio,posx,posy;

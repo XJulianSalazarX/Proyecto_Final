@@ -12,6 +12,7 @@ class CanonBullet:public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     CanonBullet(double Vo_,double Xo_,double Yo_);
+    ~CanonBullet();
 
 private:
     int angle,y;

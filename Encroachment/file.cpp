@@ -221,7 +221,7 @@ void UpdateLevel(QString user, int level)
 
     text_new=Str_to_Binary(text_new);
     text_new=Cod(text_new);
-    text_new=Binary_to_Str( text_new);
+    text_new=Binary_to_Str(text_new);
 
     SaveArchivo(text_new);
 }

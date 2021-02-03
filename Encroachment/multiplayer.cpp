@@ -53,15 +53,24 @@ Multiplayer::Multiplayer(QWidget *parent) :
     ui->graphicsView->setSceneRect(0,0,width(),height()-20);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    //scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(time()));
+
+    sound = new QMediaPlayer();
+    sound->setMedia(QUrl("qrc:/music/ringtones-game-of-thrones-west.mp3"));
+    sound->play();
+    sound->setVolume(30);
+    changeSound = true;
+    timerSound = new QTimer();
+    connect(timerSound,SIGNAL(timeout()),this,SLOT(otherMusic()));
+    timerSound->start(30000);
 }
 
 Multiplayer::~Multiplayer()
 {
     delete ui;
+    delete sound;
 }
 
 void Multiplayer::selectLevel()
@@ -72,7 +81,6 @@ void Multiplayer::selectLevel()
         ui->playerName->setText(player1);
 
     ui->playerName->setVisible(true);
-    //scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->username->setVisible(false);
     ui->password->setVisible(false);
@@ -87,6 +95,10 @@ void Multiplayer::selectLevel()
 
 void Multiplayer::startGame()
 {
+    if(!CheckLevel(player1,level)){
+        QMessageBox::critical(this,"Error","Nivel bloqueado.");
+        return;
+    }
     ui->progressBar->setVisible(true);
     ui->progressBar->setRange(0,100);
     ui->progressBar->setValue(100);
@@ -104,7 +116,6 @@ void Multiplayer::startGame()
 
     if(menu->getLevel() == 1){
 
-//        scene->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
         ui->graphicsView->setBackgroundBrush(QPixmap(":/images/level 1.2.jpg"));
         ui->graphicsView->setSceneRect(0,0,width(),720);
 
@@ -130,7 +141,6 @@ void Multiplayer::startGame()
     }
     else if(menu->getLevel() == 2){
 
-//        scene->setBackgroundBrush(QPixmap(":/images/level 2.2.jpg"));
         ui->graphicsView->setBackgroundBrush(QPixmap(":/images/level 2.2.jpg"));
         ui->graphicsView->setSceneRect(0,0,width(),720);
 
@@ -213,7 +223,7 @@ void Multiplayer::changePower()
 {
     scene->removeItem(power);
     delete power;
-    power = new Power(90,4,0.05);
+    power = new Power(90,5,0.03);
     scene->addItem(power);
 }
 
@@ -225,7 +235,6 @@ void Multiplayer::endTurn()
     scene->removeItem(power);
     delete power;
     scene->clear();
-//    scene->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     ui->graphicsView->setBackgroundBrush(QBrush(QImage(":/images/fondo.jpg").scaled(1280,720)));
     if(!turn2){
         if(boss_win)
@@ -412,6 +421,7 @@ void Multiplayer::on_back_clicked()
     menu->setCharacter(0);
     close();
     delete this;
+    menu->startTimer();
     return;
 }
 
@@ -425,4 +435,22 @@ void Multiplayer::time()
     if(!turn2)
         time1 += 0.1;
     else time2 += 0.1;
+}
+
+void Multiplayer::otherMusic()
+{
+    if(changeSound == true){
+        changeSound = false;
+        sound->setMedia(QUrl("qrc:/music/rocky.mp3"));
+        sound->setVolume(30);
+        sound->play();
+        timer->start(37000);
+    }
+    else{
+        changeSound = true;
+        sound->setMedia(QUrl("qrc:/music/ringtones-game-of-thrones-west.mp3"));
+        sound->setVolume(30);
+        sound->play();
+        timer->start(30000);
+    }
 }

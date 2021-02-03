@@ -6,7 +6,6 @@ extern Menu *menu;
 
 Bonus::Bonus(QObject *parent):QObject(parent)
 {
-    //setPixmap(QPixmap(":/images/play.png").scaled(70,70));
 
     pixmap = new QPixmap(":/images/box.png");
 

@@ -2,7 +2,6 @@
 #define ENEMY_H
 
 #include <QObject>
-//#include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
 #include <QPixmap>
 #include <QPainter>

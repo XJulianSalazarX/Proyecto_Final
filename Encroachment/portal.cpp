@@ -19,7 +19,9 @@ Portal::Portal(QObject *parent):QObject(parent)
 
 Portal::~Portal()
 {
-
+    delete pixmap;
+    delete timerS;
+    delete timer;
 }
 
 QRectF Portal::boundingRect() const

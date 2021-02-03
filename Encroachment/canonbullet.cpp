@@ -23,6 +23,11 @@ CanonBullet::CanonBullet(double Vo_,double Xo_,double Yo_)
     timer->start(10);
 }
 
+CanonBullet::~CanonBullet()
+{
+    delete timer;
+}
+
 void CanonBullet::Move()
 {
     time += 0.05;

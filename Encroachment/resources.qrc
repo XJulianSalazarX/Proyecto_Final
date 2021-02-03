@@ -55,5 +55,18 @@
         <file>images/multiplayer.png</file>
         <file>images/objetivo.png</file>
         <file>images/instrucciones.jpg</file>
+        <file>music/assasin-3-assasin.mp3</file>
+        <file>music/gta-san-andreas-f.mp3</file>
+        <file>music/kill-bill-sirena.mp3</file>
+        <file>music/mision-imposible-peliculas-.mp3</file>
+        <file>music/musica-peliculas-15-.mp3</file>
+        <file>music/pulp-fiction-tiempos-violentos-peliculas-.mp3</file>
+        <file>music/resident-evil-game-over.mp3</file>
+        <file>music/ringtones-game-of-thrones-west.mp3</file>
+        <file>music/ringtones-kill-bill-whistle.mp3</file>
+        <file>music/ringtones-of-caribbean.mp3</file>
+        <file>music/rocky.mp3</file>
+        <file>music/victory.mp3</file>
+        <file>music/choose-mario-kart.mp3</file>
     </qresource>
 </RCC>
