@@ -34,9 +34,27 @@ public:
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option,QWidget *widget);
 
 private:
+    /**
+     * @brief w, ancho de la clase bonus.h.
+     */
+    /**
+     * @brief h, altura de la clase bonus.h.
+     */
+    /**
+     * @brief col, se utiliza en el medoto actualize para generar el sprite de la clase bonus.h.
+     */
     double w,h,col;
+    /**
+     * @brief pixmap, toma el path de la imagen para la clase bonus.h.
+     */
     QPixmap *pixmap;
+    /**
+     * @brief timer,  se conecta con el metodo actualize de la clase bonus.h.
+     */
     QTimer *timer;
+    /**
+     * @brief timerM, se conecta con el metodo Move de la clase bonus.h.
+     */
     QTimer *timerM;
 
 public slots:

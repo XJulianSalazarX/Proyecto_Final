@@ -30,9 +30,36 @@ public:
     ~CanonBullet();
 
 private:
+    /**
+     * @brief angle, angulo de la clase canonbullet.h.
+     */
     int angle;
+    /**
+     * @brief time, tiempo de la clase canonbullet.h.
+     */
     double time;
+    /**
+     * @brief Vo, velocidad inicial de la clase canonbullet.h.
+     */
+    /**
+     * @brief Xo, posicion inicial en x de la clase canonbullet.h.
+     */
+    /**
+     * @brief Yo, posicion inicial en y de la clase canonbullet.h.
+     */
+    /**
+     * @brief posx, posicion en x que va tomando la clase a medida que time avanza.
+     */
+    /**
+     * @brief posy,posicion en y que va tomando la clase a medida que time avanza.
+     */
+    /**
+     * @brief g, gravedad de la clase canonbullet.h.
+     */
     double Vo,Xo,Yo,posx,posy,g;
+    /**
+     * @brief timer, se conecta con el metodo Move de la clase canonbullet.h.
+     */
     QTimer *timer;
 
 public slots:

@@ -36,10 +36,31 @@ public:
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option,QWidget *widget);
 
 protected:
+    /**
+     * @brief w, ancho de la clase enemy.h.
+     */
+    /**
+     * @brief h, altura de la clase enemy.h.
+     */
+    /**
+     * @brief col, se utiliza en el medoto actualize para generar el sprite de la clase enemy.h.
+     */
     double w,h,col;
+    /**
+     * @brief timer, se conecta con el metodo actualize de la clase enemy.h.
+     */
     QPixmap *pixmap;
+    /**
+     * @brief timer, se conecta con el metodo actualize de la clase enemy.h.
+     */
     QTimer *timer;
+    /**
+     * @brief timerM, se conecta con el metodo Move de la clase enemy.h.
+     */
     QTimer *timerM;
+    /**
+      * @brief health, vida de la clase enemy.h.
+      */
     double health;
 
 public slots:

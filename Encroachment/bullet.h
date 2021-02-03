@@ -36,6 +36,9 @@ public slots:
     void move();
 
 protected:
+    /**
+     * @brief timer, se conecta con el metodo move de la clase bullet.h.
+     */
     QTimer *timer;
 };
 

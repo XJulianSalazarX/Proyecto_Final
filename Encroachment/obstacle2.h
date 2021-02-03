@@ -32,7 +32,13 @@ public:
     void start();
 
 private:
+    /**
+     * @brief timerWind, se conecta con el metodo moveWind de la clase obstacle2.h.
+     */
     QTimer *timerWind;
+    /**
+     * @brief pix, es la cantidad de pixeles en x que se mueve la clase obstacle2.h.
+     */
     short pix;
 
 public slots:
