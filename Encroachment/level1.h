@@ -18,12 +18,13 @@
 #include "power.h"
 #include "boss2.h"
 #include <QMediaPlayer>
+#include <file.h>
 
 namespace Ui {
 class Level1;
 }
 
-class Level1 : public QWidget
+class Level1 : public QWidget, public File
 {
     Q_OBJECT
 

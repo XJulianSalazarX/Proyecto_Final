@@ -179,7 +179,6 @@ void Character::Move()
                 scene()->removeItem(i);
                 delete i;
                 health -= 7;
-
                 if(health <= 0){
                     scene()->removeItem(this);
                     delete this;

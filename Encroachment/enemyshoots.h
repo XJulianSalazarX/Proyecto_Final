@@ -34,7 +34,7 @@ private:
 
 public slots:
     /**
-     * @brief Shoot, genera instancias de la clase enemybullet, y las añade a
+     * @brief Shoot, genera instancias de la clase enemybullet.h, y las añade a
      scene (instancia de la clase QGraphicsScene).
      */
     void Shoot();

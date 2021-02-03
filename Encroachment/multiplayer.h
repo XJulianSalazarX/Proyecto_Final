@@ -11,13 +11,14 @@
 #include "boss2.h"
 #include "power.h"
 #include <QMediaPlayer>
+#include <file.h>
 
 
 namespace Ui {
 class Multiplayer;
 }
 
-class Multiplayer : public QWidget
+class Multiplayer : public QWidget, public File
 {
     Q_OBJECT
 

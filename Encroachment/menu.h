@@ -21,7 +21,7 @@ namespace Ui {
 class Menu;
 }
 
-class Menu : public QWidget
+class Menu : public QWidget,public File
 {
     Q_OBJECT
 

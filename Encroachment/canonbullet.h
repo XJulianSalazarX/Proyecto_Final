@@ -30,7 +30,7 @@ public:
     ~CanonBullet();
 
 private:
-    int angle,y;
+    int angle;
     double time;
     double Vo,Xo,Yo,posx,posy,g;
     QTimer *timer;
