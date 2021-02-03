@@ -145,16 +145,19 @@ void Menu::Music()
     song = num;
     if(num == 0){
         sound->setMedia(QUrl("qrc:/music/choose-mario-kart.mp3"));
+        sound->setVolume(30);
         sound->play();
         timerSound->start(30000);
     }
     else if(num == 1){
         sound->setMedia(QUrl("qrc:/music/ringtones-kill-bill-whistle.mp3"));
+        sound->setVolume(30);
         sound->play();
         timerSound->start(20000);
     }
     else{
         sound->setMedia(QUrl("qrc:/music/gta-san-andreas-f.mp3"));
+        sound->setVolume(30);
         sound->play();
         timerSound->start(30000);
     }
@@ -356,6 +359,7 @@ void Menu::on_top_clicked()
     ui->back->setVisible(true);
     vector<string> users = usersName();
     ui->label->setVisible(true);
+    ui->label->setStyleSheet("font: 15pt Papyrus");
     ui->label->setText("Usuarios:");
     ui->label->setGeometry(500,0,500,720);
     for(auto i=users.begin();i!=users.end();i++){
@@ -374,6 +378,7 @@ void Menu::on_profile_clicked()
     ui->label->setText(username);
     ui->label->setText(ui->label->text()+"\n"+"Level1: \t\t"+"Level2: \t\t"+"Level3: \t\t");
     ui->label->setGeometry(100,0,1100,720);
+    ui->label->setStyleSheet("font: 30pt Papyrus");
     for(short i=0;i<3;i++){
         ui->label->setText(ui->label->text()+"\n"+QString::fromStdString(point[i]));
         ui->label->setText(ui->label->text()+" \t\t"+QString::fromStdString(point[i+3]));

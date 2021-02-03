@@ -11,7 +11,7 @@ Level3::Level3(Level1 *parent) :
 
     disconnect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies()));
     connect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies()));
-    timerE->start(1750);
+    timerE->start(1700);
 }
 
 Level3::~Level3()
@@ -61,16 +61,19 @@ void Level3::makeObstacles()
 
 void Level3::makeEnemies2()
 {
-    int random;
+    int random,pos;
+    pos = posx;
     for(short i = 0; i < 3; i++){
         do{
             random = 190 +rand() % (800-190);
-        }while(abs(posx-random) < 150);
-        posx = random;
+        }while(abs(posx-random) < 300 and abs(pos-random) < 300);
+        posx = pos;
+        pos = random;
 
-        enemy2 = new EnemyShoots(posx);
+        enemy2 = new EnemyShoots(pos);
         scene->addItem(enemy2);
     }
+    posx = random;
     timerE->stop();
 
     disconnect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies2()));

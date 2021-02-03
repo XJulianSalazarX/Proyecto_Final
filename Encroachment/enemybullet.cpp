@@ -11,13 +11,13 @@ EnemyBullet::EnemyBullet()
 
     disconnect(timer,SIGNAL(timeout()),this,SLOT(move()));
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(18);
+    timer->start(13);
 }
 
 void EnemyBullet::move()
 {
     //mover la bala hacia arriba
-    setPos(x(),y()+10);
+    setPos(x(),y()+7);
     //eliminar la bala
     if(menu->getMult()){
         if(pos().y() > menu->multiplayer->playerPos()+100){

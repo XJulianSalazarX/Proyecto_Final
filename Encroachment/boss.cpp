@@ -23,7 +23,7 @@ Boss::Boss(QObject *parent):QObject(parent)
 
     timerS = new QTimer();
     connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
-    timerS->start(1300);
+    timerS->start(1000);
 
     setPos(540,100);
     other_power = true;

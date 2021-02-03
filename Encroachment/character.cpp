@@ -32,10 +32,6 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         connect(timer,SIGNAL(timeout()),this,SLOT(actualize()));
         timer->start(100);
 
-        timerS = new QTimer();
-        connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
-        timerS->start(500);
-
         timerM = new QTimer();
         connect(timerM,SIGNAL(timeout()),this,SLOT(End()));
         timerM->start(20);
@@ -68,13 +64,14 @@ Character::Character(bool boss,QObject *parent):QObject(parent)
         connect(timerM,SIGNAL(timeout()),this,SLOT(Move()));
         timerM->start(20);
 
-        timerS = new QTimer();
-        connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
-        timerS->start(500);
-
         timerMove = new QTimer();
         connect(timerMove,SIGNAL(timeout()),this,SLOT(Slow()));
     }
+
+    timerS = new QTimer();
+    connect(timerS,SIGNAL(timeout()),this,SLOT(Shoot()));
+    timerS->start(500);
+
 }
 
 Character::~Character()

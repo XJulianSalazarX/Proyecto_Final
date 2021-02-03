@@ -112,7 +112,7 @@ void Boss2::Move()
             speed = -5;
             setPixmap(QPixmap(":/images/ufo2.png").scaled(159,100));
         }
-        if(abs(x()-menu->level1->playerPosX()) > 3)
+        if(abs(x()-menu->level1->playerPosX()) > 1)
             setPos(x()+speed,y());
     }
     else{
@@ -124,7 +124,7 @@ void Boss2::Move()
             speed = -5;
             setPixmap(QPixmap(":/images/ufo2.png").scaled(159,100));
         }
-        if(abs(x()-menu->multiplayer->playerPosX()) > 3)
+        if(abs(x()-menu->multiplayer->playerPosX()) > 1)
             setPos(x()+speed,y());
     }
 }

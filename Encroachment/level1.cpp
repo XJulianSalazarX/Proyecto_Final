@@ -37,8 +37,8 @@ Level1::Level1(QWidget *parent) :
     //player
     player = new Character();
     scene->addItem(player);
-    //player->setPos(630,10700);
-    player->setPos(630,720);
+    player->setPos(630,10700);
+    //player->setPos(630,720);
     ui->graphicsView->centerOn(player->x(),player->y());
     ui->progressBar->setRange(0,100);
     ui->progressBar_2->setVisible(false);
@@ -207,6 +207,7 @@ void Level1::returnMenu()
     timerSound->stop();
     sound->stop();
     sound->setMedia(QUrl("qrc:/music/resident-evil-game-over.mp3"));
+    sound->setVolume(50);
     sound->play();
 
     playerHealth();
@@ -220,8 +221,7 @@ void Level1::returnMenu()
     scene->setBackgroundBrush(QPixmap(":/images/fondo.jpg").scaled(1280,720));
     ui->graphicsView->setSceneRect(0,0,width(),720);
 
-    //ui->showScore->setNum(ui->score->intValue());
-    ui->showScore->setText("score" + QString::number(ui->score->intValue()));
+    ui->showScore->setText("score: "+QString::number(ui->score->intValue())+"\nYOU LOOSE");
     ui->showScore->setVisible(true);
 
     ui->retry->setVisible(true);
@@ -234,18 +234,19 @@ void Level1::complete()
     timerSound->stop();
     sound->stop();
     sound->setMedia(QUrl("qrc:/music/victory.mp3"));
+    sound->setVolume(50);
     sound->play();
 
     scene->clear();
     GoScore(menu->getUsername(),QString::number(ui->score->intValue()),menu->getLevel());
-    if(menu->getLevel()==1 and !CheckLevel(menu->getUsername(),2))
+    if(menu->getLevel()==1 and !CheckLevel(menu->getUsername(),2) and !CheckLevel(menu->getUsername(),3))
         UpdateLevel(menu->getUsername(),menu->getLevel());
     else if(menu->getLevel()==2 and !CheckLevel(menu->getUsername(),3))
         UpdateLevel(menu->getUsername(),menu->getLevel());
     else if(menu->getLevel()==3)
         UpdateLevel(menu->getUsername(),menu->getLevel());
     ui->stop->setVisible(false);
-    ui->showScore->setText("score: " + QString::number(ui->score->intValue()));
+    ui->showScore->setText("score: "+QString::number(ui->score->intValue())+"\nYOU WON");
     ui->showScore->setVisible(true);
     ui->home->setVisible(true);
 }
@@ -254,7 +255,7 @@ void Level1::changePower()
 {
     scene->removeItem(power);
     delete power;
-    power = new Power(90,4,0.05);
+    power = new Power(90,5,0.03);
     scene->addItem(power);
 }
 
@@ -342,14 +343,17 @@ void Level1::Music()
     if(isBoss){
         if(num == 0){
             sound->setMedia(QUrl("qrc:/music/assasin-3-assasin.mp3"));
+            sound->setVolume(30);
             sound->play();
         }
         else if(num == 1){
             sound->setMedia(QUrl("qrc:/music/musica-peliculas-15-.mp3"));
+            sound->setVolume(30);
             sound->play();
         }
         else{
             sound->setMedia(QUrl("qrc:/music/ringtones-of-caribbean.mp3"));
+            sound->setVolume(30);
             sound->play();
         }
         timerSound->start(30000);
@@ -357,16 +361,19 @@ void Level1::Music()
     else{
         if(num == 0){
             sound->setMedia(QUrl("qrc:/music/kill-bill-sirena.mp3"));
+            sound->setVolume(30);
             sound->play();
             timerSound->start(15000);
         }
         else if(num == 1){
             sound->setMedia(QUrl("qrc:/music/mision-imposible-peliculas-.mp3"));
+            sound->setVolume(30);
             sound->play();
             timerSound->start(32000);
         }
         else{
             sound->setMedia(QUrl("qrc:/music/pulp-fiction-tiempos-violentos-peliculas-.mp3"));
+            sound->setVolume(30);
             sound->play();
             timerSound->start(25000);
         }

@@ -10,7 +10,7 @@ Bullet::Bullet()
 
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(15);
+    timer->start(10);
 }
 
 Bullet::~Bullet()
@@ -31,7 +31,7 @@ void Bullet::continueMove()
 void Bullet::move()
 {
     //mover la bala hacia arriba
-    setPos(x(),y()-10);
+    setPos(x(),y()-7);
     //eliminar la bala
 
     if(menu->getMult() == true){

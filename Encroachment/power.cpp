@@ -30,7 +30,7 @@ Power::Power(double amplitude_, double period_, double friction_)
 
     timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(MAS()));
-    timer->start(50);
+    timer->start(20);
 }
 
 Power::~Power()
@@ -49,7 +49,7 @@ void Power::Circular()
 
 void Power::MAS()
 {
-    time += 0.05;
+    time += 0.02;
 
       x = amplitude*exp(-friction*time)*cos(w*time);
       setRotation(x);

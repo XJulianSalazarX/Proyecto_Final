@@ -60,6 +60,7 @@ Multiplayer::Multiplayer(QWidget *parent) :
     sound = new QMediaPlayer();
     sound->setMedia(QUrl("qrc:/music/ringtones-game-of-thrones-west.mp3"));
     sound->play();
+    sound->setVolume(30);
     changeSound = true;
     timerSound = new QTimer();
     connect(timerSound,SIGNAL(timeout()),this,SLOT(otherMusic()));
@@ -94,6 +95,10 @@ void Multiplayer::selectLevel()
 
 void Multiplayer::startGame()
 {
+    if(!CheckLevel(player1,level)){
+        QMessageBox::critical(this,"Error","Nivel bloqueado.");
+        return;
+    }
     ui->progressBar->setVisible(true);
     ui->progressBar->setRange(0,100);
     ui->progressBar->setValue(100);
@@ -218,7 +223,7 @@ void Multiplayer::changePower()
 {
     scene->removeItem(power);
     delete power;
-    power = new Power(90,4,0.05);
+    power = new Power(90,5,0.03);
     scene->addItem(power);
 }
 
@@ -437,12 +442,14 @@ void Multiplayer::otherMusic()
     if(changeSound == true){
         changeSound = false;
         sound->setMedia(QUrl("qrc:/music/rocky.mp3"));
+        sound->setVolume(30);
         sound->play();
         timer->start(37000);
     }
     else{
         changeSound = true;
         sound->setMedia(QUrl("qrc:/music/ringtones-game-of-thrones-west.mp3"));
+        sound->setVolume(30);
         sound->play();
         timer->start(30000);
     }
