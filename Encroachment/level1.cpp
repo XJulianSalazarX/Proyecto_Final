@@ -10,6 +10,7 @@ Level1::Level1(QWidget *parent) :
     ui(new Ui::Level1)
 {
     ui->setupUi(this);
+    setWindowTitle("Encroachment");
 
     posx = 0;
     song = 0;

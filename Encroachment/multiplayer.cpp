@@ -10,6 +10,7 @@ Multiplayer::Multiplayer(QWidget *parent) :
     ui(new Ui::Multiplayer)
 {
     ui->setupUi(this);
+    setWindowTitle("Multiplayer");
     player1 = menu->getUsername();
 
     turn2 = false;

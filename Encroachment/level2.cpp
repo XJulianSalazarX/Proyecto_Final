@@ -9,6 +9,7 @@ Level2::Level2(Level1 *parent) :
     ui(new Ui::Level2)
 {
     ui->setupUi(this);
+        setWindowTitle("Encroachment");
     scene->setBackgroundBrush(QPixmap(":/images/level2.1.jpg"));
 
     disconnect(timerE,SIGNAL(timeout()),this,SLOT(makeEnemies()));

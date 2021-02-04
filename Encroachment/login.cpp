@@ -10,6 +10,7 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
+    setWindowTitle("Encroachment");
 
     this->setMinimumSize(width(),height());
     this->setMaximumSize(width(),height());
