@@ -208,7 +208,7 @@ void Level1::returnMenu()
     timerSound->stop();
     sound->stop();
     sound->setMedia(QUrl("qrc:/music/resident-evil-game-over.mp3"));
-    sound->setVolume(50);
+    sound->setVolume(15);
     sound->play();
 
     playerHealth();
@@ -235,7 +235,7 @@ void Level1::complete()
     timerSound->stop();
     sound->stop();
     sound->setMedia(QUrl("qrc:/music/victory.mp3"));
-    sound->setVolume(50);
+    sound->setVolume(15);
     sound->play();
 
     scene->clear();
@@ -344,17 +344,17 @@ void Level1::Music()
     if(isBoss){
         if(num == 0){
             sound->setMedia(QUrl("qrc:/music/assasin-3-assasin.mp3"));
-            sound->setVolume(30);
+            sound->setVolume(10);
             sound->play();
         }
         else if(num == 1){
             sound->setMedia(QUrl("qrc:/music/musica-peliculas-15-.mp3"));
-            sound->setVolume(30);
+            sound->setVolume(10);
             sound->play();
         }
         else{
             sound->setMedia(QUrl("qrc:/music/ringtones-of-caribbean.mp3"));
-            sound->setVolume(30);
+            sound->setVolume(10);
             sound->play();
         }
         timerSound->start(30000);
@@ -362,19 +362,19 @@ void Level1::Music()
     else{
         if(num == 0){
             sound->setMedia(QUrl("qrc:/music/kill-bill-sirena.mp3"));
-            sound->setVolume(30);
+            sound->setVolume(10);
             sound->play();
             timerSound->start(15000);
         }
         else if(num == 1){
             sound->setMedia(QUrl("qrc:/music/mision-imposible-peliculas-.mp3"));
-            sound->setVolume(30);
+            sound->setVolume(10);
             sound->play();
             timerSound->start(32000);
         }
         else{
             sound->setMedia(QUrl("qrc:/music/pulp-fiction-tiempos-violentos-peliculas-.mp3"));
-            sound->setVolume(30);
+            sound->setVolume(10);
             sound->play();
             timerSound->start(25000);
         }

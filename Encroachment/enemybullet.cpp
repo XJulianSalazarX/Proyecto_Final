@@ -11,7 +11,7 @@ EnemyBullet::EnemyBullet()
 
     disconnect(timer,SIGNAL(timeout()),this,SLOT(move()));
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(13);
+    timer->start(12);
 }
 
 void EnemyBullet::move()

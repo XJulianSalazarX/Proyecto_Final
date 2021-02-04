@@ -1,3 +1,9 @@
+/**
+  @file file.h
+  @version 1.0
+  @title Class File
+  @brief Clase usada para el manejo de archivos.
+  */
 #ifndef FILE_H
 #define FILE_H
 

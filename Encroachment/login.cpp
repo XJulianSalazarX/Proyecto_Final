@@ -99,6 +99,14 @@ void Login::on_next_clicked()
             ui->Username->setText("");
             ui->Password->setText("");
             ui->password_2->setText("");
+            return;
+        }
+        else if(ui->Password->text()== ui->Username->text()){
+            QMessageBox::critical(this,"Error","el usuario y clave no pueden ser iguales.");
+            ui->Username->setText("");
+            ui->Password->setText("");
+            ui->password_2->setText("");
+            return;
         }
         else if(!ValidUandP(ui->Username->text())){
             QMessageBox::critical(this,"Error","Usuario y clave no deben llevar : o \\n o \\r");

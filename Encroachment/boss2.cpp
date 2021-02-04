@@ -87,7 +87,7 @@ void Boss2::Move()
                        menu->multiplayer->changePower();
                     other_power=false;
                 }
-                if(health == 0){
+                if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
                     if(!menu->getMult()){
@@ -156,7 +156,7 @@ void Boss2::Move2()
                         menu->multiplayer->changePower();
                     other_power=false;
                 }
-                if(health == 0){
+                if(health <= 0){
                     scene()->removeItem(this);
                     delete this;
                     if(!menu->getMult()){

@@ -2,7 +2,7 @@
   @file level1.h
   @version 1.0
   @title Class Level1
-  @brief hereda QWidget de la librereria de Qt creator, esta clase
+  @brief hereda QWidget de la librereria de Qt creator, y la clase file, esta clase
   representa el nivel 1 del juego encroachment.
   */
 #ifndef LEVEL1_H
@@ -199,21 +199,9 @@ public slots:
 
 
 private slots:
-    /**
-     * @brief on_stop_clicked,
-     */
     void on_stop_clicked();
-    /**
-     * @brief on_cont_clicked
-     */
     void on_cont_clicked();
-    /**
-     * @brief on_retry_clicked
-     */
     void on_retry_clicked();
-    /**
-     * @brief on_home_clicked
-     */
     void on_home_clicked();
 };
 

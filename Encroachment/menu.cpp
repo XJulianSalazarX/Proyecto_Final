@@ -146,19 +146,19 @@ void Menu::Music()
     song = num;
     if(num == 0){
         sound->setMedia(QUrl("qrc:/music/choose-mario-kart.mp3"));
-        sound->setVolume(30);
+        sound->setVolume(10);
         sound->play();
         timerSound->start(30000);
     }
     else if(num == 1){
         sound->setMedia(QUrl("qrc:/music/ringtones-kill-bill-whistle.mp3"));
-        sound->setVolume(30);
+        sound->setVolume(10);
         sound->play();
         timerSound->start(20000);
     }
     else{
         sound->setMedia(QUrl("qrc:/music/gta-san-andreas-f.mp3"));
-        sound->setVolume(30);
+        sound->setVolume(10);
         sound->play();
         timerSound->start(30000);
     }

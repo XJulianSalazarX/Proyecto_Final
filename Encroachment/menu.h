@@ -2,7 +2,7 @@
   @file menu.h
   @version 1.0
   @title Class Menu
-  @brief hereda QWidget de la librereria de Qt creator, esta clase
+  @brief hereda QWidget de la librereria de Qt creator, y la clase file, esta clase
   representa el menu del juego encroachment.
   */
 #ifndef MENU_H

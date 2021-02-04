@@ -61,7 +61,7 @@ Multiplayer::Multiplayer(QWidget *parent) :
     sound = new QMediaPlayer();
     sound->setMedia(QUrl("qrc:/music/ringtones-game-of-thrones-west.mp3"));
     sound->play();
-    sound->setVolume(30);
+    sound->setVolume(10);
     changeSound = true;
     timerSound = new QTimer();
     connect(timerSound,SIGNAL(timeout()),this,SLOT(otherMusic()));
@@ -230,6 +230,7 @@ void Multiplayer::changePower()
 
 void Multiplayer::endTurn()
 {
+    qDebug() << time1 << "  " << time2;
     timer->stop();
     ui->progressBar->setVisible(false);
     ui->progressBar_2->setVisible(false);
@@ -445,14 +446,14 @@ void Multiplayer::otherMusic()
     if(changeSound == true){
         changeSound = false;
         sound->setMedia(QUrl("qrc:/music/rocky.mp3"));
-        sound->setVolume(30);
+        sound->setVolume(10);
         sound->play();
         timer->start(37000);
     }
     else{
         changeSound = true;
         sound->setMedia(QUrl("qrc:/music/ringtones-game-of-thrones-west.mp3"));
-        sound->setVolume(30);
+        sound->setVolume(10);
         sound->play();
         timer->start(30000);
     }

@@ -1,3 +1,10 @@
+/**
+  @file login.h
+  @version 1.0
+  @title Class Login
+  @brief hereda QWidget de la librereria de Qt creator, y la clase file, esta clase
+  se usa para registar usuario o iniciar seccíon.
+  */
 #ifndef LOGIN_H
 #define LOGIN_H
 
