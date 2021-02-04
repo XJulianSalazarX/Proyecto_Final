@@ -18,7 +18,14 @@ class Login : public QMainWindow, public File
     Q_OBJECT
 
 public:
+    /**
+     * @brief Login, constructor de la clase login.h.
+     * @param parent
+     */
     explicit Login(QWidget *parent = nullptr);
+    /**
+      *@brief ~Login, destructor de la clase login.h.
+      */
     ~Login();
 
 private slots:
@@ -32,6 +39,9 @@ private slots:
 
 private:
     Ui::Login *ui;
+    /**
+     * @brief scene_login, instacia de la clase QGraphicsScene.
+     */
     QGraphicsScene *scene_login;
 };
 

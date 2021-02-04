@@ -101,25 +101,74 @@ public:
 
 protected:
     Ui::Level1 *ui;
+    /**
+     * @brief scene, instacia de la clase QGraphicsScene.
+     */
     QGraphicsScene *scene;
+    /**
+     * @brief player, instacia de la clase Character.
+     */
     Character *player;
+    /**
+     * @brief enemy, instacia de la clase Enemy.
+     */
     Enemy *enemy;
+    /**
+     * @brief obs, instacia de la clase Obstacle.
+     */
     Obstacle *obs;
+    /**
+     * @brief enemy2, instacia de la clase EnemyShoots.
+     */
     EnemyShoots *enemy2;
+    /**
+     * @brief obs2, instacia de la clase Obstacle2.
+     */
     Obstacle2 *obs2;
+    /**
+     * @brief bonus, instacia de la clase Bonus.
+     */
     Bonus *bonus;
+    /**
+     * @brief boss, instacia de la clase Boss.
+     */
     Boss *boss;
+    /**
+     * @brief power, instacia de la clase Power.
+     */
     Power *power;
+    /**
+     * @brief boss2, instacia de la clase boss2.
+     */
     Boss2 *boss2;
-
+    /**
+     * @brief timerE, se utiliza para generar instancias de las clases
+      Enemy, EnemyShoots, Obstacle y Obstacle2.
+     */
     QTimer *timerE;
+    /**
+     * @brief timerB, se conecta con el metodo makeBonus de la clase level1.h.
+     */
     QTimer *timerB;
+    /**
+     * @brief timerSound, se conecta con el metodo Music de la clase level1.h.
+     */
     QTimer *timerSound;
-
+    /**
+     * @brief posx, posicion en x donde se generan los enemigos y obstaculos de la clase level1.h.
+     */
     int posx;
+    /**
+     * @brief isBoss, es verdadero si va a jugar con el jefe.
+     */
     bool isBoss;
+    /**
+     * @brief song, se tiliza para elejir canciones de forma aleatoria.
+     */
     short song;
-
+    /**
+     * @brief sound, instacia de la clase QMediaPlayer.
+     */
     QMediaPlayer *sound;
 
 public slots:
@@ -151,7 +200,7 @@ public slots:
 
 private slots:
     /**
-     * @brief on_stop_clicked
+     * @brief on_stop_clicked,
      */
     void on_stop_clicked();
     /**
