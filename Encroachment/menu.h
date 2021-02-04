@@ -137,12 +137,40 @@ public slots:
 
 private:
     Ui::Menu *ui;
+    /**
+     * @brief scene, instacia de la clase QGraphicsScene.
+     */
     QGraphicsScene *scene;
+    /**
+     * @brief login, instacia de la clase Login.
+     */
     Login *login;
+    /**
+     * @brief level, representa el nivel en el que se va ajugar.
+     */
+    /**
+     * @brief character, seleccionar uno de los tres posibles personajes.
+     */
+    /**
+     * @brief song, representa la cancion que va a sonar.
+     */
     short level,character,song;
+    /**
+     * @brief username, recibe un QString ingresado por el usuario.
+     */
     QString username;
+    /**
+     * @brief mult, si es verdadero es porque se va ajugar el multijugador,
+      si es falso no se va a ejecutar el multijugador.
+     */
     bool mult;
+    /**
+     * @brief sound, instacia de la clase QMediaPlayer
+     */
     QMediaPlayer *sound;
+    /**
+     * @brief timerSound, esta conectado con el metodo Music de la clase menu.h.
+     */
     QTimer *timerSound;
 
 };

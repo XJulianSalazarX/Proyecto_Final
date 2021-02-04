@@ -22,8 +22,14 @@ class Multiplayer : public QWidget, public File
 {
     Q_OBJECT
 
-public:
+public:/**
+     * @brief Multiplayer, constructor de la clase multiplayer.h.
+     * @param parent
+     */
     explicit Multiplayer(QWidget *parent = nullptr);
+    /**
+      *@brief ~Multiplayer, destructor de la clase multiplayer.h.
+      */
     ~Multiplayer();
 
     void selectLevel();
@@ -59,19 +65,76 @@ private slots:
 
 private:
     Ui::Multiplayer *ui;
+    /**
+     * @brief scene, instancia de la clase QGraphicsScene.
+     */
     QGraphicsScene *scene;
+    /**
+     * @brief timer,
+     */
     QTimer *timer;
+    /**
+     * @brief player, instancia de la clase Character.
+     */
     Character *player;
+    /**
+     * @brief boss, instancia de la clase Boss.
+     */
     Boss *boss;
+    /**
+     * @brief boss2, instancia de la clase Boss2.
+     */
     Boss2 *boss2;
-    Power *power;
+    /**
+     * @brief power, instancia de la clase Power.
+     */
+    Power *power;  
+    /**
+     * @brief player1,
+     */
+    /**
+     * @brief score1,
+     */
     QString player1,score1;
+    /**
+     * @brief player2,
+     */
+    /**
+     * @brief score2,
+     */
     QString player2,score2;
+    /**
+     * @brief time1,
+     */
+    /**
+     * @brief time2,
+     */
     double time1,time2;
+    /**
+     * @brief level,
+     */
+    /**
+     * @brief character,
+     */
     short level,character;
+    /**
+     * @brief turn2,
+     */
+    /**
+     * @brief boss_win,
+     */
     bool turn2,boss_win;
+    /**
+     * @brief sound, instancia de la clase QMediaPlayer.
+     */
     QMediaPlayer *sound;
+    /**
+     * @brief changeSound,
+     */
     bool changeSound;
+    /**
+     * @brief timerSound,
+     */
     QTimer *timerSound;
 
 public slots:
